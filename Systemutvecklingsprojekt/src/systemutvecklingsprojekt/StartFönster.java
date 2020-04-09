@@ -5,10 +5,7 @@
  */
 package systemutvecklingsprojekt;
 
-/**
- *
- * @author MarcusSkarud
- */
+
 public class StartFönster extends javax.swing.JFrame {
 
     /**

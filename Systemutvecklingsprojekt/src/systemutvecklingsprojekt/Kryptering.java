@@ -8,10 +8,7 @@ package systemutvecklingsprojekt;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- *
- * @author MarcusSkarud
- */
+
 public class Kryptering {
     
     // Denna metod tar en vanlig textsträng som parameter (lösenordet) och 
