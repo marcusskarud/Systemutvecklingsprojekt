@@ -9,16 +9,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author MarcusSkarud
- */
-public class Main {
-    /**
-     * @param args the command line arguments
-     */
-    private static Connection db;
 
+public class Main {
+    
+    private static Connection db;
     
     public static void main(String[] args) {
     
@@ -32,7 +26,6 @@ public class Main {
             SQL.listaLarare(db);
         }
          catch (SQLException e) {
-            
                 System.out.println(e.getMessage());
         }
         

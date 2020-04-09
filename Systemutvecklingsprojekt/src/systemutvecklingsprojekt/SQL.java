@@ -13,18 +13,14 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 
 
-/**
- *
- * @author MarcusSkarud
- */
 public class SQL {
         
     public static void listaLarare(Connection db) throws SQLException{
     
         String sql = "SELECT id, namn, losenord FROM larare";
 
-        Statement statement  = db.createStatement();
-        ResultSet resultat    = statement.executeQuery(sql);
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
 
             while (resultat.next()) {
                 System.out.println(resultat.getInt("id") +  "\t" + 
