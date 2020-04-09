@@ -34,7 +34,6 @@ public class Main {
          catch (SQLException e) {
             
                 System.out.println(e.getMessage());
-            
         }
         
         java.awt.EventQueue.invokeLater(new Runnable() {
