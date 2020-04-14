@@ -98,7 +98,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        btnSkapaKonto = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtEfternamn = new javax.swing.JTextField();
         rbtnAdmin = new javax.swing.JRadioButton();
@@ -469,10 +469,10 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel16.setText("Förnamn");
 
-        jButton10.setText("Skapa nytt användarkonto");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnSkapaKonto.setText("Skapa nytt användarkonto");
+        btnSkapaKonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnSkapaKontoActionPerformed(evt);
             }
         });
 
@@ -499,7 +499,7 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton10)
+                        .addComponent(btnSkapaKonto)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEfternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(txtFornamn))))
@@ -530,7 +530,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addComponent(txtTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
+                    .addComponent(btnSkapaKonto)
                     .addComponent(rbtnAdmin))
                 .addGap(30, 30, 30))
         );
@@ -662,21 +662,21 @@ public class Inloggad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnPostaFActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
         
         String epost = txtEpost.getText();
         String fornamn = txtFornamn.getText();
         String efternamn = txtEfternamn.getText();
         String losenord = pswLosenord.getPassword().toString();
         String telefonNummer = txtTelefonnummer.getText();
-        String admin = "N";
+        String admin = "";
         
-       /*if(rbtnAdmin.isEnabled()){
+       if(rbtnAdmin.isSelected()){
             admin = "J";
         }
         else{
             admin = "N";
-        }*/
+        }
         
         try{
         
@@ -692,7 +692,7 @@ public class Inloggad extends javax.swing.JFrame {
         
         }
         
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
     
     /**
@@ -733,8 +733,8 @@ public class Inloggad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton btnPostaF;
+    private javax.swing.JButton btnSkapaKonto;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;
