@@ -5,9 +5,11 @@
  * and open the template in the editor.
  */
 package systemutvecklingsprojekt;
+import java.awt.Component;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import javax.swing.plaf.PanelUI;
 /**
  *
  * @author vince
@@ -15,6 +17,7 @@ import java.sql.SQLException;
 public class Inloggad extends javax.swing.JFrame {
 
     private static Connection db;
+    private Object jPanel19;
     /**
      * Creates new form Inloggad
      */
@@ -24,12 +27,21 @@ public class Inloggad extends javax.swing.JFrame {
         this.db = db;
         
         
+        
+        
+        
        
     }
     
+   /* private void hamtaBloggLayout(){
+        JPanel mall = new JPanel();
+        
+    }
+    */
+    
     private void uppdateraBloggInlagg()
     {
-    
+            
         
         
     }
@@ -48,7 +60,6 @@ public class Inloggad extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         ScrollPane = new javax.swing.JScrollPane();
@@ -78,6 +89,7 @@ public class Inloggad extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jPanel7 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -116,19 +128,6 @@ public class Inloggad extends javax.swing.JFrame {
         jTextField11.setText("jTextField11");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("Informell", jPanel7);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -191,7 +190,7 @@ public class Inloggad extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(722, Short.MAX_VALUE))
+                .addContainerGap(1334, Short.MAX_VALUE))
         );
 
         ScrollPane.setViewportView(jPanel9);
@@ -348,10 +347,23 @@ public class Inloggad extends javax.swing.JFrame {
                             .addComponent(jButton14))
                         .addGap(18, 18, 18)
                         .addComponent(btnPostaF)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Formell", jPanel6);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1111, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 892, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Informell", jPanel7);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -359,7 +371,7 @@ public class Inloggad extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2)
                 .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
@@ -653,14 +665,13 @@ public class Inloggad extends javax.swing.JFrame {
 
     private void btnPostaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostaFActionPerformed
         
-        lblRubrikF.setText(txtSattRubrikF.getText());
-        txtBloggBrodTextF.setText(txtSattBrodtextF.getText());
-        
-        //JPanel p = jPanel10.getLayout();
-        
-        
+     /*   Component add = new testCopy1();
+        jPanel9.add(add);
+        */
     }//GEN-LAST:event_btnPostaFActionPerformed
-
+        
+        
+        
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         
         String epost = txtEpost.getText();
@@ -693,7 +704,7 @@ public class Inloggad extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

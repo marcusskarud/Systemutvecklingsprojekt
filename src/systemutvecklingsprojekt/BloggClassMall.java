@@ -5,17 +5,29 @@
  */
 package systemutvecklingsprojekt;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ifkli
  */
 public class BloggClassMall extends javax.swing.JPanel {
 
+    
+    
+    
+    
+
     /**
      * Creates new form BloggClassMall
      */
     public BloggClassMall() {
         initComponents();
+        
+        
+        
+        
     }
 
     /**
