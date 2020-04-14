@@ -22,18 +22,9 @@ public class Inloggad extends javax.swing.JFrame {
     public Inloggad(Connection db) {
         initComponents();
         txtBloggBrodTextF.setEditable(false);
-        this.db = db;
-       
-        
-       
+        this.db = db;     
     }
-    
-    private void uppdateraBloggInlagg()
-    {
-    
-        
-        
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -198,22 +189,12 @@ public class Inloggad extends javax.swing.JFrame {
         ScrollPane.setViewportView(jPanel9);
 
         txtSattRubrikF.setText("Test");
-        txtSattRubrikF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSattRubrikFActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Rubrik");
 
         jLabel5.setText("Brödtext");
 
         txtSattBrodtextF.setText("Det här är en test.");
-        txtSattBrodtextF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSattBrodtextFActionPerformed(evt);
-            }
-        });
 
         jButton12.setText("Lägg till fil");
 
@@ -449,18 +430,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(68, 73, 255));
 
-        txtEpost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEpostActionPerformed(evt);
-            }
-        });
-
-        txtTelefonnummer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonnummerActionPerformed(evt);
-            }
-        });
-
         jLabel12.setText("E-post (inlogg)");
 
         jLabel13.setText("Lösenord");
@@ -636,30 +605,10 @@ public class Inloggad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEpostActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEpostActionPerformed
-
-    private void txtTelefonnummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonnummerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonnummerActionPerformed
-
-    private void txtSattRubrikFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSattRubrikFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSattRubrikFActionPerformed
-
-    private void txtSattBrodtextFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSattBrodtextFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSattBrodtextFActionPerformed
-
     private void btnPostaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostaFActionPerformed
         
         lblRubrikF.setText(txtSattRubrikF.getText());
-        txtBloggBrodTextF.setText(txtSattBrodtextF.getText());
-        
-        //JPanel p = jPanel10.getLayout();
-        
-        
+        txtBloggBrodTextF.setText(txtSattBrodtextF.getText());               
     }//GEN-LAST:event_btnPostaFActionPerformed
 
     private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
@@ -683,6 +632,7 @@ public class Inloggad extends javax.swing.JFrame {
        SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
 
        JOptionPane.showMessageDialog(null, "Ett nytt konto har lagts till!");
+       tomKontoFalt();
         
         }
         catch(NoSuchAlgorithmException i){
@@ -694,6 +644,15 @@ public class Inloggad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
+    private void tomKontoFalt()
+    {
+        txtEpost.setText("");
+        txtFornamn.setText("");
+        txtEfternamn.setText("");
+        pswLosenord.setText("");
+        txtTelefonnummer.setText("");
+        rbtnAdmin.setSelected(false);
+    }
     
     /**
      * @param args the command line arguments
