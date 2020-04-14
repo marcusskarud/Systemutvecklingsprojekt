@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package systemutvecklingsprojekt;
+import java.sql.Connection;
 
 /**
  *
@@ -11,11 +12,14 @@ package systemutvecklingsprojekt;
  */
 public class StartFönster extends javax.swing.JFrame {
 
+    
+    private static Connection db;
     /**
      * Creates new form MainFönster
      */
-    public StartFönster() {
+    public StartFönster(Connection db) {
         initComponents();
+        this.db = db;
     }
 
     /**
@@ -110,7 +114,7 @@ public class StartFönster extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-         new Inloggad().setVisible(true);
+         new Inloggad(db).setVisible(true);
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
     /**

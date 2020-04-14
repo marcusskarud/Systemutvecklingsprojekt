@@ -38,7 +38,7 @@ public class Main {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartFönster().setVisible(true);
+                new StartFönster(db).setVisible(true);
             }
         });    
     }
