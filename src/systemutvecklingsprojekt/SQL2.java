@@ -32,13 +32,17 @@ public class SQL2 {
             }        
     }
     
-    public static void laggTillAnvandare(Connection db,int id ,String epost,String fornamn,String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException{
+    public static void laggTillAnvandare(Connection db,String epost, String fornamn, String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException{
         
         String sql = "INSERT INTO Anvandare (AnvandarID,Epost,Losenord, Fornamn, Efternamn, Telefonnummer, admin) VALUES(?,?,?,?,?,?,?)";
         String nyttHashLosenord = Kryptering.skapaHashLosenord(losenord);
         
+        String sqlAnvändare = "Select Max (AnvandarID) from Anvandare";
+        int intsqlAnvändare = Integer.parseInt(sqlAnvändare);
+        int nyttAnvändarId = intsqlAnvändare + 1;
+        
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setInt(1, nyttAnvändarId);
             statement.setString(2, epost);
             statement.setString(3, nyttHashLosenord);
             statement.setString(4, fornamn );
