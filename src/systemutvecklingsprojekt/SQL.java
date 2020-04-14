@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 
 /**
@@ -48,11 +49,13 @@ public class SQL {
 
     }
     
-    public static void loggaIn(Connection db, String epost, String losenord){
+    public static ArrayList<String> loggaIn(Connection db, String epost, String losenord){
         String sql = "";
+        ArrayList<String> resultat = null;
         
     
     
     
+        return resultat;
     }
 }
