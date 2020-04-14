@@ -19,7 +19,9 @@ import java.sql.PreparedStatement;
  */
 public class SQL {
         
-    public static void listaAnvandare(Connection db) throws SQLException{
+    
+    
+    public static void listaAllaAnvandare(Connection db) throws SQLException{
     
         String sql = "SELECT AnvandarID, Fornamn, Losenord FROM Anvandare";
 
