@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -74,13 +75,44 @@ public class SQL {
     }
     
     
-    public static ArrayList<String> loggaIn(Connection db, String epost, String losenord){
-        String sql = "";
-        ArrayList<String> resultat = null;
+    public static boolean loggaInCheck(Connection db, String epost, String losenord) throws NoSuchAlgorithmException {
         
-    
-    
-    
-        return resultat;
+        boolean inloggad =false;
+        int id=0;
+        String krypteratLosen = Kryptering.skapaHashLosenord(losenord);
+        try{
+        String sql = "SELECT AnvandarID FROM Anvandare WHERE Epost ="+epost + " AND Losenord="+krypteratLosen;
+        
+        
+         Statement statement  = db.createStatement();
+        ResultSet resultat    = statement.executeQuery(sql);
+        id =resultat.getInt("AnvandarID");
+        }
+        catch (SQLException fel){
+        id=0;
+        }
+        if(id>0)
+        {   
+            inloggad=true;
+            
+           
+        }
+
+        return inloggad;
+    }
+    public static void inloggning(Connection db, String epost, String losenord)throws NoSuchAlgorithmException, SQLException
+    {
+        ArrayList<String> lista = new ArrayList<>();
+        
+        if(loggaInCheck(db,epost,losenord)){
+            String sql = "SELECT AnvandarID, Admin FROM Anvandare WHERE Epost ="+epost;
+            
+            Statement statement  = db.createStatement();
+            ResultSet resultat    = statement.executeQuery(sql);
+             lista.add(String.valueOf(resultat.getInt("AnvandarID")));
+             lista.add(resultat.getString("Admin"));
+            
+        }
+        
     }
 }
