@@ -53,22 +53,23 @@ public class SQL {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
         ArrayList<String> arr = new ArrayList<String>();
     
-        
         String sql = "SELECT * FROM Blogginlagg";
 
         Statement statement  = db.createStatement();
         ResultSet resultat    = statement.executeQuery(sql);
 
-            while (resultat.next()) {
-                arr.add(resultat.getString("Rubrik"));
-                arr.add(resultat.getString("Text"));
-                retur.add(arr);        
+        while (resultat.next()) {
+            arr.add(resultat.getString("Rubrik"));
+            arr.add(resultat.getString("Text"));
+            retur.add(arr);        
+        }
+        
+        for (ArrayList<String> inlagg : retur){
+            String rubrik = inlagg.get(0);
+            String text = inlagg.get(1);
+            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text);
+        }
                 
-            }
-        
-        
-        
-        
         return retur;
     }
     
