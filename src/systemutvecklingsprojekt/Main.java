@@ -8,6 +8,7 @@ package systemutvecklingsprojekt;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *
@@ -29,12 +30,10 @@ public class Main {
         
         try {
             db = DriverManager.getConnection(url);
-            SQL.listaLarare(db);
+            SQL.listaAllaAnvandare(db);
         }
          catch (SQLException e) {
-            
                 System.out.println(e.getMessage());
-            
         }
         
         java.awt.EventQueue.invokeLater(new Runnable() {

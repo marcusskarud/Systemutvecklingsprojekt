@@ -19,17 +19,19 @@ import java.sql.PreparedStatement;
  */
 public class SQL {
         
-    public static void listaLarare(Connection db) throws SQLException{
     
-        String sql = "SELECT id, namn, losenord FROM larare";
+    
+    public static void listaAllaAnvandare(Connection db) throws SQLException{
+    
+        String sql = "SELECT AnvandarID, Fornamn, Losenord FROM Anvandare";
 
         Statement statement  = db.createStatement();
         ResultSet resultat    = statement.executeQuery(sql);
 
             while (resultat.next()) {
-                System.out.println(resultat.getInt("id") +  "\t" + 
-                                   resultat.getString("namn") + "\t" +
-                                   resultat.getString("losenord"));
+                System.out.println(resultat.getInt("AnvandarID") +  "\t" + 
+                                   resultat.getString("Fornamn") + "\t" +
+                                   resultat.getString("Losenord"));
             }        
     }
     
