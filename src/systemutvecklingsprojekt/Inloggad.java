@@ -91,7 +91,6 @@ public class Inloggad extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         txtEpost = new javax.swing.JTextField();
-        txtLosenord = new javax.swing.JTextField();
         txtTelefonnummer = new javax.swing.JTextField();
         txtFornamn = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -102,6 +101,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtEfternamn = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
+        pswLosenord = new javax.swing.JPasswordField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -490,9 +490,9 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtLosenord)
                     .addComponent(txtTelefonnummer)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(pswLosenord))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -521,8 +521,8 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel15)
                 .addGap(10, 10, 10)
@@ -666,14 +666,15 @@ public class Inloggad extends javax.swing.JFrame {
         String epost = txtEpost.getText();
         String fornamn = txtFornamn.getText();
         String efternamn = txtEfternamn.getText();
-        String losenord = txtLosenord.getText();
+        String losenord = pswLosenord.getPassword().toString();
         String telefonNummer = txtTelefonnummer.getText();
         String admin = "N";
         
         try{
-       
-        SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
         
+        
+        SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
+        System.out.print("Ok");
         }
         catch(NoSuchAlgorithmException i){
         
@@ -784,11 +785,11 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblRubrikF;
     private javax.swing.JPanel pnlAdminRights;
+    private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JTextArea txtBloggBrodTextF;
     private javax.swing.JTextField txtEfternamn;
     private javax.swing.JTextField txtEpost;
     private javax.swing.JTextField txtFornamn;
-    private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtSattBrodtextF;
     private javax.swing.JTextField txtSattRubrikF;
     private javax.swing.JTextField txtTelefonnummer;

@@ -37,12 +37,17 @@ public class SQL2 {
         String sql = "INSERT INTO Anvandare (AnvandarID,Epost,Losenord, Fornamn, Efternamn, Telefonnummer, admin) VALUES(?,?,?,?,?,?,?)";
         String nyttHashLosenord = Kryptering.skapaHashLosenord(losenord);
         
-        String sqlAnvändare = "Select Max (AnvandarID) from Anvandare";
-        int intsqlAnvändare = Integer.parseInt(sqlAnvändare);
-        int nyttAnvändarId = intsqlAnvändare + 1;
+        String sqlAnvandare = "Select Max (AnvandarID) from Anvandare";
+        
+        Statement anvandarStatement  = db.createStatement();
+        ResultSet resultat    = anvandarStatement.executeQuery(sqlAnvandare);
+        String antalAnvandare = resultat.getString(1);
+        
+        int intsqlAnvandare = Integer.parseInt(antalAnvandare);
+        int nyttAnvandarId = intsqlAnvandare + 1;
         
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setInt(1, nyttAnvändarId);
+            statement.setInt(1, nyttAnvandarId);
             statement.setString(2, epost);
             statement.setString(3, nyttHashLosenord);
             statement.setString(4, fornamn );
