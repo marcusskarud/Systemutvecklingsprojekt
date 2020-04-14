@@ -6,21 +6,18 @@
 package systemutvecklingsprojekt;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author MarcusSkarud
  */
-public class SQL {
-        
-    
+public class SQL2 {
+       
     public static void listaAllaAnvandare(Connection db) throws SQLException{
     
         String sql = "SELECT AnvandarID, Fornamn, Losenord FROM Anvandare";
@@ -35,27 +32,33 @@ public class SQL {
             }        
     }
     
-    public static void laggTillAnvandare(Connection db,int id ,String namn, String losenord) throws NoSuchAlgorithmException, SQLException{
+    public static void laggTillAnvandare(Connection db,String epost, String fornamn, String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException{
         
-        String sql = "INSERT INTO Anvandare(AnvandarID,Fornamn,Losenord) VALUES(?,?,?)";
+        String sql = "INSERT INTO Anvandare (AnvandarID,Epost,Losenord, Fornamn, Efternamn, Telefonnummer, admin) VALUES(?,?,?,?,?,?,?)";
         String nyttHashLosenord = Kryptering.skapaHashLosenord(losenord);
         
+        String sqlAnvändare = "Select Max (AnvandarID) from Anvandare";
+        int intsqlAnvändare = Integer.parseInt(sqlAnvändare);
+        int nyttAnvändarId = intsqlAnvändare + 1;
+        
             PreparedStatement statement = db.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.setString(2, namn);
+            statement.setInt(1, nyttAnvändarId);
+            statement.setString(2, epost);
             statement.setString(3, nyttHashLosenord);
+            statement.setString(4, fornamn );
+            statement.setString(5, efternamn);
+            statement.setString(6, telefonNummer);
+            statement.setString(7, admin);
             
             statement.executeUpdate();
 
     }
     
-    public static ArrayList<String> loggaIn(Connection db, String epost, String losenord){
+    public static void loggaIn(Connection db, String epost, String losenord){
         String sql = "";
-        ArrayList<String> resultat = null;
         
     
     
     
-        return resultat;
     }
 }
