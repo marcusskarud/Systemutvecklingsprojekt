@@ -30,7 +30,7 @@ public class Main {
         
         try {
             db = DriverManager.getConnection(url);
-            SQL.listaAllaAnvandare(db);
+            SQL2.listaAllaAnvandare(db);
         }
          catch (SQLException e) {
                 System.out.println(e.getMessage());

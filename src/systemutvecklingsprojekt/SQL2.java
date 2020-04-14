@@ -20,21 +20,26 @@ public class SQL2 {
        
     public static void listaAllaAnvandare(Connection db) throws SQLException{
     
-        String sql = "SELECT AnvandarID, Fornamn, Losenord FROM Anvandare";
+        String sql = "SELECT AnvandarID, Epost, Losenord, Fornamn, Efternamn, Telefonnummer, Admin FROM Anvandare";
 
         Statement statement  = db.createStatement();
         ResultSet resultat    = statement.executeQuery(sql);
 
             while (resultat.next()) {
                 System.out.println(resultat.getInt("AnvandarID") +  "\t" + 
-                                   resultat.getString("Fornamn") + "\t" +
-                                   resultat.getString("Losenord"));
+                                   resultat.getString("Epost") + "\t" +
+                        resultat.getString("Losenord") + "\t" +
+                        resultat.getString("Fornamn") + "\t" +
+                        resultat.getString("Efternamn") + "\t" +
+                        resultat.getString("Telefonnummer") + "\t" +
+                        resultat.getString("Admin"));
+                        
             }        
     }
     
-    public static void laggTillAnvandare(Connection db,String epost, String fornamn, String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException{
+    public static void laggTillAnvandare(Connection db, String epost, String fornamn, String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException{
         
-        String sql = "INSERT INTO Anvandare (AnvandarID,Epost,Losenord, Fornamn, Efternamn, Telefonnummer, admin) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Anvandare (AnvandarID, Epost, Losenord, Fornamn, Efternamn, Telefonnummer, Admin) VALUES (?,?,?,?,?,?,?)";
         String nyttHashLosenord = Kryptering.skapaHashLosenord(losenord);
         
         String sqlAnvandare = "Select Max (AnvandarID) from Anvandare";
