@@ -1,8 +1,8 @@
 
 Systemutvecklingsprojekt/.DS_Store
 Systemutvecklingsprojekt/.DS_Store
-/nbproject/private/
-/dist/
-/build/
+/nbproject/private/*
+/dist/*
+/build/*
 .DS_Store
-/nbproject/private/private.xml
+
