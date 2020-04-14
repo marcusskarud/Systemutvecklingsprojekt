@@ -32,15 +32,19 @@ public class SQL2 {
             }        
     }
     
-    public static void laggTillAnvandare(Connection db,int id ,String namn, String losenord) throws NoSuchAlgorithmException, SQLException{
+    public static void laggTillAnvandare(Connection db,int id ,String epost,String fornamn,String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException{
         
-        String sql = "INSERT INTO Anvandare(AnvandarID,Fornamn,Losenord) VALUES(?,?,?)";
+        String sql = "INSERT INTO Anvandare (AnvandarID,Epost,Losenord, Fornamn, Efternamn, Telefonnummer, admin) VALUES(?,?,?,?,?,?,?)";
         String nyttHashLosenord = Kryptering.skapaHashLosenord(losenord);
         
             PreparedStatement statement = db.prepareStatement(sql);
             statement.setInt(1, id);
-            statement.setString(2, namn);
+            statement.setString(2, epost);
             statement.setString(3, nyttHashLosenord);
+            statement.setString(4, fornamn );
+            statement.setString(5, efternamn);
+            statement.setString(6, telefonNummer);
+            statement.setString(7, admin);
             
             statement.executeUpdate();
 
