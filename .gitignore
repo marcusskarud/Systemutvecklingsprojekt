@@ -5,3 +5,4 @@ Systemutvecklingsprojekt/.DS_Store
 /dist/
 /build/
 .DS_Store
+/nbproject/private/private.xml
