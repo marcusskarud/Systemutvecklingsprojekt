@@ -8,6 +8,7 @@ package systemutvecklingsprojekt;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author vince
@@ -22,7 +23,7 @@ public class Inloggad extends javax.swing.JFrame {
         initComponents();
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
-        
+       
         
        
     }
@@ -100,7 +101,7 @@ public class Inloggad extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtEfternamn = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rbtnAdmin = new javax.swing.JRadioButton();
         pswLosenord = new javax.swing.JPasswordField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -477,7 +478,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel17.setText("Efternamn");
 
-        jRadioButton1.setText("Administratör (ja/nej)");
+        rbtnAdmin.setText("Administratör (ja/nej)");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -491,7 +492,7 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefonnummer)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(rbtnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(pswLosenord))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,7 +531,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
-                    .addComponent(jRadioButton1))
+                    .addComponent(rbtnAdmin))
                 .addGap(30, 30, 30))
         );
 
@@ -670,11 +671,19 @@ public class Inloggad extends javax.swing.JFrame {
         String telefonNummer = txtTelefonnummer.getText();
         String admin = "N";
         
+       /*if(rbtnAdmin.isEnabled()){
+            admin = "J";
+        }
+        else{
+            admin = "N";
+        }*/
+        
         try{
         
+       SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
+
+       JOptionPane.showMessageDialog(null, "Ett nytt konto har lagts till!");
         
-        SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
-        System.out.print("Ok");
         }
         catch(NoSuchAlgorithmException i){
         
@@ -685,10 +694,6 @@ public class Inloggad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    /*public LayoutManager getLayout()
-    {
-    
-    }*/
     
     /**
      * @param args the command line arguments
@@ -775,7 +780,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -786,6 +790,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JLabel lblRubrikF;
     private javax.swing.JPanel pnlAdminRights;
     private javax.swing.JPasswordField pswLosenord;
+    private javax.swing.JRadioButton rbtnAdmin;
     private javax.swing.JTextArea txtBloggBrodTextF;
     private javax.swing.JTextField txtEfternamn;
     private javax.swing.JTextField txtEpost;
