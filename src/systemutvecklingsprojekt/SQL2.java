@@ -66,14 +66,9 @@ public class SQL2 {
 
     }
 
-    public static void loggaIn(Connection db, String epost, String losenord) {
-        String sql = "";
-
-    }
-
     public static void laggaTillBloggInlägg(Connection db, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
         String sql = "insert into blogginlagg (blogginlaggsid, rubrik, text, filurl, datumtid, skapatav) values(?, ?, ?, ?, ?, ?)";
-              
+
         String sqlBlogggInlaggsID = "Select Max (blogginlaggsid) from blogginlagg";
 
         Statement anvandarStatement = db.createStatement();
@@ -82,7 +77,7 @@ public class SQL2 {
 
         int intSQLBloggInlagg = Integer.parseInt(antalBloggInlagg);
         int nyttBloggInlagg = intSQLBloggInlagg + 1;
-        
+
         PreparedStatement statement = db.prepareStatement(sql);
         statement.setInt(1, nyttBloggInlagg);
         statement.setString(2, rubrik);
@@ -91,14 +86,13 @@ public class SQL2 {
         //statement.setDate(5,  datumTid); Hur ska datum och tid hanteras?? // William, Jonas
         statement.setInt(6, skapatAv);
     }
-    
-    public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException{
-        String sql = "update bloggInlagg set rubrik = " + rubrik + ", text = " + text + ", filURL = " + filURL + " WHERE bloggInlaggsID = " + bloggInlaggsID;
+
+    public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
+        String sql = "update bloggInlagg set rubrik = '" + rubrik + "', text = '" + text + "', filURL = '" + filURL + "' WHERE bloggInlaggsID = " + bloggInlaggsID;
     }
-    
-    public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException{
+
+    public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
         String sql = "DELETE FROM bloggInlagg WHERE bloggInlaggsID = " + bloggInlaggsID;
     }
-    
-    
+
 }

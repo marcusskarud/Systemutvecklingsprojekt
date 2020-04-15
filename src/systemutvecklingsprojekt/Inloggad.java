@@ -595,7 +595,6 @@ public class Inloggad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
 
         String epost = txtEpost.getText();
@@ -632,8 +631,8 @@ public class Inloggad extends javax.swing.JFrame {
 
             }
         }
-
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
+
 
     private void tomFalt() {
         txtEpost.setText("");
