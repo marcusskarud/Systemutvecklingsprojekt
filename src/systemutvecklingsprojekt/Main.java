@@ -30,12 +30,13 @@ public class Main {
 
         try {
             db = DriverManager.getConnection(url);
-            SQL2.listaAllaAnvandare(db);
-            SQL2.laggaTillBloggInlägg(db, "Rubriktext", "Texttext", null, 1);
+            SQL.listaAllaAnvandare(db);
+            SQL2.raderaBloggInlagg(db, 4);
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        catch(NoSuchAlgorithmException f){
+        catch (NoSuchAlgorithmException f){
             System.out.println(f.getMessage());
         }
 

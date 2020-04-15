@@ -88,11 +88,22 @@ public class SQL2 {
     }
 
     public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
-        String sql = "update bloggInlagg set rubrik = '" + rubrik + "', text = '" + text + "', filURL = '" + filURL + "' WHERE bloggInlaggsID = " + bloggInlaggsID;
+        String sql;
+        if (filURL == null){
+        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        System.out.println("filURL är null!");
+        }
+        else{
+        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        }
+        PreparedStatement uppdateraStatement = db.prepareStatement(sql);
+        uppdateraStatement.executeUpdate();
     }
 
     public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
-        String sql = "DELETE FROM bloggInlagg WHERE bloggInlaggsID = " + bloggInlaggsID;
+        String sql = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;
+        PreparedStatement taBortStatement = db.prepareStatement(sql);
+        taBortStatement.executeUpdate();
     }
     
     private static String getTid(){

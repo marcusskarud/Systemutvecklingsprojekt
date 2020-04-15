@@ -170,6 +170,26 @@ public class SQL {
         return inloggad;
     }
     
+    public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
+        String sql;
+        if (filURL == null){
+        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        System.out.println("filURL är null!");
+        }
+        else{
+        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        }
+        PreparedStatement uppdateraStatement = db.prepareStatement(sql);
+        uppdateraStatement.executeUpdate();
+        
+    }
+    
+    public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
+        String sql = "DELETE FROM bloggInlagg WHERE bloggInlaggsID = " + bloggInlaggsID;
+        PreparedStatement taBortStatement = db.prepareStatement(sql);
+        taBortStatement.executeUpdate();
+    }
+    
     private static String getTid(){
         SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp klockslag = new Timestamp(System.currentTimeMillis());
