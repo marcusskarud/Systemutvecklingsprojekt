@@ -48,9 +48,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnLoggaIn" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="txtEpost" min="-2" pref="180" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jPasswordField1" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="pswLosenord" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -66,11 +66,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEpost" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="pswLosenord" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnLoggaIn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="319" max="32767" attributes="0"/>
@@ -88,7 +88,7 @@
             <Property name="text" type="java.lang.String" value="Informatikgruppen"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtEpost">
           <Properties>
             <Property name="text" type="java.lang.String" value="admin@oru.se"/>
           </Properties>
@@ -106,7 +106,7 @@
             <Property name="text" type="java.lang.String" value="admin@oru.se       l&#xf6;sen: admin "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        <Component class="javax.swing.JPasswordField" name="pswLosenord">
           <Properties>
             <Property name="text" type="java.lang.String" value="admin"/>
           </Properties>
