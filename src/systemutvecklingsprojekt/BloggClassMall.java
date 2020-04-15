@@ -15,7 +15,8 @@ import java.awt.BorderLayout;
  */
 public class BloggClassMall extends javax.swing.JPanel {
 
-    
+    private String rubrik;
+    private String text;
     
     
     
@@ -23,9 +24,13 @@ public class BloggClassMall extends javax.swing.JPanel {
     /**
      * Creates new form BloggClassMall
      */
-    public BloggClassMall() {
+    public BloggClassMall(String rubrik, String text) {
+        this.rubrik = rubrik;
+        this.text = text;
         initComponents();
         
+        lblRubrik.setText(rubrik);
+        txtBloggtext.setText(text);
         
         
         
@@ -41,18 +46,19 @@ public class BloggClassMall extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtBloggtext = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtBloggtext.setEditable(false);
+        txtBloggtext.setColumns(20);
+        txtBloggtext.setLineWrap(true);
+        txtBloggtext.setRows(5);
+        jScrollPane1.setViewportView(txtBloggtext);
 
         jButton1.setText("Redigera ");
 
-        jLabel1.setText("Rubrik visas här");
+        lblRubrik.setText("Rubrik visas här");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -66,7 +72,7 @@ public class BloggClassMall extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -74,7 +80,7 @@ public class BloggClassMall extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jLabel1)
+                .addComponent(lblRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -86,8 +92,8 @@ public class BloggClassMall extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JTextArea txtBloggtext;
     // End of variables declaration//GEN-END:variables
 }

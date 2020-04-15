@@ -16,6 +16,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,42 +33,39 @@ public class Inloggad extends javax.swing.JFrame {
      */
     public Inloggad(Connection db, int anvandarID, String adminStatus) {
 
-        
-        
         initComponents();
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
 
+        jPanel9.removeAll();
+        jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
+        
         if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(3);
         }
 
         this.anvandarID = anvandarID;
-        
-        jPanel9.removeAll();
-        jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
-        
-        BloggClassMall nyPanel2 = new BloggClassMall();
-        BloggClassMall nyPanel3 = new BloggClassMall();
-        BloggClassMall nyPanel4 = new BloggClassMall();
-        BloggClassMall nyPanel5 = new BloggClassMall();
-        
-        System.out.println(nyPanel2.getSize().toString());
-        nyPanel3.setPreferredSize(new Dimension(600,600));
-        
 
-        jPanel9.add(nyPanel2);
-        jPanel9.add(nyPanel3);
-        jPanel9.add(nyPanel4);
-        jPanel9.add(nyPanel5);
+        try {
+            uppdateraBlogg();
+
+        } catch (SQLException e) {
+        }
 
         
 
         
-        
-
- 
-        
+//        BloggClassMall nyPanel2 = new BloggClassMall();
+//        BloggClassMall nyPanel3 = new BloggClassMall();
+//        BloggClassMall nyPanel4 = new BloggClassMall();
+//        BloggClassMall nyPanel5 = new BloggClassMall();
+//
+//        nyPanel3.setPreferredSize(new Dimension(600, 600));
+//
+//        jPanel9.add(nyPanel2);
+//        jPanel9.add(nyPanel3);
+//        jPanel9.add(nyPanel4);
+//        jPanel9.add(nyPanel5);
 
     }
 
@@ -633,6 +631,23 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
+    // INGEN TRY-CATCH!!!!!!!
+    private void uppdateraBlogg() throws SQLException {
+
+        ArrayList<ArrayList<String>> bloggInlagg = SQL.lasBlogginlagg(db);
+        ArrayList<BloggClassMall> inlaggPaneler = new ArrayList<>();
+        
+        for (ArrayList<String> inlagg : bloggInlagg) {
+            String rubrik = inlagg.get(0);
+            String text = inlagg.get(1);
+            BloggClassMall nyttInlagg = new BloggClassMall(rubrik, text);
+            inlaggPaneler.add(nyttInlagg);
+        }
+        for(BloggClassMall inlagg : inlaggPaneler){
+            jPanel9.add(inlagg);
+        }
+
+    }
 
     private void tomFalt() {
         txtEpost.setText("");
