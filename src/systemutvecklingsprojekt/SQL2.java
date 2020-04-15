@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package systemutvecklingsprojekt;
 
 import java.security.NoSuchAlgorithmException;
@@ -11,11 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 
 /**
- *
  * @author MarcusSkarud
  */
 public class SQL2 {
@@ -67,9 +62,9 @@ public class SQL2 {
     }
 
     public static void laggaTillBloggInlägg(Connection db, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
-        String sql = "insert into blogginlagg (blogginlaggsid, rubrik, text, filurl, datumtid, skapatav) values(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Blogginlagg (BlogginlaggsID, Rubrik, Text, FilURL, Datumtid, SkapatAv) VALUES (?,?,?,?,?,?)";
 
-        String sqlBlogggInlaggsID = "Select Max (blogginlaggsid) from blogginlagg";
+        String sqlBlogggInlaggsID = "SELECT MAX(BlogginlaggsID) FROM Blogginlagg";
 
         Statement anvandarStatement = db.createStatement();
         ResultSet resultat = anvandarStatement.executeQuery(sqlBlogggInlaggsID);
@@ -78,13 +73,18 @@ public class SQL2 {
         int intSQLBloggInlagg = Integer.parseInt(antalBloggInlagg);
         int nyttBloggInlagg = intSQLBloggInlagg + 1;
 
+        String datumTid = getTid();
+        
         PreparedStatement statement = db.prepareStatement(sql);
         statement.setInt(1, nyttBloggInlagg);
         statement.setString(2, rubrik);
         statement.setString(3, text);
-        //statement.setString(4, filURL); Hur ska vi göra med filer?? // William, Jonas
-        //statement.setDate(5,  datumTid); Hur ska datum och tid hanteras?? // William, Jonas
+        statement.setString(4, filURL); //Hur ska vi göra med filer?? // William, Jonas
+        statement.setString(5, datumTid); //Hur ska datum och tid hanteras?? // William, Jonas
         statement.setInt(6, skapatAv);
+        
+        statement.executeUpdate();
+
     }
 
     public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
@@ -94,5 +94,12 @@ public class SQL2 {
     public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
         String sql = "DELETE FROM bloggInlagg WHERE bloggInlaggsID = " + bloggInlaggsID;
     }
-
+    
+    private static String getTid(){
+        SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp klockslag = new Timestamp(System.currentTimeMillis());
+        String datumTid = datumformaterare.format(klockslag);    
+    
+        return datumTid;
+    }
 }

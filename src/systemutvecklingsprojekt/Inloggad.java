@@ -37,8 +37,8 @@ public class Inloggad extends javax.swing.JFrame {
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
 
-        jPanel9.removeAll();
-        jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
+        pnlFormellBlogg.removeAll();
+        pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
         
         if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(3);
@@ -55,17 +55,6 @@ public class Inloggad extends javax.swing.JFrame {
         
 
         
-//        BloggClassMall nyPanel2 = new BloggClassMall();
-//        BloggClassMall nyPanel3 = new BloggClassMall();
-//        BloggClassMall nyPanel4 = new BloggClassMall();
-//        BloggClassMall nyPanel5 = new BloggClassMall();
-//
-//        nyPanel3.setPreferredSize(new Dimension(600, 600));
-//
-//        jPanel9.add(nyPanel2);
-//        jPanel9.add(nyPanel3);
-//        jPanel9.add(nyPanel4);
-//        jPanel9.add(nyPanel5);
 
     }
 
@@ -85,7 +74,7 @@ public class Inloggad extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         ScrollPane = new javax.swing.JScrollPane();
-        jPanel9 = new javax.swing.JPanel();
+        pnlFormellBlogg = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         lblRubrikF = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -181,24 +170,24 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFormellBloggLayout = new javax.swing.GroupLayout(pnlFormellBlogg);
+        pnlFormellBlogg.setLayout(pnlFormellBloggLayout);
+        pnlFormellBloggLayout.setHorizontalGroup(
+            pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFormellBloggLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        pnlFormellBloggLayout.setVerticalGroup(
+            pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFormellBloggLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1334, Short.MAX_VALUE))
+                .addContainerGap(1319, Short.MAX_VALUE))
         );
 
-        ScrollPane.setViewportView(jPanel9);
+        ScrollPane.setViewportView(pnlFormellBlogg);
 
         txtSattRubrikF.setText("Test");
 
@@ -620,7 +609,7 @@ public class Inloggad extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Telefonnummer måste vara mellan 1-30 siffror");
         } else {
             try {
-                SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
+                SQL.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
                 JOptionPane.showMessageDialog(null, "Kontot har skapats!");
                 tomFalt();
             } catch (NoSuchAlgorithmException i) {
@@ -644,7 +633,7 @@ public class Inloggad extends javax.swing.JFrame {
             inlaggPaneler.add(nyttInlagg);
         }
         for(BloggClassMall inlagg : inlaggPaneler){
-            jPanel9.add(inlagg);
+            pnlFormellBlogg.add(inlagg);
         }
 
     }
@@ -737,7 +726,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -746,6 +734,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblRubrikF;
     private javax.swing.JPanel pnlAdminRights;
+    private javax.swing.JPanel pnlFormellBlogg;
     private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JRadioButton rbtnAdmin;
     private javax.swing.JTabbedPane tabbedPaneBar;
