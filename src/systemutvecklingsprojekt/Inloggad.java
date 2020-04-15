@@ -619,15 +619,15 @@ public class Inloggad extends javax.swing.JFrame {
     private void uppdateraBlogg() throws SQLException {
 
         ArrayList<ArrayList<String>> bloggInlagg = SQL.lasBlogginlagg(db);
-        ArrayList<BloggClassMall> inlaggPaneler = new ArrayList<>();
+        ArrayList<BloggInlaggsPanel> inlaggPaneler = new ArrayList<>();
 
         for (ArrayList<String> inlagg : bloggInlagg) {
             String rubrik = inlagg.get(0);
             String text = inlagg.get(1);
-            BloggClassMall nyttInlagg = new BloggClassMall(rubrik, text);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text);
             inlaggPaneler.add(nyttInlagg);
         }
-        for (BloggClassMall inlagg : inlaggPaneler) {
+        for (BloggInlaggsPanel inlagg : inlaggPaneler) {
             pnlFormellBlogg.add(inlagg);
         }
     }
