@@ -6,16 +6,11 @@
  */
 package systemutvecklingsprojekt;
 
-import java.awt.Component;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import java.awt.GridLayout;
 import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 
 /**
@@ -36,25 +31,26 @@ public class Inloggad extends javax.swing.JFrame {
         initComponents();
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
-
+        this.anvandarID = anvandarID;
+        
+        
+        
         pnlFormellBlogg.removeAll();
         pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
+
+        
         
         if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(3);
         }
 
-        this.anvandarID = anvandarID;
+        
 
         try {
             uppdateraBlogg();
-
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
         }
-
-        
-
-        
 
     }
 
@@ -620,22 +616,20 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
-    // INGEN TRY-CATCH!!!!!!!
     private void uppdateraBlogg() throws SQLException {
 
         ArrayList<ArrayList<String>> bloggInlagg = SQL.lasBlogginlagg(db);
         ArrayList<BloggClassMall> inlaggPaneler = new ArrayList<>();
-        
+
         for (ArrayList<String> inlagg : bloggInlagg) {
             String rubrik = inlagg.get(0);
             String text = inlagg.get(1);
             BloggClassMall nyttInlagg = new BloggClassMall(rubrik, text);
             inlaggPaneler.add(nyttInlagg);
         }
-        for(BloggClassMall inlagg : inlaggPaneler){
+        for (BloggClassMall inlagg : inlaggPaneler) {
             pnlFormellBlogg.add(inlagg);
         }
-
     }
 
     private void tomFalt() {
@@ -645,41 +639,6 @@ public class Inloggad extends javax.swing.JFrame {
         pswLosenord.setText("");
         txtTelefonnummer.setText("");
         rbtnAdmin.setSelected(false);
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inloggad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inloggad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inloggad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inloggad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //new Inloggad(db).setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
