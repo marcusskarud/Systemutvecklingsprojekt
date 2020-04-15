@@ -116,8 +116,8 @@ public class SQL {
         return inloggad;
     }
 
-    public static void inloggning(Connection db, String epost, String losenord) throws NoSuchAlgorithmException, SQLException {
-
+    public static boolean inloggning(Connection db, String epost, String losenord) throws NoSuchAlgorithmException, SQLException {
+        boolean inloggad = false;
         if (loggaInCheck(db, epost, losenord)) {
             String sql = "SELECT AnvandarID, Admin FROM Anvandare WHERE Epost ='" + epost + "'";
 
@@ -125,9 +125,11 @@ public class SQL {
             ResultSet resultat = statement.executeQuery(sql);
             int id = resultat.getInt("AnvandarID");
             String admin = resultat.getString("Admin");
+            inloggad =true;
+            
             new Inloggad(db, id, admin).setVisible(true);
-
+            
         }
-
+        return inloggad;
     }
 }

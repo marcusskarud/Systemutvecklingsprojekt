@@ -24,6 +24,11 @@ public class StartFönster extends javax.swing.JFrame {
         this.db = db;
     }
 
+    public void stangFonster(){
+    
+         dispose();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,7 +122,10 @@ public class StartFönster extends javax.swing.JFrame {
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         try{ 
-        SQL.inloggning(db, txtEpost.getText(), new String(pswLosenord.getPassword()));
+        if(SQL.inloggning(db, txtEpost.getText(), new String(pswLosenord.getPassword()))){
+            dispose();
+        }
+        
         }
         catch(NoSuchAlgorithmException i){}
         catch(SQLException e){}
