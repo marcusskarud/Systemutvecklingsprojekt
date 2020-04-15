@@ -7,6 +7,7 @@ package systemutvecklingsprojekt;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.BorderLayout;
 
 /**
  *
@@ -45,6 +46,7 @@ public class BloggClassMall extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -77,7 +79,7 @@ public class BloggClassMall extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

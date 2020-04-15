@@ -10,8 +10,12 @@ import java.awt.Component;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import javax.swing.plaf.PanelUI;
 import javax.swing.JOptionPane;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
 
 /**
  *
@@ -28,6 +32,8 @@ public class Inloggad extends javax.swing.JFrame {
      */
     public Inloggad(Connection db, int anvandarID, String adminStatus) {
 
+        
+        
         initComponents();
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
@@ -37,6 +43,31 @@ public class Inloggad extends javax.swing.JFrame {
         }
 
         this.anvandarID = anvandarID;
+        
+        jPanel9.removeAll();
+        jPanel9.setLayout(new BoxLayout(jPanel9, BoxLayout.Y_AXIS));
+        
+        BloggClassMall nyPanel2 = new BloggClassMall();
+        BloggClassMall nyPanel3 = new BloggClassMall();
+        BloggClassMall nyPanel4 = new BloggClassMall();
+        BloggClassMall nyPanel5 = new BloggClassMall();
+        
+        System.out.println(nyPanel2.getSize().toString());
+        nyPanel3.setPreferredSize(new Dimension(600,600));
+        
+
+        jPanel9.add(nyPanel2);
+        jPanel9.add(nyPanel3);
+        jPanel9.add(nyPanel4);
+        jPanel9.add(nyPanel5);
+
+        
+
+        
+        
+
+ 
+        
 
     }
 
@@ -111,11 +142,6 @@ public class Inloggad extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
 
         jButton9.setText("jButton9");
 
@@ -555,48 +581,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         tabbedPaneBar.addTab("Admin", pnlAdminRights);
 
-        jLabel1.setText("Är du säker på att du vill logga ut?");
-
-        jButton4.setText("Ja");
-
-        jButton5.setText("Nej");
-
-        jLabel3.setText("Hur centrerar man detta så det blir snyggt vid fullscreen?");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(382, 382, 382)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(606, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(234, 234, 234))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addContainerGap(661, Short.MAX_VALUE))
-        );
-
-        tabbedPaneBar.addTab("Logga ut", jPanel5);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -705,8 +689,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -715,7 +697,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -728,7 +709,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -740,7 +720,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
