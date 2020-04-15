@@ -30,7 +30,7 @@ public class Inloggad extends javax.swing.JFrame {
         
         if(adminStatus.equals("N"))
         {
-            pnlAdminRights.setVisible(false);
+            tabbedPaneBar.remove(3);
         }
         
         this.anvandarID = anvandarID;
@@ -61,7 +61,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         jButton9 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabbedPaneBar = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
@@ -373,7 +373,7 @@ public class Inloggad extends javax.swing.JFrame {
             .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jTabbedPane1.addTab("Blogg", jPanel1);
+        tabbedPaneBar.addTab("Blogg", jPanel1);
 
         jButton6.setText("Skapa nytt projekt");
 
@@ -421,7 +421,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(813, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Projekt", jPanel2);
+        tabbedPaneBar.addTab("Projekt", jPanel2);
 
         jButton7.setText("Ny händelse");
 
@@ -448,7 +448,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(812, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Kalender", jPanel3);
+        tabbedPaneBar.addTab("Kalender", jPanel3);
 
         jButton11.setText("Ge adminstatus");
 
@@ -571,7 +571,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(504, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Admin", pnlAdminRights);
+        tabbedPaneBar.addTab("Admin", pnlAdminRights);
 
         jLabel1.setText("Är du säker på att du vill logga ut?");
 
@@ -613,17 +613,17 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(661, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Logga ut", jPanel5);
+        tabbedPaneBar.addTab("Logga ut", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPaneBar)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPaneBar)
         );
 
         pack();
@@ -659,7 +659,7 @@ public class Inloggad extends javax.swing.JFrame {
         String epost = txtEpost.getText();
         String fornamn = txtFornamn.getText();
         String efternamn = txtEfternamn.getText();
-        String losenord = pswLosenord.getPassword().toString();
+        String losenord = new String(pswLosenord.getPassword());
         String telefonNummer = txtTelefonnummer.getText();
         String admin = "";
         
@@ -781,7 +781,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -790,6 +789,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAdminRights;
     private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JRadioButton rbtnAdmin;
+    private javax.swing.JTabbedPane tabbedPaneBar;
     private javax.swing.JTextArea txtBloggBrodTextF;
     private javax.swing.JTextField txtEfternamn;
     private javax.swing.JTextField txtEpost;

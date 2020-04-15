@@ -117,10 +117,11 @@ public class StartFönster extends javax.swing.JFrame {
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         try{ 
-        SQL.inloggning(db, txtEpost.getText(), pswLosenord.getPassword().toString());
+        SQL.inloggning(db, txtEpost.getText(), new String(pswLosenord.getPassword()));
         }
         catch(NoSuchAlgorithmException i){}
         catch(SQLException e){}
+//new Inloggad(db, 1,"J").setVisible(true);
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
     /**
