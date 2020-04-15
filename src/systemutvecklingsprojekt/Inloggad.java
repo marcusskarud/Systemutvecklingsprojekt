@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.swing.plaf.PanelUI;
+import javax.swing.JOptionPane;
 /**
  *
  * @author vince
@@ -18,19 +19,22 @@ public class Inloggad extends javax.swing.JFrame {
 
     private static Connection db;
     private Object jPanel19;
+    private int anvandarID; 
     /**
      * Creates new form Inloggad
      */
-    public Inloggad(Connection db) {
+    public Inloggad(Connection db, int anvandarID, String adminStatus) {
         initComponents();
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
         
+        if(adminStatus.equals("N"))
+        {
+            tabbedPaneBar.remove(3);
+        }
         
-        
-        
-        
-       
+        this.anvandarID = anvandarID;
+                
     }
     
    /* private void hamtaBloggLayout(){
@@ -57,7 +61,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         jButton9 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabbedPaneBar = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
@@ -109,10 +113,10 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        btnSkapaKonto = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtEfternamn = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rbtnAdmin = new javax.swing.JRadioButton();
         pswLosenord = new javax.swing.JPasswordField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
@@ -196,22 +200,12 @@ public class Inloggad extends javax.swing.JFrame {
         ScrollPane.setViewportView(jPanel9);
 
         txtSattRubrikF.setText("Test");
-        txtSattRubrikF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSattRubrikFActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Rubrik");
 
         jLabel5.setText("Brödtext");
 
         txtSattBrodtextF.setText("Det här är en test.");
-        txtSattBrodtextF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSattBrodtextFActionPerformed(evt);
-            }
-        });
 
         jButton12.setText("Lägg till fil");
 
@@ -379,7 +373,7 @@ public class Inloggad extends javax.swing.JFrame {
             .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jTabbedPane1.addTab("Blogg", jPanel1);
+        tabbedPaneBar.addTab("Blogg", jPanel1);
 
         jButton6.setText("Skapa nytt projekt");
 
@@ -427,7 +421,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(813, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Projekt", jPanel2);
+        tabbedPaneBar.addTab("Projekt", jPanel2);
 
         jButton7.setText("Ny händelse");
 
@@ -454,23 +448,11 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(812, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Kalender", jPanel3);
+        tabbedPaneBar.addTab("Kalender", jPanel3);
 
         jButton11.setText("Ge adminstatus");
 
         jPanel4.setBackground(new java.awt.Color(68, 73, 255));
-
-        txtEpost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEpostActionPerformed(evt);
-            }
-        });
-
-        txtTelefonnummer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonnummerActionPerformed(evt);
-            }
-        });
 
         jLabel12.setText("E-post (inlogg)");
 
@@ -480,16 +462,16 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel16.setText("Förnamn");
 
-        jButton10.setText("Skapa nytt användarkonto");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btnSkapaKonto.setText("Skapa nytt användarkonto");
+        btnSkapaKonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btnSkapaKontoActionPerformed(evt);
             }
         });
 
         jLabel17.setText("Efternamn");
 
-        jRadioButton1.setText("Administratör (ja/nej)");
+        rbtnAdmin.setText("Administratör (ja/nej)");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -503,14 +485,14 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefonnummer)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(rbtnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(pswLosenord))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton10)
+                        .addComponent(btnSkapaKonto)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEfternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(txtFornamn))))
@@ -541,8 +523,8 @@ public class Inloggad extends javax.swing.JFrame {
                 .addComponent(txtTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jRadioButton1))
+                    .addComponent(btnSkapaKonto)
+                    .addComponent(rbtnAdmin))
                 .addGap(30, 30, 30))
         );
 
@@ -589,7 +571,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(504, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Admin", pnlAdminRights);
+        tabbedPaneBar.addTab("Admin", pnlAdminRights);
 
         jLabel1.setText("Är du säker på att du vill logga ut?");
 
@@ -631,17 +613,17 @@ public class Inloggad extends javax.swing.JFrame {
                 .addContainerGap(661, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Logga ut", jPanel5);
+        tabbedPaneBar.addTab("Logga ut", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPaneBar)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tabbedPaneBar)
         );
 
         pack();
@@ -672,20 +654,30 @@ public class Inloggad extends javax.swing.JFrame {
         
         
         
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
         
         String epost = txtEpost.getText();
         String fornamn = txtFornamn.getText();
         String efternamn = txtEfternamn.getText();
-        String losenord = pswLosenord.getPassword().toString();
+        String losenord = new String(pswLosenord.getPassword());
         String telefonNummer = txtTelefonnummer.getText();
-        String admin = "N";
+        String admin = "";
         
+        if(rbtnAdmin.isSelected())
+        {
+            admin = "J";
+        }
+        else
+        {
+            admin = "N";
+        }
+        if(Validering.textNotEmpty(txtEpost) && Validering.textNotEmpty(txtFornamn) && 
+                Validering.textNotEmpty(txtEfternamn) && Validering.passwordNotEmpty(pswLosenord)
+                && Validering.textNotEmpty(txtTelefonnummer) && Validering.checkPhoneLength(txtTelefonnummer))
+        {
         try{
-        
-        
         SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
-        System.out.print("Ok");
+        JOptionPane.showMessageDialog(null, "Kontot har skapats!");
         }
         catch(NoSuchAlgorithmException i){
         
@@ -693,8 +685,9 @@ public class Inloggad extends javax.swing.JFrame {
         catch(SQLException e){
         
         }
+        }
         
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
     /*public LayoutManager getLayout()
     {
@@ -731,7 +724,7 @@ public class Inloggad extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inloggad(db).setVisible(true);
+                //new Inloggad(db).setVisible(true);
             }
         });
     }
@@ -739,8 +732,8 @@ public class Inloggad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton btnPostaF;
+    private javax.swing.JButton btnSkapaKonto;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton14;
@@ -786,10 +779,8 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -797,6 +788,8 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JLabel lblRubrikF;
     private javax.swing.JPanel pnlAdminRights;
     private javax.swing.JPasswordField pswLosenord;
+    private javax.swing.JRadioButton rbtnAdmin;
+    private javax.swing.JTabbedPane tabbedPaneBar;
     private javax.swing.JTextArea txtBloggBrodTextF;
     private javax.swing.JTextField txtEfternamn;
     private javax.swing.JTextField txtEpost;
