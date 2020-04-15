@@ -19,14 +19,14 @@ import javax.swing.JComboBox;
 public class Validering {
     
     //Kollar om textfältet är tomt.
-    static public boolean textNotEmpty(JTextField txt){
+    static public boolean textIsEmpty(JTextField txt){
         if (txt.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Textfältet är tomt!");
+            //JOptionPane.showMessageDialog(null, "Textfältet är tomt!");
             txt.requestFocus();
-            return false;
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
     
@@ -44,14 +44,14 @@ public class Validering {
     }
     
     // Kollar så inte lösenordsfältet är tomt.
-    static public boolean passwordNotEmpty(JPasswordField txt){
+    static public boolean passwordIsEmpty(JPasswordField txt){
         if (new String(txt.getPassword()).isEmpty()){
-            JOptionPane.showMessageDialog(null, "Lösenordsfältet är tomt!");
+            //JOptionPane.showMessageDialog(null, "Lösenordsfältet är tomt!");
             txt.requestFocus();
-            return false;
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
     
@@ -94,11 +94,11 @@ public class Validering {
     // Kollar längden på inmatat telefonnummer så det inte överstiger 30 tecken.
     static public boolean checkPhoneLength(JTextField txt){
         if (txt.getText().toString().length() <= 30){
-            return true;
+            return false;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Telefonnumret är för långt!");
-            return false;
+            //JOptionPane.showMessageDialog(null, "Telefonnumret är för långt!");
+            return true;
         }
     }
     

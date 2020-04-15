@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package systemutvecklingsprojekt;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.security.NoSuchAlgorithmException;
@@ -12,23 +13,18 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author MarcusSkarud
  */
-public class StartFönster extends javax.swing.JFrame {
+public class StartFonster extends javax.swing.JFrame {
 
-    
     private static Connection db;
+
     /**
      * Creates new form MainFönster
      */
-    public StartFönster(Connection db) {
+    public StartFonster(Connection db) {
         initComponents();
         this.db = db;
     }
 
-    public void stangFonster(){
-    
-         dispose();
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,21 +117,22 @@ public class StartFönster extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        try{ 
-        if(SQL.inloggning(db, txtEpost.getText(), new String(pswLosenord.getPassword()))){
-            dispose();
+        try {
+            if (SQL.inloggning(db, txtEpost.getText(), new String(pswLosenord.getPassword()))) {
+                dispose();
+            }
+
+        } catch (NoSuchAlgorithmException i) {
+            
+        } catch (SQLException e) {
+            
         }
-        
-        }
-        catch(NoSuchAlgorithmException i){}
-        catch(SQLException e){}
-//new Inloggad(db, 1,"J").setVisible(true);
+
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;

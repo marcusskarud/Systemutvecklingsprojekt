@@ -37,15 +37,6 @@ public class Inloggad extends javax.swing.JFrame {
         }
 
         this.anvandarID = anvandarID;
-       
-    }
-
-    /* private void hamtaBloggLayout(){
-        JPanel mall = new JPanel();
-        
-    }
-     */
-    private void uppdateraBloggInlagg() {
 
     }
 
@@ -63,7 +54,6 @@ public class Inloggad extends javax.swing.JFrame {
         tabbedPaneBar = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel8 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         ScrollPane = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
@@ -93,6 +83,7 @@ public class Inloggad extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -131,19 +122,6 @@ public class Inloggad extends javax.swing.JFrame {
         jTextField11.setText("jTextField11");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTabbedPane2.addTab("Skapa nytt inlägg", jPanel8);
 
         lblRubrikF.setText("Rubriken visas här");
 
@@ -209,11 +187,6 @@ public class Inloggad extends javax.swing.JFrame {
         jButton12.setText("Lägg till fil");
 
         btnPostaF.setText("Posta");
-        btnPostaF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPostaFActionPerformed(evt);
-            }
-        });
 
         jLabel6.setText("*Visa vald filnamn här*");
 
@@ -349,7 +322,7 @@ public class Inloggad extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1111, Short.MAX_VALUE)
+            .addGap(0, 1153, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,14 +331,24 @@ public class Inloggad extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Informell", jPanel7);
 
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Skapa nytt inlägg", jPanel8);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addGap(32, 32, 32))
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +380,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 645, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 689, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(31, 31, 31))
         );
@@ -435,7 +418,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7))
-                .addContainerGap(996, Short.MAX_VALUE))
+                .addContainerGap(1040, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,7 +530,7 @@ public class Inloggad extends javax.swing.JFrame {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66))
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
         );
@@ -592,7 +575,7 @@ public class Inloggad extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addContainerGap(562, Short.MAX_VALUE))
+                .addContainerGap(606, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -628,29 +611,6 @@ public class Inloggad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEpostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEpostActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEpostActionPerformed
-
-    private void txtTelefonnummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonnummerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonnummerActionPerformed
-
-    private void txtSattRubrikFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSattRubrikFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSattRubrikFActionPerformed
-
-    private void txtSattBrodtextFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSattBrodtextFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSattBrodtextFActionPerformed
-
-    private void btnPostaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostaFActionPerformed
-
-        /*   Component add = new testCopy1();
-        jPanel9.add(add);
-         */
-    }//GEN-LAST:event_btnPostaFActionPerformed
-
 
     private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
 
@@ -666,12 +626,22 @@ public class Inloggad extends javax.swing.JFrame {
         } else {
             admin = "N";
         }
-        if (Validering.textNotEmpty(txtEpost) && Validering.textNotEmpty(txtFornamn)
-                && Validering.textNotEmpty(txtEfternamn) && Validering.passwordNotEmpty(pswLosenord)
-                && Validering.textNotEmpty(txtTelefonnummer) && Validering.checkPhoneLength(txtTelefonnummer)) {
+
+        if (Validering.textIsEmpty(txtEpost)) {
+            JOptionPane.showMessageDialog(null, "Vänligen fyll i en E-post");
+        } else if (Validering.textIsEmpty(txtFornamn)) {
+            JOptionPane.showMessageDialog(null, "Vänligen fyll i förnamn");
+        } else if (Validering.textIsEmpty(txtEfternamn)) {
+            JOptionPane.showMessageDialog(null, "Vänligen fyll i efternamn");
+        } else if (Validering.passwordIsEmpty(pswLosenord)) {
+            JOptionPane.showMessageDialog(null, "Vänligen fyll i ett lösenord");
+        } else if (Validering.textIsEmpty(txtTelefonnummer) || Validering.checkPhoneLength(txtTelefonnummer)) {
+            JOptionPane.showMessageDialog(null, "Telefonnummer måste vara mellan 1-30 siffror");
+        } else {
             try {
                 SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
                 JOptionPane.showMessageDialog(null, "Kontot har skapats!");
+                tomFalt();
             } catch (NoSuchAlgorithmException i) {
 
             } catch (SQLException e) {
@@ -681,10 +651,15 @@ public class Inloggad extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
-    /*public LayoutManager getLayout()
-    {
-    
-    }*/
+    private void tomFalt() {
+        txtEpost.setText("");
+        txtFornamn.setText("");
+        txtEfternamn.setText("");
+        pswLosenord.setText("");
+        txtTelefonnummer.setText("");
+        rbtnAdmin.setSelected(false);
+    }
+
     /**
      * @param args the command line arguments
      */

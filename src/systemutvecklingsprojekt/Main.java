@@ -15,32 +15,31 @@ import java.security.NoSuchAlgorithmException;
  * @author MarcusSkarud
  */
 public class Main {
+
     /**
      * @param args the command line arguments
      */
     private static Connection db;
 
-    
     public static void main(String[] args) {
-    
+
         String aktuellMap = System.getProperty("user.dir");
         String sokVag = aktuellMap + ("/dbTest.db");
-        
+
         String url = "jdbc:sqlite:" + sokVag;
-        
+
         try {
             db = DriverManager.getConnection(url);
             SQL2.listaAllaAnvandare(db);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-         catch (SQLException e) {
-                System.out.println(e.getMessage());
-        }
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartFönster(db).setVisible(true);
+                new StartFonster(db).setVisible(true);
             }
-        });    
+        });
     }
-    
+
 }

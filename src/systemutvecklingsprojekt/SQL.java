@@ -90,7 +90,7 @@ public class SQL {
         boolean inloggad = false;
         int id = 0;
         String krypteratLosen = Kryptering.skapaHashLosenord(losenord);
-       
+
         try {
             String sql = "SELECT AnvandarID FROM Anvandare WHERE Epost ='" + epost + "' AND Losenord='" + krypteratLosen + "'";
 
@@ -98,9 +98,9 @@ public class SQL {
             ResultSet resultat = statement.executeQuery(sql);
             while (resultat.next()) {
                 id = resultat.getInt("AnvandarID");
-                
+
             }
-            
+
         } catch (SQLException fel) {
             System.out.println(fel.getMessage());
             id = 0;
@@ -125,10 +125,10 @@ public class SQL {
             ResultSet resultat = statement.executeQuery(sql);
             int id = resultat.getInt("AnvandarID");
             String admin = resultat.getString("Admin");
-            inloggad =true;
-            
+            inloggad = true;
+
             new Inloggad(db, id, admin).setVisible(true);
-            
+
         }
         return inloggad;
     }
