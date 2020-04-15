@@ -109,8 +109,8 @@ public class SQL {
             
             Statement statement  = db.createStatement();
             ResultSet resultat    = statement.executeQuery(sql);
-             lista.add(String.valueOf(resultat.getInt("AnvandarID")));
-             lista.add(resultat.getString("Admin"));
+            lista.add(String.valueOf(resultat.getInt("AnvandarID")));
+            lista.add(resultat.getString("Admin"));
             
         }
         
