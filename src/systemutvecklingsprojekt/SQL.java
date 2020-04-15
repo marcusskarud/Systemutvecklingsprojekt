@@ -67,7 +67,7 @@ public class SQL {
         statement.executeUpdate();
 
     }
-    
+
     public static void laggaTillBloggInlägg(Connection db, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
         String sql = "INSERT INTO Blogginlagg (BlogginlaggsID, Rubrik, Text, FilURL, Datumtid, SkapatAv) VALUES (?,?,?,?,?,?)";
 
@@ -81,7 +81,7 @@ public class SQL {
         int nyttBloggInlagg = intSQLBloggInlagg + 1;
 
         String datumTid = getTid();
-        
+
         PreparedStatement statement = db.prepareStatement(sql);
         statement.setInt(1, nyttBloggInlagg);
         statement.setString(2, rubrik);
@@ -89,7 +89,7 @@ public class SQL {
         statement.setString(4, filURL); //Hur ska vi göra med filer?? // William, Jonas
         statement.setString(5, datumTid); //Hur ska datum och tid hanteras?? // William, Jonas
         statement.setInt(6, skapatAv);
-        
+
         statement.executeUpdate();
 
     }
@@ -101,8 +101,7 @@ public class SQL {
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
-       
-        
+
         while (resultat.next()) {
             ArrayList<String> arr = new ArrayList<String>();
 
@@ -169,32 +168,30 @@ public class SQL {
         }
         return inloggad;
     }
-    
+
     public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
         String sql;
-        if (filURL == null){
-        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
-        System.out.println("filURL är null!");
-        }
-        else{
-        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        if (filURL == null || filURL.isEmpty()) {
+            sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        } else {
+            sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
         }
         PreparedStatement uppdateraStatement = db.prepareStatement(sql);
         uppdateraStatement.executeUpdate();
-        
+
     }
-    
+
     public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
         String sql = "DELETE FROM bloggInlagg WHERE bloggInlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement = db.prepareStatement(sql);
         taBortStatement.executeUpdate();
     }
-    
-    private static String getTid(){
+
+    private static String getTid() {
         SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp klockslag = new Timestamp(System.currentTimeMillis());
-        String datumTid = datumformaterare.format(klockslag);    
-    
+        String datumTid = datumformaterare.format(klockslag);
+
         return datumTid;
     }
 }

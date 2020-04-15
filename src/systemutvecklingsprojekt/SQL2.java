@@ -1,4 +1,3 @@
-
 package systemutvecklingsprojekt;
 
 import java.security.NoSuchAlgorithmException;
@@ -74,7 +73,7 @@ public class SQL2 {
         int nyttBloggInlagg = intSQLBloggInlagg + 1;
 
         String datumTid = getTid();
-        
+
         PreparedStatement statement = db.prepareStatement(sql);
         statement.setInt(1, nyttBloggInlagg);
         statement.setString(2, rubrik);
@@ -82,19 +81,18 @@ public class SQL2 {
         statement.setString(4, filURL); //Hur ska vi göra med filer?? // William, Jonas
         statement.setString(5, datumTid); //Hur ska datum och tid hanteras?? // William, Jonas
         statement.setInt(6, skapatAv);
-        
+
         statement.executeUpdate();
 
     }
 
     public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
         String sql;
-        if (filURL == null){
-        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
-        System.out.println("filURL är null!");
-        }
-        else{
-        sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+        if (filURL == null) {
+            sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+            System.out.println("filURL är null!");
+        } else {
+            sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
         }
         PreparedStatement uppdateraStatement = db.prepareStatement(sql);
         uppdateraStatement.executeUpdate();
@@ -105,12 +103,12 @@ public class SQL2 {
         PreparedStatement taBortStatement = db.prepareStatement(sql);
         taBortStatement.executeUpdate();
     }
-    
-    private static String getTid(){
+
+    private static String getTid() {
         SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp klockslag = new Timestamp(System.currentTimeMillis());
-        String datumTid = datumformaterare.format(klockslag);    
-    
+        String datumTid = datumformaterare.format(klockslag);
+
         return datumTid;
     }
 }
