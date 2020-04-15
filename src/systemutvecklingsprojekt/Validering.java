@@ -41,7 +41,6 @@ public class Validering {
             txt.requestFocus();
             return false;
         }
-        
     }
     
     // Kollar så inte lösenordsfältet är tomt.
@@ -90,7 +89,6 @@ public class Validering {
             datumField.requestFocus();
             return false;
         }
-        
     }
     
     // Kollar längden på inmatat telefonnummer så det inte överstiger 30 tecken.
@@ -103,6 +101,7 @@ public class Validering {
             return false;
         }
     }
+    
     // Kollar så längden på inmatat lösenord ej är för långt.
     static public boolean passwordTextFieldLengthCheck(JTextField txt){
         if (new String(txt.getText()).length() <= 6){
@@ -114,6 +113,7 @@ public class Validering {
             return false;
         }
     }
+    
     //Kollar så längden på inmatat namn ej är för långt.
     static public boolean nameTextFieldLengthCheck(JTextField txt){
         if (new String(txt.getText()).length() <= 20){
@@ -148,7 +148,6 @@ public class Validering {
         else{
             return true;
         }
-        
     }
     
     // Kollar om längden på lösenordet är högst 6 tecken.
