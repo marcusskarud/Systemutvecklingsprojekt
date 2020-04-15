@@ -5,12 +5,14 @@
  * and open the template in the editor.
  */
 package systemutvecklingsprojekt;
+
 import java.awt.Component;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.swing.plaf.PanelUI;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author vince
@@ -19,35 +21,32 @@ public class Inloggad extends javax.swing.JFrame {
 
     private static Connection db;
     private Object jPanel19;
-    private int anvandarID; 
+    private int anvandarID;
+
     /**
      * Creates new form Inloggad
      */
     public Inloggad(Connection db, int anvandarID, String adminStatus) {
+
         initComponents();
         txtBloggBrodTextF.setEditable(false);
         this.db = db;
-        
-        if(adminStatus.equals("N"))
-        {
+
+        if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(3);
         }
-        
+
         this.anvandarID = anvandarID;
-                
+       
     }
-    
-   /* private void hamtaBloggLayout(){
+
+    /* private void hamtaBloggLayout(){
         JPanel mall = new JPanel();
         
     }
-    */
-    
-    private void uppdateraBloggInlagg()
-    {
-            
-        
-        
+     */
+    private void uppdateraBloggInlagg() {
+
     }
 
     /**
@@ -646,54 +645,46 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSattBrodtextFActionPerformed
 
     private void btnPostaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostaFActionPerformed
-        
-     /*   Component add = new testCopy1();
+
+        /*   Component add = new testCopy1();
         jPanel9.add(add);
-        */
+         */
     }//GEN-LAST:event_btnPostaFActionPerformed
-        
-        
-        
+
+
     private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
-        
+
         String epost = txtEpost.getText();
         String fornamn = txtFornamn.getText();
         String efternamn = txtEfternamn.getText();
         String losenord = new String(pswLosenord.getPassword());
         String telefonNummer = txtTelefonnummer.getText();
         String admin = "";
-        
-        if(rbtnAdmin.isSelected())
-        {
+
+        if (rbtnAdmin.isSelected()) {
             admin = "J";
-        }
-        else
-        {
+        } else {
             admin = "N";
         }
-        if(Validering.textNotEmpty(txtEpost) && Validering.textNotEmpty(txtFornamn) && 
-                Validering.textNotEmpty(txtEfternamn) && Validering.passwordNotEmpty(pswLosenord)
-                && Validering.textNotEmpty(txtTelefonnummer) && Validering.checkPhoneLength(txtTelefonnummer))
-        {
-        try{
-        SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
-        JOptionPane.showMessageDialog(null, "Kontot har skapats!");
+        if (Validering.textNotEmpty(txtEpost) && Validering.textNotEmpty(txtFornamn)
+                && Validering.textNotEmpty(txtEfternamn) && Validering.passwordNotEmpty(pswLosenord)
+                && Validering.textNotEmpty(txtTelefonnummer) && Validering.checkPhoneLength(txtTelefonnummer)) {
+            try {
+                SQL2.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
+                JOptionPane.showMessageDialog(null, "Kontot har skapats!");
+            } catch (NoSuchAlgorithmException i) {
+
+            } catch (SQLException e) {
+
+            }
         }
-        catch(NoSuchAlgorithmException i){
-        
-        }
-        catch(SQLException e){
-        
-        }
-        }
-        
+
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
     /*public LayoutManager getLayout()
     {
     
     }*/
-    
     /**
      * @param args the command line arguments
      */
