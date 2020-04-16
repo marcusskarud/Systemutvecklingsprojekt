@@ -20,36 +20,41 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
 
     private String rubrik;
     private String text;
-    
+    private int skapatAv;
+    private String datum;
+    private String filURL;
+    private int anvandarID;
+    private int bloggInlaggID;
     
     
 
     /**
      * Creates new form BloggInlaggsPanel
      */
-    public BloggInlaggsPanel(/*Connection db, */String rubrik, String text) /*throws NoSuchAlgorithmException, SQLException*/{
+    public BloggInlaggsPanel(/*Connection db, */String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID) /*throws NoSuchAlgorithmException, SQLException*/{
         this.rubrik = rubrik;
         this.text = text;
+        this.skapatAv = Integer.parseInt(skapatAv);
+        this.datum = datum;
+        this.filURL = filURL;
+        this.anvandarID = anvandarID;
+        this.bloggInlaggID = Integer.parseInt(bloggInlaggID);
+        
         initComponents();
         
         lblRubrik.setText(rubrik);
         txtBloggtext.setText(text);
         
-        /*if(SQL2.uppdateraInlagg(db))
-        {
-            btnRedigera.setVisible(false);
-        }
+        btnRedigera.setVisible(false);
+        btnTaBort.setVisible(false);
         
-        if(SQL2.skapatInlagg(db))
+        if(anvandarID == this.skapatAv)
         {
             btnRedigera.setVisible(true);
+            btnTaBort.setVisible(true);
         }
         
-         if(!SQL2.uppdateraInlagg(db))
-        {
-            btnRedigera.setVisible(false);
-            btnTaBort.setVisible(false);
-        }*/
+      
     }
 
     /**
@@ -92,35 +97,33 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnRedigera)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTaBort))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnTaBort)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRedigera)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblRubrik)
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRubrik)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTaBort)
+                        .addComponent(btnRedigera)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTaBort)
-                    .addComponent(btnRedigera))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
         
         new RedigeraInlagg().setVisible(true);
-        //new Inloggad(db, id, admin).setVisible(true);
         
     }//GEN-LAST:event_btnRedigeraActionPerformed
 

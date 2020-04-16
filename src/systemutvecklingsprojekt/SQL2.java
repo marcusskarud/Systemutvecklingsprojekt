@@ -97,43 +97,6 @@ public class SQL2 {
         PreparedStatement uppdateraStatement = db.prepareStatement(sql);
         uppdateraStatement.executeUpdate();
     }
-    
-   /* public static boolean uppdateraInlagg(Connection db) throws NoSuchAlgorithmException, SQLException
-    {
-        
-            boolean adminStatus = false;
-            String sql = "SELECT AnvandarID, Admin FROM Anvandare WHERE AnvandarID = " + Inloggad.getAnvandarID();
-        
-            Statement statement = db.createStatement();
-            ResultSet resultat = statement.executeQuery(sql);
-            int id = resultat.getInt("AnvandarID");
-            String admin = resultat.getString("Admin");
-            
-            if(admin.equals("J"))
-            {
-                adminStatus = true;
-            }
-           return adminStatus;
-    }
-    
-    public static boolean skapatInlagg(Connection db) throws NoSuchAlgorithmException, SQLException
-    {
-    
-        boolean skapatInlagg = false;
-            String sql = "SELECT AnvandarID, SkapatAv FROM Anvandare, Blogginlagg WHERE AnvandarID = " + Inloggad.getAnvandarID();
-        
-            Statement statement = db.createStatement();
-            ResultSet resultat = statement.executeQuery(sql);
-            int id = resultat.getInt("AnvandarID");
-            int skapatAv = resultat.getInt("SkapatAv");
-            
-            if(id == skapatAv)
-            {
-                skapatInlagg = true;
-            }
-           return skapatInlagg;
-    
-    }*/
 
     public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
         String sql = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;

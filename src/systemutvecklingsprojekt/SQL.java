@@ -119,7 +119,12 @@ public class SQL {
         for (ArrayList<String> inlagg : retur) {
             String rubrik = inlagg.get(0);
             String text = inlagg.get(1);
-            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text);
+            String filURL = inlagg.get(2);
+            String datum = inlagg.get(3);
+            String skapatAv = inlagg.get(4);
+            String bloggInlaggID = inlagg.get(5);
+            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text + " " + filURL + " "
+            + datum + " " + skapatAv + " " + bloggInlaggID);
         }
 
         return retur;
@@ -150,7 +155,12 @@ public class SQL {
         for (ArrayList<String> inlagg : retur) {
             String rubrik = inlagg.get(0);
             String text = inlagg.get(1);
-            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text);
+            String filURL = inlagg.get(2);
+            String datum = inlagg.get(3);
+            String skapatAv = inlagg.get(4);
+            String bloggInlaggID = inlagg.get(5);
+            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text + " " + filURL + " "
+            + datum + " " + skapatAv + " " + bloggInlaggID);
         }
 
         return retur;
@@ -197,8 +207,10 @@ public class SQL {
             int id = resultat.getInt("AnvandarID");
             String admin = resultat.getString("Admin");
             inloggad = true;
-
-            new Inloggad(db, id, admin).setVisible(true);
+            
+            System.out.println("Inloggning ok");
+            
+            new Inloggad2(db, id, admin).setVisible(true);//ändra till inloggad
 
         }
         return inloggad;
