@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 
 
 /**
@@ -20,6 +21,17 @@ public class Validering {
     
     //Kollar om textfältet är tomt.
     static public boolean textIsEmpty(JTextField txt){
+        if (txt.getText().isEmpty()){
+            //JOptionPane.showMessageDialog(null, "Textfältet är tomt!");
+            txt.requestFocus();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    static public boolean textAreaIsEmpty(JTextArea txt){
         if (txt.getText().isEmpty()){
             //JOptionPane.showMessageDialog(null, "Textfältet är tomt!");
             txt.requestFocus();

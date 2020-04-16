@@ -215,7 +215,7 @@
                                                       <EmptySpace max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jScrollPane2" pref="437" max="32767" attributes="0"/>
+                                                      <Component id="jScrollPane2" pref="431" max="32767" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="lblBloggBild" min="-2" pref="363" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
@@ -237,7 +237,7 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                                          <EmptySpace pref="17" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -351,7 +351,7 @@
                                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <EmptySpace min="-2" pref="503" max="-2" attributes="0"/>
-                                                  <Component id="btnPosta1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="btnPublicera" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                                           </Group>
@@ -363,7 +363,7 @@
                                                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                                                           <Component id="jScrollPane4" alignment="1" max="32767" attributes="0"/>
                                                           <Component id="jButton13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jComboBox3" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="cmbInlaggsTyp" alignment="0" max="32767" attributes="0"/>
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -384,7 +384,7 @@
                                           </Group>
                                       </Group>
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtSattRubrikF1" alignment="0" min="-2" pref="587" max="-2" attributes="0"/>
+                                      <Component id="txtSattRubrik" alignment="0" min="-2" pref="587" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -401,7 +401,7 @@
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtSattRubrikF1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtSattRubrik" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
@@ -434,8 +434,8 @@
                                           <Component id="jLabel22" min="-2" pref="27" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="btnPosta1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbInlaggsTyp" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnPublicera" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -445,10 +445,9 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JTextField" name="txtSattRubrikF1">
+                        <Component class="javax.swing.JTextField" name="txtSattRubrik">
                           <Properties>
                             <Property name="horizontalAlignment" type="int" value="2"/>
-                            <Property name="text" type="java.lang.String" value="Test"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -528,14 +527,12 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JComboBox" name="jComboBox3">
+                        <Component class="javax.swing.JComboBox" name="cmbInlaggsTyp">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                              <StringArray count="2">
+                                <StringItem index="0" value="Informell blogg"/>
+                                <StringItem index="1" value="Formell blogg"/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -543,10 +540,13 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JButton" name="btnPosta1">
+                        <Component class="javax.swing.JButton" name="btnPublicera">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Publicera"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPubliceraActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel3">
                           <Properties>
@@ -567,7 +567,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTextArea" name="jTextArea1">
+                            <Component class="javax.swing.JTextArea" name="txtBrodtext">
                               <Properties>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="lineWrap" type="boolean" value="true"/>

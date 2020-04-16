@@ -68,7 +68,7 @@ public class SQL {
 
     }
 
-    public static void laggaTillBloggInlägg(Connection db, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
+    public static void laggaTillBloggInlagg(Connection db, String rubrik, String text, String filURL, int skapatAv, String inlaggsTyp) throws NoSuchAlgorithmException, SQLException {
         String sql = "INSERT INTO Blogginlagg (BlogginlaggsID, Rubrik, Text, FilURL, Datumtid, SkapatAv) VALUES (?,?,?,?,?,?)";
 
         String sqlBlogggInlaggsID = "SELECT MAX(BlogginlaggsID) FROM Blogginlagg";
@@ -91,7 +91,16 @@ public class SQL {
         statement.setInt(6, skapatAv);
 
         statement.executeUpdate();
+        String sql2 = "";
+        if (inlaggsTyp.equals("Informell blogg")) {
+            sql2 = "INSERT INTO InformellBlogg VALUES (?)";
+        } else {
+            sql2 = "INSERT INTO FormellBlogg VALUES (?)";
+        }
+        PreparedStatement statement2 = db.prepareStatement(sql2);
+        statement2.setInt(1, nyttBloggInlagg);
 
+        statement2.executeUpdate();
     }
 
     public static ArrayList<ArrayList<String>> lasFormellaBlogginlagg(Connection db) throws SQLException {
@@ -227,8 +236,7 @@ public class SQL {
             }
             PreparedStatement uppdateraStatement = db.prepareStatement(sql);
             uppdateraStatement.executeUpdate();
-        } 
-         catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
