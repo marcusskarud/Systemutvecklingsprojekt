@@ -7,6 +7,7 @@ package systemutvecklingsprojekt;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -26,7 +27,7 @@ public class RedigeraInlagg extends javax.swing.JFrame {
     private int bloggInlaggID;
     private Connection db;
     
-    public RedigeraInlagg(Connection db, String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID) {
+    public RedigeraInlagg(Connection db, String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID)throws SQLException {
         initComponents();
         this.rubrik=rubrik;
         this.text=text;
@@ -35,6 +36,7 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         this.bloggInlaggID=bloggInlaggID;
         this.db=db;
         fyllInlagg();
+       
     }
     
     private void fyllInlagg(){
@@ -113,11 +115,11 @@ public class RedigeraInlagg extends javax.swing.JFrame {
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
         // TODO add your handling code here:
-        try{
+       
         SQL.redigeraBloggInlagg(db, bloggInlaggID, rubrik, text, filURL, skapatAv);
-        }
-        catch(SQLException s){}
-        catch(NoSuchAlgorithmException n){}
+        System.out.println("klar");
+        
+     
     }//GEN-LAST:event_btnUppdateraActionPerformed
 
     /**

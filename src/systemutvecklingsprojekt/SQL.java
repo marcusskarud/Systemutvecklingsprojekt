@@ -111,7 +111,7 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
-            
+
             retur.add(arr);
 
         }
@@ -124,14 +124,14 @@ public class SQL {
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
             System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text + " " + filURL + " "
-            + datum + " " + skapatAv + " " + bloggInlaggID);
+                    + datum + " " + skapatAv + " " + bloggInlaggID);
         }
 
         return retur;
     }
-    
+
     public static ArrayList<ArrayList<String>> lasInformellaBlogginlagg(Connection db) throws SQLException {
-    ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
 
         String sql = "SELECT * FROM Blogginlagg join informellBlogg on bloggInlaggsID = inlaggsID";
 
@@ -147,7 +147,7 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
-            
+
             retur.add(arr);
 
         }
@@ -160,7 +160,7 @@ public class SQL {
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
             System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text + " " + filURL + " "
-            + datum + " " + skapatAv + " " + bloggInlaggID);
+                    + datum + " " + skapatAv + " " + bloggInlaggID);
         }
 
         return retur;
@@ -207,22 +207,27 @@ public class SQL {
             int id = resultat.getInt("AnvandarID");
             String admin = resultat.getString("Admin");
             inloggad = true;
-            
+
             new Inloggad(db, id, admin).setVisible(true);
 
         }
         return inloggad;
     }
 
-    public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) throws NoSuchAlgorithmException, SQLException {
-        String sql;
-        if (filURL == null || filURL.isEmpty()) {
-            sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
-        } else {
-            sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+    public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) /*throws NoSuchAlgorithmException, SQLException */ {
+        try {
+            String sql;
+            if (filURL == null || filURL.isEmpty()) {
+                sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+            } else {
+                sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+            }
+            PreparedStatement uppdateraStatement = db.prepareStatement(sql);
+            uppdateraStatement.executeUpdate();
+        } 
+         catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-        PreparedStatement uppdateraStatement = db.prepareStatement(sql);
-        uppdateraStatement.executeUpdate();
 
     }
 
