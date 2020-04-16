@@ -217,10 +217,13 @@ public class SQL {
     public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) /*throws NoSuchAlgorithmException, SQLException */ {
         try {
             String sql;
+            System.out.println("innan");
             if (filURL == null || filURL.isEmpty()) {
                 sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+                System.out.println("if");
             } else {
                 sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
+                System.out.println("else");
             }
             PreparedStatement uppdateraStatement = db.prepareStatement(sql);
             uppdateraStatement.executeUpdate();

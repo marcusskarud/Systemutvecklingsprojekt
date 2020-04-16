@@ -19,28 +19,27 @@ public class RedigeraInlagg extends javax.swing.JFrame {
     /**
      * Creates new form RedigeraInlagg
      */
-    
     private String rubrik;
     private String text;
     private int skapatAv;
     private String filURL;
     private int bloggInlaggID;
-    private Connection db;
-    
-    public RedigeraInlagg(Connection db, String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID)throws SQLException {
+    private static Connection db;
+
+    public RedigeraInlagg(Connection db, String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID) throws SQLException {
         initComponents();
-        this.rubrik=rubrik;
-        this.text=text;
-        this.skapatAv=skapatAv;
-        this.filURL=filURL;
-        this.bloggInlaggID=bloggInlaggID;
-        this.db=db;
+        this.rubrik = rubrik;
+        this.text = text;
+        this.skapatAv = skapatAv;
+        this.filURL = filURL;
+        this.bloggInlaggID = bloggInlaggID;
+        this.db = db;
         fyllInlagg();
-       
+
     }
-    
-    private void fyllInlagg(){
-    
+
+    private void fyllInlagg() {
+
         txtUppdateraRubrik.setText(rubrik);
         txtUppdateraText.setText(text);
     }
@@ -109,23 +108,24 @@ public class RedigeraInlagg extends javax.swing.JFrame {
 
     private void txtUppdateraRubrikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUppdateraRubrikActionPerformed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_txtUppdateraRubrikActionPerformed
 
     private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
         // TODO add your handling code here:
-       
-        SQL.redigeraBloggInlagg(db, bloggInlaggID, rubrik, text, filURL, skapatAv);
+
+        SQL.redigeraBloggInlagg(db, bloggInlaggID, txtUppdateraRubrik.getText(), txtUppdateraText.getText(), filURL, skapatAv);
+//        Inloggad.uppdateraFormellBlogg();
+      
         System.out.println("klar");
-        
-     
+        dispose();
+
     }//GEN-LAST:event_btnUppdateraActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

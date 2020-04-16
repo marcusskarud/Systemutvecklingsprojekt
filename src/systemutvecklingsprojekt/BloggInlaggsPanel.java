@@ -140,9 +140,10 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
-        
+        try{
         new RedigeraInlagg(db, rubrik,  text,  skapatAv,  filURL,  bloggInlaggID).setVisible(true);
-        
+        }catch(SQLException e){}
+                
     }//GEN-LAST:event_btnRedigeraActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed

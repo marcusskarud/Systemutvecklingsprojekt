@@ -49,7 +49,8 @@ public class Inloggad extends javax.swing.JFrame {
         }
 
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,6 +80,7 @@ public class Inloggad extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        btnUppdateraInformell = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         txtSattRubrikF1 = new javax.swing.JTextField();
@@ -113,6 +115,7 @@ public class Inloggad extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jButton16 = new javax.swing.JButton();
+        btnUppdateraFormell = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -209,7 +212,7 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -233,13 +236,18 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerInformellBloggColor.png"))); // NOI18N
 
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("#");
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Sök inlägg");
 
         jButton4.setText("Sök");
+
+        btnUppdateraInformell.setText("Uppdatera");
+        btnUppdateraInformell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraInformellActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -252,10 +260,12 @@ public class Inloggad extends javax.swing.JFrame {
                         .addComponent(jLabel21)
                         .addGap(41, 41, 41))
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnUppdateraInformell)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(jLabel20)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton4))))
                 .addGap(12, 12, 12)
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
@@ -268,6 +278,9 @@ public class Inloggad extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,9 +288,9 @@ public class Inloggad extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
                             .addComponent(jLabel20))
-                        .addGap(0, 502, Short.MAX_VALUE))
-                    .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                        .addComponent(btnUppdateraInformell)
+                        .addGap(224, 224, 224))))
         );
 
         jTabbedPane2.addTab("Informell", jPanel7);
@@ -407,7 +420,7 @@ public class Inloggad extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, Short.MAX_VALUE)
+            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1023, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,7 +474,7 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jScrollPane3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -485,13 +498,18 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerFormellBloggColor.png"))); // NOI18N
 
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("#");
 
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Sök inlägg");
 
         jButton16.setText("Sök");
+
+        btnUppdateraFormell.setText("Uppdatera");
+        btnUppdateraFormell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraFormellActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -504,10 +522,12 @@ public class Inloggad extends javax.swing.JFrame {
                         .addComponent(jLabel30)
                         .addGap(41, 41, 41))
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton16)))
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnUppdateraFormell)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jLabel29)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton16))))
                 .addGap(12, 12, 12)
                 .addComponent(ScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 881, Short.MAX_VALUE)
                 .addContainerGap())
@@ -519,6 +539,10 @@ public class Inloggad extends javax.swing.JFrame {
                 .addComponent(jLabel28)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -526,11 +550,10 @@ public class Inloggad extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton16)
-                            .addComponent(jLabel29)))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel29))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUppdateraFormell)
+                        .addGap(232, 232, 232))))
         );
 
         jTabbedPane2.addTab("Formell", jPanel10);
@@ -799,7 +822,25 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
-    private void uppdateraFormellBlogg() throws SQLException {
+    private void btnUppdateraInformellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraInformellActionPerformed
+        // TODO add your handling code here:
+        try{
+        uppdateraInformellBlogg();
+        uppdateraFormellBlogg();
+        revalidate();
+        }catch(SQLException e){}
+    }//GEN-LAST:event_btnUppdateraInformellActionPerformed
+
+    private void btnUppdateraFormellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraFormellActionPerformed
+        // TODO add your handling code here:
+        try{
+        uppdateraFormellBlogg();
+        uppdateraInformellBlogg();
+        revalidate();
+        }catch(SQLException e){}
+    }//GEN-LAST:event_btnUppdateraFormellActionPerformed
+
+    public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
          
         ArrayList<ArrayList<String>> bloggInlagg = SQL.lasFormellaBlogginlagg(db);
@@ -821,7 +862,7 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }
     
-    private void uppdateraInformellBlogg() throws SQLException {
+    public void uppdateraInformellBlogg() throws SQLException {
 
         pnlInformellBlogg.removeAll();
         
@@ -857,6 +898,8 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane3;
     private javax.swing.JButton btnPosta1;
     private javax.swing.JButton btnSkapaKonto;
+    private javax.swing.JButton btnUppdateraFormell;
+    private javax.swing.JButton btnUppdateraInformell;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
