@@ -8,6 +8,9 @@ package systemutvecklingsprojekt;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
@@ -24,7 +27,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     /**
      * Creates new form BloggInlaggsPanel
      */
-    public BloggInlaggsPanel(String rubrik, String text) {
+    public BloggInlaggsPanel(/*Connection db, */String rubrik, String text) /*throws NoSuchAlgorithmException, SQLException*/{
         this.rubrik = rubrik;
         this.text = text;
         initComponents();
@@ -32,8 +35,21 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblRubrik.setText(rubrik);
         txtBloggtext.setText(text);
         
+        /*if(SQL2.uppdateraInlagg(db))
+        {
+            btnRedigera.setVisible(false);
+        }
         
+        if(SQL2.skapatInlagg(db))
+        {
+            btnRedigera.setVisible(true);
+        }
         
+         if(!SQL2.uppdateraInlagg(db))
+        {
+            btnRedigera.setVisible(false);
+            btnTaBort.setVisible(false);
+        }*/
     }
 
     /**
@@ -47,8 +63,9 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         txtBloggtext = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        btnTaBort = new javax.swing.JButton();
         lblRubrik = new javax.swing.JLabel();
+        btnRedigera = new javax.swing.JButton();
 
         txtBloggtext.setEditable(false);
         txtBloggtext.setColumns(20);
@@ -56,9 +73,16 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         txtBloggtext.setRows(5);
         jScrollPane1.setViewportView(txtBloggtext);
 
-        jButton1.setText("Redigera ");
+        btnTaBort.setText("Ta bort");
 
         lblRubrik.setText("Rubrik visas här");
+
+        btnRedigera.setText("Redigera");
+        btnRedigera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedigeraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,7 +94,9 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnRedigera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTaBort))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -84,14 +110,24 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTaBort)
+                    .addComponent(btnRedigera))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
+        
+        new RedigeraInlagg().setVisible(true);
+        //new Inloggad(db, id, admin).setVisible(true);
+        
+    }//GEN-LAST:event_btnRedigeraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnRedigera;
+    private javax.swing.JButton btnTaBort;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JTextArea txtBloggtext;
