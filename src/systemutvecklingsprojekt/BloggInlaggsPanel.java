@@ -11,13 +11,15 @@ import java.awt.BorderLayout;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.*;
 
 /**
  *
  * @author ifkli
  */
 public class BloggInlaggsPanel extends javax.swing.JPanel {
-
+    
+    private Connection db;
     private String rubrik;
     private String text;
     private int skapatAv;
@@ -31,7 +33,8 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     /**
      * Creates new form BloggInlaggsPanel
      */
-    public BloggInlaggsPanel(String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID, String adminStatus) {
+    public BloggInlaggsPanel(Connection db, String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID, String adminStatus) {
+        this.db = db;
         this.rubrik = rubrik;
         this.text = text;
         this.skapatAv = Integer.parseInt(skapatAv);
@@ -84,6 +87,11 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtBloggtext);
 
         btnTaBort.setText("Ta bort");
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortActionPerformed(evt);
+            }
+        });
 
         lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblRubrik.setText("Rubrik visas här");
@@ -133,9 +141,26 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
         
-        new RedigeraInlagg( rubrik,  text,  skapatAv,  filURL,  bloggInlaggID).setVisible(true);
+        new RedigeraInlagg( db, rubrik,  text,  skapatAv,  filURL,  bloggInlaggID).setVisible(true);
         
     }//GEN-LAST:event_btnRedigeraActionPerformed
+
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        try{
+        int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera detta inlägg?", null, 
+                    JOptionPane.OK_CANCEL_OPTION);
+
+        if(input == 0){
+            SQL.raderaBloggInlagg(db, bloggInlaggID);
+        }
+        }
+        catch(NoSuchAlgorithmException e){
+            
+        }
+        catch(SQLException i){
+            
+        }
+    }//GEN-LAST:event_btnTaBortActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
