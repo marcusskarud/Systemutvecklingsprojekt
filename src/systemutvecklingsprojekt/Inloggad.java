@@ -105,11 +105,6 @@ public class Inloggad extends javax.swing.JFrame {
         ScrollPane3 = new javax.swing.JScrollPane();
         jPanel13 = new javax.swing.JPanel();
         pnlFormellBlogg = new javax.swing.JPanel();
-        lblRubrikF2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtBloggBrodTextF2 = new javax.swing.JTextArea();
-        jButton5 = new javax.swing.JButton();
-        lblBloggBild1 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -431,50 +426,15 @@ public class Inloggad extends javax.swing.JFrame {
 
         pnlFormellBlogg.setPreferredSize(new java.awt.Dimension(680, 500));
 
-        lblRubrikF2.setText("Rubriken visas här");
-
-        txtBloggBrodTextF2.setColumns(20);
-        txtBloggBrodTextF2.setLineWrap(true);
-        txtBloggBrodTextF2.setRows(5);
-        jScrollPane3.setViewportView(txtBloggBrodTextF2);
-
-        jButton5.setText("Redigera inlägg");
-
-        lblBloggBild1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/Xtreme-Sports-Medics-Logo-Icon-e1524453723189.jpg"))); // NOI18N
-
         javax.swing.GroupLayout pnlFormellBloggLayout = new javax.swing.GroupLayout(pnlFormellBlogg);
         pnlFormellBlogg.setLayout(pnlFormellBloggLayout);
         pnlFormellBloggLayout.setHorizontalGroup(
             pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFormellBloggLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFormellBloggLayout.createSequentialGroup()
-                        .addComponent(lblRubrikF2)
-                        .addGap(559, 559, 559))
-                    .addGroup(pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlFormellBloggLayout.createSequentialGroup()
-                            .addGap(180, 180, 180)
-                            .addComponent(jButton5)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(pnlFormellBloggLayout.createSequentialGroup()
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblBloggBild1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))))
+            .addGap(0, 824, Short.MAX_VALUE)
         );
         pnlFormellBloggLayout.setVerticalGroup(
             pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlFormellBloggLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblRubrikF2)
-                .addGap(18, 18, 18)
-                .addGroup(pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBloggBild1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(16, Short.MAX_VALUE))
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -490,8 +450,8 @@ public class Inloggad extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlFormellBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1944, Short.MAX_VALUE))
+                .addComponent(pnlFormellBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1782, Short.MAX_VALUE))
         );
 
         ScrollPane3.setViewportView(jPanel13);
@@ -907,7 +867,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -953,7 +912,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
@@ -962,9 +920,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblBloggBild;
-    private javax.swing.JLabel lblBloggBild1;
     private javax.swing.JLabel lblRubrikF1;
-    private javax.swing.JLabel lblRubrikF2;
     private javax.swing.JPanel pnlAdminRights;
     private javax.swing.JPanel pnlFormellBlogg;
     private javax.swing.JPanel pnlInformellBlogg;
@@ -972,7 +928,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnAdmin;
     private javax.swing.JTabbedPane tabbedPaneBar;
     private javax.swing.JTextArea txtBloggBrodTextF1;
-    private javax.swing.JTextArea txtBloggBrodTextF2;
     private javax.swing.JTextField txtEfternamn;
     private javax.swing.JTextField txtEpost;
     private javax.swing.JTextField txtFornamn;
