@@ -94,10 +94,10 @@ public class SQL {
 
     }
 
-    public static ArrayList<ArrayList<String>> lasBlogginlagg(Connection db) throws SQLException {
+    public static ArrayList<ArrayList<String>> lasFormellaBlogginlagg(Connection db) throws SQLException {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
 
-        String sql = "SELECT * FROM Blogginlagg";
+        String sql = "SELECT * FROM Blogginlagg join formellBlogg on bloggInlaggsID = inlaggsID";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
@@ -107,7 +107,42 @@ public class SQL {
 
             arr.add(resultat.getString("Rubrik"));
             arr.add(resultat.getString("Text"));
+            arr.add(resultat.getString("FilURL"));
+            arr.add(resultat.getString("Datumtid"));
+            arr.add(String.valueOf(resultat.getInt("SkapatAv")));
+            arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
+            
+            retur.add(arr);
 
+        }
+
+        for (ArrayList<String> inlagg : retur) {
+            String rubrik = inlagg.get(0);
+            String text = inlagg.get(1);
+            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text);
+        }
+
+        return retur;
+    }
+    
+    public static ArrayList<ArrayList<String>> lasInformellaBlogginlagg(Connection db) throws SQLException {
+    ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
+
+        String sql = "SELECT * FROM Blogginlagg join informellBlogg on bloggInlaggsID = inlaggsID";
+
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> arr = new ArrayList<String>();
+
+            arr.add(resultat.getString("Rubrik"));
+            arr.add(resultat.getString("Text"));
+            arr.add(resultat.getString("FilURL"));
+            arr.add(resultat.getString("Datumtid"));
+            arr.add(String.valueOf(resultat.getInt("SkapatAv")));
+            arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
+            
             retur.add(arr);
 
         }
