@@ -133,7 +133,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
         
-        new RedigeraInlagg().setVisible(true);
+        new RedigeraInlagg( rubrik,  text,  skapatAv,  filURL,  bloggInlaggID).setVisible(true);
         
     }//GEN-LAST:event_btnRedigeraActionPerformed
 

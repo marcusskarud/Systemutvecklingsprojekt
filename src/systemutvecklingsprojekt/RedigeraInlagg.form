@@ -68,11 +68,17 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtUppdateraRubrik">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUppdateraRubrikActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUppdatera">
       <Properties>
         <Property name="text" type="java.lang.String" value="Uppdatera"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUppdateraActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

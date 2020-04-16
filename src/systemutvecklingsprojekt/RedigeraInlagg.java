@@ -5,6 +5,10 @@
  */
 package systemutvecklingsprojekt;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author ifkli
@@ -14,10 +18,29 @@ public class RedigeraInlagg extends javax.swing.JFrame {
     /**
      * Creates new form RedigeraInlagg
      */
-    public RedigeraInlagg() {
+    
+    private String rubrik;
+    private String text;
+    private int skapatAv;
+    private String filURL;
+    private int bloggInlaggID;
+    private Connection db;
+    
+    public RedigeraInlagg(Connection db, String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID) {
         initComponents();
-        
-        
+        this.rubrik=rubrik;
+        this.text=text;
+        this.skapatAv=skapatAv;
+        this.filURL=filURL;
+        this.bloggInlaggID=bloggInlaggID;
+        this.db=db;
+        fyllInlagg();
+    }
+    
+    private void fyllInlagg(){
+    
+        txtUppdateraRubrik.setText(rubrik);
+        txtUppdateraText.setText(text);
     }
 
     /**
@@ -40,7 +63,18 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         txtUppdateraText.setRows(5);
         jScrollPane1.setViewportView(txtUppdateraText);
 
+        txtUppdateraRubrik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUppdateraRubrikActionPerformed(evt);
+            }
+        });
+
         btnUppdatera.setText("Uppdatera");
+        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,40 +105,56 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtUppdateraRubrikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUppdateraRubrikActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_txtUppdateraRubrikActionPerformed
+
+    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
+        // TODO add your handling code here:
+        try{
+        SQL.redigeraBloggInlagg(db, bloggInlaggID, rubrik, text, filURL, skapatAv);
+        }
+        catch(SQLException s){}
+        catch(NoSuchAlgorithmException n){}
+    }//GEN-LAST:event_btnUppdateraActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RedigeraInlagg().setVisible(true);
-            }
-        });
-    }
+    
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(RedigeraInlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new RedigeraInlagg().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUppdatera;
