@@ -30,10 +30,12 @@ public class Main {
 
         try {
             db = DriverManager.getConnection(url);
-            SQL2.listaAllaAnvandare(db);
+            SQL.listaAllaAnvandare(db);
+            
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

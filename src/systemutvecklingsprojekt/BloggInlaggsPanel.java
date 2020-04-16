@@ -13,7 +13,7 @@ import java.awt.BorderLayout;
  *
  * @author ifkli
  */
-public class BloggClassMall extends javax.swing.JPanel {
+public class BloggInlaggsPanel extends javax.swing.JPanel {
 
     private String rubrik;
     private String text;
@@ -22,9 +22,9 @@ public class BloggClassMall extends javax.swing.JPanel {
     
 
     /**
-     * Creates new form BloggClassMall
+     * Creates new form BloggInlaggsPanel
      */
-    public BloggClassMall(String rubrik, String text) {
+    public BloggInlaggsPanel(String rubrik, String text) {
         this.rubrik = rubrik;
         this.text = text;
         initComponents();
