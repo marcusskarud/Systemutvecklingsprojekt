@@ -31,7 +31,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     /**
      * Creates new form BloggInlaggsPanel
      */
-    public BloggInlaggsPanel(/*Connection db, */String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID) /*throws NoSuchAlgorithmException, SQLException*/{
+    public BloggInlaggsPanel(String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID, String adminStatus) {
         this.rubrik = rubrik;
         this.text = text;
         this.skapatAv = Integer.parseInt(skapatAv);
@@ -51,6 +51,10 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         if(anvandarID == this.skapatAv)
         {
             btnRedigera.setVisible(true);
+            btnTaBort.setVisible(true);
+        }
+        else if(adminStatus.equals("J"))
+        {
             btnTaBort.setVisible(true);
         }
         
