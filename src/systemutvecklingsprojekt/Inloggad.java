@@ -812,7 +812,7 @@ public class Inloggad extends javax.swing.JFrame {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
             inlaggPaneler.add(nyttInlagg);
         }
         
@@ -835,7 +835,7 @@ public class Inloggad extends javax.swing.JFrame {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
             inlaggPaneler.add(nyttInlagg);
         }
         for (BloggInlaggsPanel inlagg : inlaggPaneler) {
