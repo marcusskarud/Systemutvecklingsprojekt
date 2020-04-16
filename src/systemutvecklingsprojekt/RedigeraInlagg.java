@@ -5,6 +5,10 @@
  */
 package systemutvecklingsprojekt;
 
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author ifkli
@@ -20,15 +24,23 @@ public class RedigeraInlagg extends javax.swing.JFrame {
     private int skapatAv;
     private String filURL;
     private int bloggInlaggID;
+    private Connection db;
     
-    public RedigeraInlagg(String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID) {
+    public RedigeraInlagg(Connection db, String rubrik, String text, int skapatAv, String filURL, int bloggInlaggID) {
         initComponents();
         this.rubrik=rubrik;
         this.text=text;
         this.skapatAv=skapatAv;
         this.filURL=filURL;
         this.bloggInlaggID=bloggInlaggID;
-        
+        this.db=db;
+        fyllInlagg();
+    }
+    
+    private void fyllInlagg(){
+    
+        txtUppdateraRubrik.setText(rubrik);
+        txtUppdateraText.setText(text);
     }
 
     /**
@@ -51,7 +63,18 @@ public class RedigeraInlagg extends javax.swing.JFrame {
         txtUppdateraText.setRows(5);
         jScrollPane1.setViewportView(txtUppdateraText);
 
+        txtUppdateraRubrik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUppdateraRubrikActionPerformed(evt);
+            }
+        });
+
         btnUppdatera.setText("Uppdatera");
+        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +104,21 @@ public class RedigeraInlagg extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtUppdateraRubrikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUppdateraRubrikActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_txtUppdateraRubrikActionPerformed
+
+    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
+        // TODO add your handling code here:
+        try{
+        SQL.redigeraBloggInlagg(db, bloggInlaggID, rubrik, text, filURL, skapatAv);
+        }
+        catch(SQLException s){}
+        catch(NoSuchAlgorithmException n){}
+    }//GEN-LAST:event_btnUppdateraActionPerformed
 
     /**
      * @param args the command line arguments
