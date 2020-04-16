@@ -191,7 +191,7 @@ public class SQL {
             inloggad = true;
 
         } else {
-            JOptionPane.showMessageDialog(null, "fel lösenord eller användarnamn");
+            JOptionPane.showMessageDialog(null, "Fel lösenord eller användarnamn");
         }
 
         return inloggad;
@@ -208,9 +208,7 @@ public class SQL {
             String admin = resultat.getString("Admin");
             inloggad = true;
             
-            System.out.println("Inloggning ok");
-            
-            new Inloggad2(db, id, admin).setVisible(true);//ändra till inloggad
+            new Inloggad(db, id, admin).setVisible(true);
 
         }
         return inloggad;

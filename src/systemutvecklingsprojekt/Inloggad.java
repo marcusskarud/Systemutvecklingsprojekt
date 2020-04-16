@@ -29,25 +29,19 @@ public class Inloggad extends javax.swing.JFrame {
     public Inloggad(Connection db, int anvandarID, String adminStatus) {
 
         initComponents();
-        
         this.db = db;
         this.anvandarID = anvandarID;
-        
-        
-        
-        pnlFormellBlogg.removeAll();
-        pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
 
-        
-        
+        pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
+        pnlInformellBlogg.setLayout(new BoxLayout(pnlInformellBlogg, BoxLayout.Y_AXIS));
+
         if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(3);
         }
 
-        
-
         try {
-            uppdateraBlogg();
+            uppdateraInformellBlogg();
+            uppdateraFormellBlogg();
         } 
         catch (SQLException e) {
         }
@@ -748,19 +742,47 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
-    private void uppdateraBlogg() throws SQLException {
-
-        ArrayList<ArrayList<String>> bloggInlagg = SQL.lasBlogginlagg(db);
+    private void uppdateraFormellBlogg() throws SQLException {
+        pnlFormellBlogg.removeAll();
+         
+        ArrayList<ArrayList<String>> bloggInlagg = SQL.lasFormellaBlogginlagg(db);
         ArrayList<BloggInlaggsPanel> inlaggPaneler = new ArrayList<>();
 
         for (ArrayList<String> inlagg : bloggInlagg) {
             String rubrik = inlagg.get(0);
             String text = inlagg.get(1);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text);
+            String filURL = inlagg.get(2);
+            String datum = inlagg.get(3);
+            String skapatAv = inlagg.get(4);
+            String bloggInlaggID = inlagg.get(5);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID);
+            inlaggPaneler.add(nyttInlagg);
+        }
+        
+        for (BloggInlaggsPanel inlagg : inlaggPaneler) {
+            pnlFormellBlogg.add(inlagg);
+        }
+    }
+    
+    private void uppdateraInformellBlogg() throws SQLException {
+
+        pnlInformellBlogg.removeAll();
+        
+        ArrayList<ArrayList<String>> bloggInlagg = SQL.lasInformellaBlogginlagg(db);
+        ArrayList<BloggInlaggsPanel> inlaggPaneler = new ArrayList<>();
+
+        for (ArrayList<String> inlagg : bloggInlagg) {
+            String rubrik = inlagg.get(0);
+            String text = inlagg.get(1);
+            String filURL = inlagg.get(2);
+            String datum = inlagg.get(3);
+            String skapatAv = inlagg.get(4);
+            String bloggInlaggID = inlagg.get(5);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID);
             inlaggPaneler.add(nyttInlagg);
         }
         for (BloggInlaggsPanel inlagg : inlaggPaneler) {
-            pnlFormellBlogg.add(inlagg);
+            pnlInformellBlogg.add(inlagg);
         }
     }
 
