@@ -22,15 +22,17 @@ public class Inloggad extends javax.swing.JFrame {
     private static Connection db;
     private Object jPanel19;
     private int anvandarID;
+    private String adminStatus;
 
     /**
      * Creates new form Inloggad
      */
     public Inloggad(Connection db, int anvandarID, String adminStatus) {
-
         initComponents();
+        
         this.db = db;
         this.anvandarID = anvandarID;
+        this.adminStatus = adminStatus;
 
         pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
         pnlInformellBlogg.setLayout(new BoxLayout(pnlInformellBlogg, BoxLayout.Y_AXIS));
@@ -143,6 +145,10 @@ public class Inloggad extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        tabbedPaneBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jTabbedPane2.setRequestFocusEnabled(false);
+
         pnlInformellBlogg.setPreferredSize(new java.awt.Dimension(680, 500));
 
         lblRubrikF1.setText("Rubriken visas här");
@@ -170,7 +176,7 @@ public class Inloggad extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblBloggBild)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         pnlInformellBloggLayout.setVerticalGroup(
             pnlInformellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +189,7 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -232,7 +238,7 @@ public class Inloggad extends javax.swing.JFrame {
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +256,7 @@ public class Inloggad extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addGap(57, 57, 57)
                         .addComponent(jLabel19)))
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(0, 280, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Informell", jPanel7);
@@ -474,7 +480,7 @@ public class Inloggad extends javax.swing.JFrame {
                         .addComponent(jButton14)
                         .addGap(58, 58, 58)
                         .addComponent(jLabel23)
-                        .addGap(0, 332, Short.MAX_VALUE))))
+                        .addGap(0, 593, Short.MAX_VALUE))))
         );
 
         jTabbedPane2.addTab("Formell", jPanel9);
@@ -760,7 +766,7 @@ public class Inloggad extends javax.swing.JFrame {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
             inlaggPaneler.add(nyttInlagg);
         }
         
@@ -783,7 +789,7 @@ public class Inloggad extends javax.swing.JFrame {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
             inlaggPaneler.add(nyttInlagg);
         }
         for (BloggInlaggsPanel inlagg : inlaggPaneler) {
