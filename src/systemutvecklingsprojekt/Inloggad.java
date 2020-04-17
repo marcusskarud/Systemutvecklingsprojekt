@@ -726,6 +726,8 @@ public class Inloggad extends javax.swing.JFrame {
 //Jag heter Simon
 
     // Hej jag heter Marcus!
+    
+    // Jag heter fortfarande Marcus!!
 
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
 
