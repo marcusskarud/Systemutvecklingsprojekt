@@ -66,19 +66,22 @@ public class Inloggad extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         ScrollPane1 = new javax.swing.JScrollPane();
-        jPanel12 = new javax.swing.JPanel();
         pnlInformellBlogg = new javax.swing.JPanel();
-        lblRubrikF1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtBloggBrodTextF1 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
-        lblBloggBild = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         btnUppdateraInformell = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        ScrollPane3 = new javax.swing.JScrollPane();
+        pnlFormellBlogg = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jButton16 = new javax.swing.JButton();
+        btnUppdateraFormell = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         txtSattRubrik = new javax.swing.JTextField();
@@ -99,16 +102,6 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtBrodtext = new javax.swing.JTextArea();
-        jPanel10 = new javax.swing.JPanel();
-        ScrollPane3 = new javax.swing.JScrollPane();
-        jPanel13 = new javax.swing.JPanel();
-        pnlFormellBlogg = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        jButton16 = new javax.swing.JButton();
-        btnUppdateraFormell = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -160,72 +153,18 @@ public class Inloggad extends javax.swing.JFrame {
 
         jTabbedPane2.setRequestFocusEnabled(false);
 
-        pnlInformellBlogg.setPreferredSize(new java.awt.Dimension(680, 500));
-
-        lblRubrikF1.setText("Rubriken visas här");
-
-        txtBloggBrodTextF1.setColumns(20);
-        txtBloggBrodTextF1.setLineWrap(true);
-        txtBloggBrodTextF1.setRows(5);
-        jScrollPane2.setViewportView(txtBloggBrodTextF1);
-
-        jButton3.setText("Redigera inlägg");
-
-        lblBloggBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/Xtreme-Sports-Medics-Logo-Icon-e1524453723189.jpg"))); // NOI18N
-
         javax.swing.GroupLayout pnlInformellBloggLayout = new javax.swing.GroupLayout(pnlInformellBlogg);
         pnlInformellBlogg.setLayout(pnlInformellBloggLayout);
         pnlInformellBloggLayout.setHorizontalGroup(
             pnlInformellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInformellBloggLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlInformellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInformellBloggLayout.createSequentialGroup()
-                        .addComponent(lblRubrikF1)
-                        .addGap(559, 559, 559))
-                    .addGroup(pnlInformellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(pnlInformellBloggLayout.createSequentialGroup()
-                            .addGap(182, 182, 182)
-                            .addComponent(jButton3)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(pnlInformellBloggLayout.createSequentialGroup()
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lblBloggBild, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap()))))
+            .addGap(0, 883, Short.MAX_VALUE)
         );
         pnlInformellBloggLayout.setVerticalGroup(
             pnlInformellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInformellBloggLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblRubrikF1)
-                .addGap(18, 18, 18)
-                .addGroup(pnlInformellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBloggBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGap(0, 2333, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlInformellBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlInformellBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1944, Short.MAX_VALUE))
-        );
-
-        ScrollPane1.setViewportView(jPanel12);
+        ScrollPane1.setViewportView(pnlInformellBlogg);
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerInformellBloggColor.png"))); // NOI18N
 
@@ -287,6 +226,81 @@ public class Inloggad extends javax.swing.JFrame {
         );
 
         jTabbedPane2.addTab("Informell", jPanel7);
+
+        javax.swing.GroupLayout pnlFormellBloggLayout = new javax.swing.GroupLayout(pnlFormellBlogg);
+        pnlFormellBlogg.setLayout(pnlFormellBloggLayout);
+        pnlFormellBloggLayout.setHorizontalGroup(
+            pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 883, Short.MAX_VALUE)
+        );
+        pnlFormellBloggLayout.setVerticalGroup(
+            pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2333, Short.MAX_VALUE)
+        );
+
+        ScrollPane3.setViewportView(pnlFormellBlogg);
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerFormellBloggColor.png"))); // NOI18N
+
+        jLabel29.setText("#");
+
+        jLabel30.setText("Sök inlägg");
+
+        jButton16.setText("Sök");
+
+        btnUppdateraFormell.setText("Uppdatera");
+        btnUppdateraFormell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraFormellActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(41, 41, 41))
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnUppdateraFormell)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jLabel29)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton16))))
+                .addGap(12, 12, 12)
+                .addComponent(ScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 881, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jLabel28)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton16)
+                            .addComponent(jLabel29))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUppdateraFormell)
+                        .addGap(232, 232, 232))))
+        );
+
+        jTabbedPane2.addTab("Formell", jPanel10);
 
         txtSattRubrik.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
@@ -425,100 +439,6 @@ public class Inloggad extends javax.swing.JFrame {
         );
 
         jTabbedPane2.addTab("Skapa nytt inlägg", jPanel8);
-
-        pnlFormellBlogg.setPreferredSize(new java.awt.Dimension(680, 500));
-
-        javax.swing.GroupLayout pnlFormellBloggLayout = new javax.swing.GroupLayout(pnlFormellBlogg);
-        pnlFormellBlogg.setLayout(pnlFormellBloggLayout);
-        pnlFormellBloggLayout.setHorizontalGroup(
-            pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 824, Short.MAX_VALUE)
-        );
-        pnlFormellBloggLayout.setVerticalGroup(
-            pnlFormellBloggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlFormellBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlFormellBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1782, Short.MAX_VALUE))
-        );
-
-        ScrollPane3.setViewportView(jPanel13);
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerFormellBloggColor.png"))); // NOI18N
-
-        jLabel29.setText("#");
-
-        jLabel30.setText("Sök inlägg");
-
-        jButton16.setText("Sök");
-
-        btnUppdateraFormell.setText("Uppdatera");
-        btnUppdateraFormell.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUppdateraFormellActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addGap(41, 41, 41))
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnUppdateraFormell)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel29)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton16))))
-                .addGap(12, 12, 12)
-                .addComponent(ScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 881, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel28)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton16)
-                            .addComponent(jLabel29))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUppdateraFormell)
-                        .addGap(232, 232, 232))))
-        );
-
-        jTabbedPane2.addTab("Formell", jPanel10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -891,7 +811,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -928,30 +847,24 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JLabel lblBloggBild;
-    private javax.swing.JLabel lblRubrikF1;
     private javax.swing.JPanel pnlAdminRights;
     private javax.swing.JPanel pnlFormellBlogg;
     private javax.swing.JPanel pnlInformellBlogg;
     private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JRadioButton rbtnAdmin;
     private javax.swing.JTabbedPane tabbedPaneBar;
-    private javax.swing.JTextArea txtBloggBrodTextF1;
     private javax.swing.JTextArea txtBrodtext;
     private javax.swing.JTextField txtEfternamn;
     private javax.swing.JTextField txtEpost;
