@@ -722,7 +722,11 @@ public class Inloggad extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
     }//GEN-LAST:event_btnUppdateraFormellActionPerformed
+
 //Jag heter Simon
+
+    // Hej jag heter Marcus!
+
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
 
         try {
@@ -738,7 +742,6 @@ public class Inloggad extends javax.swing.JFrame {
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
         }
-
 
     }//GEN-LAST:event_btnPubliceraActionPerformed
 
