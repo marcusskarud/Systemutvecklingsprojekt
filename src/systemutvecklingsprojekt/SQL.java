@@ -243,9 +243,19 @@ public class SQL {
     }
 
     public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
-        String sql = "DELETE FROM bloggInlagg WHERE bloggInlaggsID = " + bloggInlaggsID;
+        String sql = "DELETE FROM InformellBlogg WHERE InlaggsID = " + bloggInlaggsID;        
         PreparedStatement taBortStatement = db.prepareStatement(sql);
-        taBortStatement.executeUpdate();
+        taBortStatement.executeUpdate();        
+        String sql1 = "DELETE FROM FormellBlogg WHERE InlaggsID = " + bloggInlaggsID;        
+        PreparedStatement taBortStatement1 = db.prepareStatement(sql1);
+        taBortStatement1.executeUpdate();
+        String sql2 = "DELETE FROM Bloggamne WHERE BlogginlaggsID = " + bloggInlaggsID;        
+        PreparedStatement taBortStatement2 = db.prepareStatement(sql2);
+        taBortStatement2.executeUpdate();
+        
+        String sql3 = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;        
+        PreparedStatement taBortStatement3 = db.prepareStatement(sql3);
+        taBortStatement3.executeUpdate();
     }
 
     private static String getTid() {

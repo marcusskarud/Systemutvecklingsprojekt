@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class Inloggad extends javax.swing.JFrame {
 
     private static Connection db;
-    private Object jPanel19;
     private int anvandarID;
     private String adminStatus;
 
