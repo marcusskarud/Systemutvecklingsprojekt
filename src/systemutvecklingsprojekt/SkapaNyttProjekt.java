@@ -5,6 +5,12 @@
  */
 package systemutvecklingsprojekt;
 
+
+    import java.sql.Connection;
+    import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author vince
@@ -14,8 +20,39 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
     /**
      * Creates new form SkapaNyttProjekt
      */
-    public SkapaNyttProjekt() {
+        private static Connection db;
+        DefaultListModel valdMedlemListModel = new DefaultListModel();
+    
+    
+    public SkapaNyttProjekt(Connection db) {
+        this.db = db;
         initComponents();
+        this.setLocationRelativeTo(null); //SÄTTER FÖNSTRET I MITTEN AV SKÄRMEN NÄR DEN SKAPAS
+       
+        try{
+        listaAllaAnvandare();
+            
+        }
+            catch(SQLException e){
+                
+            }
+        
+    }
+    
+    private void listaAllaAnvandare() throws SQLException{
+        DefaultListModel listModell = new DefaultListModel();
+        ArrayList<ArrayList<String>> resultatLista = SQL.getAnvandareItemList(db);
+        
+            for(ArrayList<String> anvandare : resultatLista){
+                String anvandarInfo = anvandare.get(2) + " " + anvandare.get(3) + " "  + anvandare.get(1);
+                
+                listModell.addElement(anvandarInfo);
+                listValjMedlemmar.setModel(listModell);
+                System.out.println(anvandarInfo);
+            }
+        
+        
+        
     }
 
     /**
@@ -35,15 +72,15 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtProjektRubrik = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAreaBeskrivning = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSkapaGrupp = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listValjMedlemmar = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        listValdaMedlemmar = new javax.swing.JList<>();
+        btnTaBortMedl = new javax.swing.JButton();
+        btnLaggTillMedl = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -59,7 +96,7 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblKategoriProjekt.setText("Välj kategori");
 
@@ -69,32 +106,27 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
 
         jLabel2.setText("Projektgruppens namn");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAreaBeskrivning.setColumns(20);
+        txtAreaBeskrivning.setRows(5);
+        jScrollPane1.setViewportView(txtAreaBeskrivning);
 
         jLabel3.setText("Beskrivning av projektet");
 
-        jButton1.setText("Skapa ny grupp");
+        btnSkapaGrupp.setText("Skapa ny grupp");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        listValjMedlemmar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(listValjMedlemmar);
+
+        jScrollPane3.setViewportView(listValdaMedlemmar);
+
+        btnTaBortMedl.setText("Ta bort");
+
+        btnLaggTillMedl.setText("Lägg till");
+        btnLaggTillMedl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillMedlActionPerformed(evt);
+            }
         });
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(jList1);
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList2);
-
-        jButton3.setText("Ta bort");
-
-        jButton4.setText("Lägg till");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/ProjektGrupperMild.png"))); // NOI18N
 
@@ -111,7 +143,7 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
+                            .addComponent(btnLaggTillMedl)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
@@ -123,11 +155,11 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(txtProjektRubrik, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(btnSkapaGrupp, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3)
+                                    .addComponent(btnTaBortMedl)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(175, 175, 175)
@@ -137,8 +169,10 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                         .addComponent(rdioUtbildning)
                         .addGap(18, 18, 18)
                         .addComponent(rdioForskning)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,81 +194,112 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLaggTillMedl))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnTaBortMedl))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSkapaGrupp)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLaggTillMedlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMedlActionPerformed
+        laggTillMedlemmar();
+        
+        
+    }//GEN-LAST:event_btnLaggTillMedlActionPerformed
+
+    private void laggTillMedlemmar(){
+        boolean finnsRedan = false;
+        String valdMedlem = listValjMedlemmar.getSelectedValue();
+        
+        for(int i = 0; i<listValdaMedlemmar.getModel().getSize(); i++){
+           String enMedlem = listValdaMedlemmar.getModel().getElementAt(i);
+           
+                if(valdMedlem.equals(enMedlem)){
+                    finnsRedan = true;
+                }
+                   
+        }  
+        
+        if(finnsRedan == false){
+            System.out.println(valdMedlem);
+        
+            valdMedlemListModel.addElement(valdMedlem);
+            listValdaMedlemmar.setModel(valdMedlemListModel);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Personen du valt är redan tillagd!");
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SkapaNyttProjekt().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new SkapaNyttProjekt(db).setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggTillMedl;
+    private javax.swing.JButton btnSkapaGrupp;
+    private javax.swing.JButton btnTaBortMedl;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblKategoriProjekt;
+    private javax.swing.JList<String> listValdaMedlemmar;
+    private javax.swing.JList<String> listValjMedlemmar;
     private javax.swing.JRadioButton rdioForskning;
     private javax.swing.JRadioButton rdioUtbildning;
+    private javax.swing.JTextArea txtAreaBeskrivning;
     private javax.swing.JTextField txtProjektRubrik;
     // End of variables declaration//GEN-END:variables
 }
