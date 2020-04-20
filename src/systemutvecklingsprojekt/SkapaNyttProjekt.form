@@ -156,12 +156,21 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rdioForskning">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Forskningsprojekt"/>
+        <Property name="actionCommand" type="java.lang.String" value="Forskning" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rdioUtbildning">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup1"/>
+        </Property>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Utbildningsprojekt"/>
+        <Property name="actionCommand" type="java.lang.String" value="Utbildning" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -195,6 +204,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Skapa ny grupp"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSkapaGruppActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -241,6 +253,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ta bort"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortMedlActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLaggTillMedl">
       <Properties>
