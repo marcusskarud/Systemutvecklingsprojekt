@@ -106,6 +106,7 @@ public class Inloggad extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -461,6 +462,13 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel2.setText("Välj projektgrupp:");
 
+        jButton1.setText("Skapa Ny Projektgrupp");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -478,7 +486,9 @@ public class Inloggad extends javax.swing.JFrame {
                         .addGap(0, 814, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jButton6))))
                 .addGap(46, 46, 46))
         );
         jPanel2Layout.setVerticalGroup(
@@ -489,7 +499,9 @@ public class Inloggad extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGap(5, 5, 5)
+                .addComponent(jButton1)
+                .addGap(30, 30, 30)
                 .addComponent(jButton6)
                 .addContainerGap(538, Short.MAX_VALUE))
         );
@@ -749,9 +761,13 @@ public class Inloggad extends javax.swing.JFrame {
 //            int projektInlaggID = 1;
 //        ProjektInlagg testProjekt = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
 //         testProjekt.setVisible(true);
-        new SkapaNyttProjekt(db).setVisible(true);
+        //new SkapaNyttProjekt(db).setVisible(true);
     
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new SkapaNyttProjekt(db).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
@@ -816,6 +832,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton btnUppdateraFormell;
     private javax.swing.JButton btnUppdateraInformell;
     private javax.swing.JComboBox<String> cmbInlaggsTyp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
