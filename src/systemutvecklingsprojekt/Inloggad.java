@@ -744,9 +744,8 @@ public class Inloggad extends javax.swing.JFrame {
             String rubrik = "";
             String text = "";
             String filURL = "";
-        
-            int skrivenAv = anvandarID;
-            int projektInlaggID = 1;
+            String skrivenAv = Integer.toString(anvandarID);
+            String projektInlaggID = Integer.toString(1);
         ProjektInlagg testProjekt = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
          testProjekt.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed

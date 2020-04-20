@@ -5,7 +5,10 @@
  */
 package systemutvecklingsprojekt;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,14 +27,14 @@ public class ProjektInlagg extends javax.swing.JFrame {
     /**
      * Creates new form ProjektInlagg
      */
-    public ProjektInlagg(Connection db, String rubrik, String text, int skrivenAv, String filURL, int anvandarID, int projektInlaggID) {
+    public ProjektInlagg(Connection db, String rubrik, String text, String skrivenAv, String filURL, int anvandarID, String projektInlaggID) {
         this.db = db;
         this.rubrik = rubrik;
         this.text = text;
-        this.skrivenAv = skrivenAv;
+        this.skrivenAv = Integer.parseInt(skrivenAv);
         this.filURL = filURL;
         this.anvandarID = anvandarID;
-        this.projektInlaggID = projektInlaggID;
+        this.projektInlaggID = Integer.parseInt(projektInlaggID);
         
         initComponents();
         
@@ -63,6 +66,11 @@ public class ProjektInlagg extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtBrodtext);
 
         btnPublicera.setText("Publicera");
+        btnPublicera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPubliceraActionPerformed(evt);
+            }
+        });
 
         lblRubrik.setText("Rubrik");
 
@@ -114,6 +122,29 @@ public class ProjektInlagg extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
+        String rubrik = txtRubrik.getText();
+        String text = txtBrodtext.getText();
+        String filURL = "";
+        int skrivenAv = anvandarID;
+
+        try {
+
+            if (Validering.textIsEmpty(txtRubrik)) {
+                JOptionPane.showMessageDialog(null, "Vänligen fyll i rubrik");
+            } else if (Validering.textAreaIsEmpty(txtBrodtext)) {
+                JOptionPane.showMessageDialog(null, "Vänligen fyll i brödtext");
+            } else {
+                SQL.laggaTillProjektInlagg(db, rubrik, text, filURL, skrivenAv, 1);
+                JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
+                dispose();
+            }
+        } catch (SQLException e) {
+
+        }catch(NoSuchAlgorithmException er){}
+        
+    }//GEN-LAST:event_btnPubliceraActionPerformed
 
     /**
      * @param args the command line arguments

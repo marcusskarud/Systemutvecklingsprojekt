@@ -282,9 +282,9 @@ public class SQL {
         statement.setInt(1, nyttProjektInlagg);
         statement.setString(2, rubrik);
         statement.setString(3, text);
-        statement.setString(4, "");
+        statement.setString(4, filURL);
         statement.setInt(5, skrivenAv);
-        statement.setInt(6, 1);
+        statement.setInt(6, tillhorArbete);
 
         statement.executeUpdate();
         /*String sql2 = "";
