@@ -265,4 +265,37 @@ public class SQL {
 
         return datumTid;
     }
+
+    public static void laggaTillProjektInlagg(Connection db, String rubrik, String text, String filURL, int skrivenAv, int tillhorArbete) throws NoSuchAlgorithmException, SQLException {
+        String sql = "INSERT INTO Utvecklingsarbetsinlagg (InlaggsID, Rubrik, Text, FilURL, skrivenAv, TillhörArbete) VALUES (?,?,?,?,?,?)";
+
+        String sqlProjektInlaggsID = "SELECT MAX(InlaggsID) FROM Utvecklingsarbetsinlagg";
+
+        Statement anvandarStatement = db.createStatement();
+        ResultSet resultat = anvandarStatement.executeQuery(sqlProjektInlaggsID);
+        String antalProjektInlagg = resultat.getString(1);
+
+        int intSQLProjektInlagg = Integer.parseInt(antalProjektInlagg);
+        int nyttProjektInlagg = intSQLProjektInlagg + 1;
+
+        PreparedStatement statement = db.prepareStatement(sql);
+        statement.setInt(1, nyttProjektInlagg);
+        statement.setString(2, rubrik);
+        statement.setString(3, text);
+        statement.setString(4, "");
+        statement.setInt(5, skrivenAv);
+        statement.setInt(6, 1);
+
+        statement.executeUpdate();
+        /*String sql2 = "";
+        if (inlaggsTyp.equals("Informell blogg")) {
+            sql2 = "INSERT INTO InformellBlogg VALUES (?)";
+        } else {
+            sql2 = "INSERT INTO FormellBlogg VALUES (?)";
+        }
+        PreparedStatement statement2 = db.prepareStatement(sql2);
+        statement2.setInt(1, nyttBloggInlagg);
+
+        statement2.executeUpdate();*/
+    }
 }

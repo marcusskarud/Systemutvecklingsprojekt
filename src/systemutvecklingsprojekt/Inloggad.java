@@ -451,6 +451,11 @@ public class Inloggad extends javax.swing.JFrame {
         tabbedPaneBar.addTab("Blogg", jPanel1);
 
         jButton6.setText("Skapa nytt projekt");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Forskning: projektnamn" }));
 
@@ -734,6 +739,17 @@ public class Inloggad extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnPubliceraActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+            String rubrik = "";
+            String text = "";
+            String filURL = "";
+        
+            int skrivenAv = anvandarID;
+            int projektInlaggID = 1;
+        ProjektInlagg testProjekt = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
+         testProjekt.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
