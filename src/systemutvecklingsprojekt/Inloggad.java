@@ -753,6 +753,7 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPubliceraActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
 //            String rubrik = "";
 //            String text = "";
 //            String filURL = "";
@@ -763,6 +764,15 @@ public class Inloggad extends javax.swing.JFrame {
 //         testProjekt.setVisible(true);
         //new SkapaNyttProjekt(db).setVisible(true);
     
+
+            String rubrik = "";
+            String text = "";
+            String filURL = "";
+            String skrivenAv = Integer.toString(anvandarID);
+            String projektInlaggID = Integer.toString(1);
+        ProjektInlagg testProjekt = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
+         testProjekt.setVisible(true);
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

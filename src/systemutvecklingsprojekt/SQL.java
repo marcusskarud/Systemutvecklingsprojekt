@@ -307,20 +307,22 @@ public class SQL {
         statement.setInt(1, nyttProjektInlagg);
         statement.setString(2, rubrik);
         statement.setString(3, text);
-        statement.setString(4, "");
+        statement.setString(4, filURL);
         statement.setInt(5, skrivenAv);
-        statement.setInt(6, 1);
+        statement.setInt(6, tillhorArbete);
 
         statement.executeUpdate();
-        /*String sql2 = "";
-        if (inlaggsTyp.equals("Informell blogg")) {
-            sql2 = "INSERT INTO InformellBlogg VALUES (?)";
-        } else {
-            sql2 = "INSERT INTO FormellBlogg VALUES (?)";
-        }
-        PreparedStatement statement2 = db.prepareStatement(sql2);
-        statement2.setInt(1, nyttBloggInlagg);
-
-        statement2.executeUpdate();*/
+     
+       
+    }
+    
+   public static String hamtaProjektNamn(Connection db) throws NoSuchAlgorithmException, SQLException {
+       String sql = "SELECT namn FROM Utvecklingsarbete WHERE utvecklingsarbetsID = 1";
+       Statement statement = db.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
+       String projektnamn = resultat.getString("Namn");
+    return projektnamn;
+    
+        
     }
 }
