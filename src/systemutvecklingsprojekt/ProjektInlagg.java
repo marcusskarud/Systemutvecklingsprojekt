@@ -38,7 +38,17 @@ public class ProjektInlagg extends javax.swing.JFrame {
         
         initComponents();
         
-        System.out.println(anvandarID);
+        try {
+            
+         
+        
+      String projektRubrik = SQL.hamtaProjektNamn(db); 
+        lblProjektRubrik.setText(projektRubrik);}
+        
+        catch(NoSuchAlgorithmException e){}
+        catch(SQLException e){}
+        
+        
     }
 
     /**
