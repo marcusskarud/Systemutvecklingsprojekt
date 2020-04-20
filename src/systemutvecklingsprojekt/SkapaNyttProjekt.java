@@ -5,6 +5,12 @@
  */
 package systemutvecklingsprojekt;
 
+
+    import java.sql.Connection;
+    import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 /**
  *
  * @author vince
@@ -14,8 +20,39 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
     /**
      * Creates new form SkapaNyttProjekt
      */
-    public SkapaNyttProjekt() {
+        private static Connection db;
+        DefaultListModel valdMedlemListModel = new DefaultListModel();
+    
+    
+    public SkapaNyttProjekt(Connection db) {
+        this.db = db;
         initComponents();
+        this.setLocationRelativeTo(null); //SÄTTER FÖNSTRET I MITTEN AV SKÄRMEN NÄR DEN SKAPAS
+       
+        try{
+        listaAllaAnvandare();
+            
+        }
+            catch(SQLException e){
+                
+            }
+        
+    }
+    
+    private void listaAllaAnvandare() throws SQLException{
+        DefaultListModel listModell = new DefaultListModel();
+        ArrayList<ArrayList<String>> resultatLista = SQL.getAnvandareItemList(db);
+        
+            for(ArrayList<String> anvandare : resultatLista){
+                String anvandarInfo = anvandare.get(2) + " " + anvandare.get(3) + " "  + anvandare.get(1);
+                
+                listModell.addElement(anvandarInfo);
+                listValjMedlemmar.setModel(listModell);
+                System.out.println(anvandarInfo);
+            }
+        
+        
+        
     }
 
     /**
@@ -77,24 +114,19 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
 
         btnSkapaGrupp.setText("Skapa ny grupp");
 
-        listValjMedlemmar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         listValjMedlemmar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(listValjMedlemmar);
 
-        listValdaMedlemmar.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(listValdaMedlemmar);
 
         btnTaBortMedl.setText("Ta bort");
 
         btnLaggTillMedl.setText("Lägg till");
+        btnLaggTillMedl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillMedlActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/ProjektGrupperMild.png"))); // NOI18N
 
@@ -182,40 +214,71 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLaggTillMedlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMedlActionPerformed
+        laggTillMedlemmar();
+        
+        
+    }//GEN-LAST:event_btnLaggTillMedlActionPerformed
+
+    private void laggTillMedlemmar(){
+        boolean finnsRedan = false;
+        String valdMedlem = listValjMedlemmar.getSelectedValue();
+        
+        for(int i = 0; i<listValdaMedlemmar.getModel().getSize(); i++){
+           String enMedlem = listValdaMedlemmar.getModel().getElementAt(i);
+           
+                if(valdMedlem.equals(enMedlem)){
+                    finnsRedan = true;
+                }
+                   
+        }  
+        
+        if(finnsRedan == false){
+            System.out.println(valdMedlem);
+        
+            valdMedlemListModel.addElement(valdMedlem);
+            listValdaMedlemmar.setModel(valdMedlemListModel);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Personen du valt är redan tillagd!");
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SkapaNyttProjekt().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SkapaNyttProjekt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new SkapaNyttProjekt(db).setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTillMedl;

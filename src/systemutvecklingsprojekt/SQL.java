@@ -41,6 +41,31 @@ public class SQL {
         }
     }
 
+    public static ArrayList getAnvandareItemList(Connection db) throws SQLException{
+        
+        String sql = "SELECT AnvandarID, Epost, Fornamn, Efternamn, Telefonnummer, Admin FROM Anvandare";
+        
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+            ArrayList<ArrayList<String>> anvandarLista = new ArrayList<ArrayList<String>>();
+            
+                
+        while (resultat.next()) {
+            ArrayList<String> resultatList = new ArrayList<String>();
+            
+            resultatList.add(String.valueOf(resultat.getInt("AnvandarID")));
+            resultatList.add(resultat.getString("Epost"));
+            resultatList.add(resultat.getString("Fornamn"));
+            resultatList.add(resultat.getString("Efternamn"));
+            resultatList.add(resultat.getString("Telefonnummer"));
+            resultatList.add(resultat.getString("Admin"));
+             
+            anvandarLista.add(resultatList);
+        }
+            return anvandarLista;
+        
+    }
+    
     public static void laggTillAnvandare(Connection db, String epost, String fornamn, String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException {
 
         String sql = "INSERT INTO Anvandare (AnvandarID, Epost, Losenord, Fornamn, Efternamn, Telefonnummer, Admin) VALUES (?,?,?,?,?,?,?)";

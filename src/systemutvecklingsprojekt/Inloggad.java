@@ -741,14 +741,16 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPubliceraActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-            String rubrik = "";
-            String text = "";
-            String filURL = "";
-        
-            int skrivenAv = anvandarID;
-            int projektInlaggID = 1;
-        ProjektInlagg testProjekt = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
-         testProjekt.setVisible(true);
+//            String rubrik = "";
+//            String text = "";
+//            String filURL = "";
+//        
+//            int skrivenAv = anvandarID;
+//            int projektInlaggID = 1;
+//        ProjektInlagg testProjekt = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
+//         testProjekt.setVisible(true);
+        new SkapaNyttProjekt(db).setVisible(true);
+    
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public void uppdateraFormellBlogg() throws SQLException {
