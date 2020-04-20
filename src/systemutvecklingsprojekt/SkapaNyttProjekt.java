@@ -35,15 +35,15 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtProjektRubrik = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAreaBeskrivning = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSkapaGrupp = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listValjMedlemmar = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        listValdaMedlemmar = new javax.swing.JList<>();
+        btnTaBortMedl = new javax.swing.JButton();
+        btnLaggTillMedl = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -59,7 +59,7 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblKategoriProjekt.setText("Välj kategori");
 
@@ -69,32 +69,32 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
 
         jLabel2.setText("Projektgruppens namn");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAreaBeskrivning.setColumns(20);
+        txtAreaBeskrivning.setRows(5);
+        jScrollPane1.setViewportView(txtAreaBeskrivning);
 
         jLabel3.setText("Beskrivning av projektet");
 
-        jButton1.setText("Skapa ny grupp");
+        btnSkapaGrupp.setText("Skapa ny grupp");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listValjMedlemmar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(jList1);
+        listValjMedlemmar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(listValjMedlemmar);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        listValdaMedlemmar.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList2);
+        jScrollPane3.setViewportView(listValdaMedlemmar);
 
-        jButton3.setText("Ta bort");
+        btnTaBortMedl.setText("Ta bort");
 
-        jButton4.setText("Lägg till");
+        btnLaggTillMedl.setText("Lägg till");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/ProjektGrupperMild.png"))); // NOI18N
 
@@ -111,7 +111,7 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
+                            .addComponent(btnLaggTillMedl)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
@@ -123,11 +123,11 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(txtProjektRubrik, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(btnSkapaGrupp, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3)
+                                    .addComponent(btnTaBortMedl)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(175, 175, 175)
@@ -137,8 +137,10 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                         .addComponent(rdioUtbildning)
                         .addGap(18, 18, 18)
                         .addComponent(rdioForskning)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,21 +162,21 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLaggTillMedl))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnTaBortMedl))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSkapaGrupp)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,25 +218,25 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggTillMedl;
+    private javax.swing.JButton btnSkapaGrupp;
+    private javax.swing.JButton btnTaBortMedl;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblKategoriProjekt;
+    private javax.swing.JList<String> listValdaMedlemmar;
+    private javax.swing.JList<String> listValjMedlemmar;
     private javax.swing.JRadioButton rdioForskning;
     private javax.swing.JRadioButton rdioUtbildning;
+    private javax.swing.JTextArea txtAreaBeskrivning;
     private javax.swing.JTextField txtProjektRubrik;
     // End of variables declaration//GEN-END:variables
 }
