@@ -41,31 +41,30 @@ public class SQL {
         }
     }
 
-    public static ArrayList getAnvandareItemList(Connection db) throws SQLException{
-        
+    public static ArrayList getAnvandareItemList(Connection db) throws SQLException {
+
         String sql = "SELECT AnvandarID, Epost, Fornamn, Efternamn, Telefonnummer, Admin FROM Anvandare";
-        
+
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
-            ArrayList<ArrayList<String>> anvandarLista = new ArrayList<ArrayList<String>>();
-            
-                
+        ArrayList<ArrayList<String>> anvandarLista = new ArrayList<ArrayList<String>>();
+
         while (resultat.next()) {
             ArrayList<String> resultatList = new ArrayList<String>();
-            
+
             resultatList.add(String.valueOf(resultat.getInt("AnvandarID")));
             resultatList.add(resultat.getString("Epost"));
             resultatList.add(resultat.getString("Fornamn"));
             resultatList.add(resultat.getString("Efternamn"));
             resultatList.add(resultat.getString("Telefonnummer"));
             resultatList.add(resultat.getString("Admin"));
-             
+
             anvandarLista.add(resultatList);
         }
-            return anvandarLista;
-        
+        return anvandarLista;
+
     }
-    
+
     public static void laggTillAnvandare(Connection db, String epost, String fornamn, String efternamn, String losenord, String telefonNummer, String admin) throws NoSuchAlgorithmException, SQLException {
 
         String sql = "INSERT INTO Anvandare (AnvandarID, Epost, Losenord, Fornamn, Efternamn, Telefonnummer, Admin) VALUES (?,?,?,?,?,?,?)";
@@ -268,17 +267,17 @@ public class SQL {
     }
 
     public static void raderaBloggInlagg(Connection db, int bloggInlaggsID) throws NoSuchAlgorithmException, SQLException {
-        String sql = "DELETE FROM InformellBlogg WHERE InlaggsID = " + bloggInlaggsID;        
+        String sql = "DELETE FROM InformellBlogg WHERE InlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement = db.prepareStatement(sql);
-        taBortStatement.executeUpdate();        
-        String sql1 = "DELETE FROM FormellBlogg WHERE InlaggsID = " + bloggInlaggsID;        
+        taBortStatement.executeUpdate();
+        String sql1 = "DELETE FROM FormellBlogg WHERE InlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement1 = db.prepareStatement(sql1);
         taBortStatement1.executeUpdate();
-        String sql2 = "DELETE FROM Bloggamne WHERE BlogginlaggsID = " + bloggInlaggsID;        
+        String sql2 = "DELETE FROM Bloggamne WHERE BlogginlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement2 = db.prepareStatement(sql2);
         taBortStatement2.executeUpdate();
-        
-        String sql3 = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;        
+
+        String sql3 = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement3 = db.prepareStatement(sql3);
         taBortStatement3.executeUpdate();
     }
@@ -312,17 +311,83 @@ public class SQL {
         statement.setInt(6, tillhorArbete);
 
         statement.executeUpdate();
-     
-       
+
+    }
+
+    public static String getProjektNamn(Connection db) throws NoSuchAlgorithmException, SQLException {
+        String sql = "SELECT namn FROM Utvecklingsarbete WHERE utvecklingsarbetsID = 1";
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+        String projektnamn = resultat.getString("Namn");
+        return projektnamn;
+
+    }
+
+    public static void gillaInformellBlogginlagg(Connection db, int anvandarID, int blogginlaggsID) throws NoSuchAlgorithmException, SQLException {
+        String sql = "INSERT INTO HarGillat (AnvandarID, BlogginlaggsID) VALUES (?,?)";
+
+        PreparedStatement statement = db.prepareStatement(sql);
+        statement.setInt(1, anvandarID);
+        statement.setInt(2, blogginlaggsID);
+
+        statement.executeUpdate();
+    }
+
+    public static void taBortLike(Connection db, int anvandarID, int blogginlaggsID) throws NoSuchAlgorithmException, SQLException {
+        String sql = "DELETE FROM HarGillat WHERE AnvandarID = " + anvandarID + " and BlogginlaggsID = " + blogginlaggsID;
+
+        PreparedStatement taBortStatement = db.prepareStatement(sql);
+        taBortStatement.executeUpdate();
+
+        taBortStatement.executeUpdate();
+    }
+
+    public static String getAntalLikes(Connection db, String blogginlaggsID) throws NoSuchAlgorithmException, SQLException {
+
+        String sql = "SELECT COUNT(*) AS antalLikes FROM HarGillat WHERE BlogginlaggsID = " + blogginlaggsID;
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+        String antalLikes = resultat.getString("antalLikes");
+        return antalLikes;
     }
     
-   public static String hamtaProjektNamn(Connection db) throws NoSuchAlgorithmException, SQLException {
-       String sql = "SELECT namn FROM Utvecklingsarbete WHERE utvecklingsarbetsID = 1";
-       Statement statement = db.createStatement();
-            ResultSet resultat = statement.executeQuery(sql);
-       String projektnamn = resultat.getString("Namn");
-    return projektnamn;
-    
+    public static boolean getLikeStatus(Connection db, int anvandarID, String blogginlaggsID) {
+        boolean gillad = false;
+        try{
+        ArrayList<Integer> anvandareSomGillat = new ArrayList<Integer>();
         
+        String sql = "SELECT AnvandarID FROM HarGillat WHERE BlogginlaggsID = " + blogginlaggsID; 
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+        
+//        int harGillat = resultat.getInt("AnvandarID");
+        
+        System.out.println(resultat);
+        while (resultat.next()) {
+            System.out.println("test1");
+            
+            
+            anvandareSomGillat.add(resultat.getInt("AnvandarID"));
+            
+
+           
+        }
+
+        for (Integer anvandare : anvandareSomGillat) {
+           
+           if(anvandare == anvandarID)
+           {
+               System.out.println("test");
+            gillad = true;
+           }
+            
+            
+        }
+        
+        }
+        catch(SQLException e){
+        System.out.println(e.getMessage());}
+        System.out.println(gillad);
+        return gillad;
     }
 }

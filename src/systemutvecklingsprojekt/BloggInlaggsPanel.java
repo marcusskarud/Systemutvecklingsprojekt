@@ -18,7 +18,7 @@ import javax.swing.*;
  * @author ifkli
  */
 public class BloggInlaggsPanel extends javax.swing.JPanel {
-    
+
     private Connection db;
     private String rubrik;
     private String text;
@@ -27,8 +27,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     private String filURL;
     private int anvandarID;
     private int bloggInlaggID;
-    
-    
+    private boolean gillad;
 
     /**
      * Creates new form BloggInlaggsPanel
@@ -42,27 +41,34 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         this.filURL = filURL;
         this.anvandarID = anvandarID;
         this.bloggInlaggID = Integer.parseInt(bloggInlaggID);
-        
+
         initComponents();
-        
+
         lblRubrik.setText(rubrik);
         txtBloggtext.setText(text);
         lblDatumTid.setText(datum);
-        
+
+        try {
+            lblAntalLikes.setText(SQL.getAntalLikes(db, bloggInlaggID));
+
+            if (SQL.getLikeStatus(db, anvandarID, bloggInlaggID)) {
+                btnGilla.setText("Ogilla");
+            } else {
+                btnGilla.setText("Gilla");
+            }
+        } catch (NoSuchAlgorithmException e) {
+        } catch (SQLException e) {
+        }
         btnRedigera.setVisible(false);
         btnTaBort.setVisible(false);
-        
-        if(anvandarID == this.skapatAv)
-        {
+
+        if (anvandarID == this.skapatAv) {
             btnRedigera.setVisible(true);
             btnTaBort.setVisible(true);
-        }
-        else if(adminStatus.equals("J"))
-        {
+        } else if (adminStatus.equals("J")) {
             btnTaBort.setVisible(true);
         }
-        
-      
+
     }
 
     /**
@@ -80,6 +86,8 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblRubrik = new javax.swing.JLabel();
         btnRedigera = new javax.swing.JButton();
         lblDatumTid = new javax.swing.JLabel();
+        btnGilla = new javax.swing.JButton();
+        lblAntalLikes = new javax.swing.JLabel();
 
         txtBloggtext.setEditable(false);
         txtBloggtext.setColumns(20);
@@ -104,7 +112,18 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             }
         });
 
+        lblDatumTid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDatumTid.setText("Datumtid visas här");
+
+        btnGilla.setText("Gilla");
+        btnGilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGillaActionPerformed(evt);
+            }
+        });
+
+        lblAntalLikes.setText("45");
+        lblAntalLikes.setMinimumSize(new java.awt.Dimension(10, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,21 +132,28 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblDatumTid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGilla)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+                        .addGap(524, 524, 524)
                         .addComponent(btnRedigera)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTaBort))
-                    .addComponent(lblRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDatumTid, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblRubrik)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRubrik)
+                    .addComponent(lblDatumTid))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -135,40 +161,79 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnRedigera)
                         .addComponent(btnTaBort))
-                    .addComponent(lblDatumTid))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnGilla)
+                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
-        try{
-        new RedigeraInlagg(db, rubrik,  text,  skapatAv,  filURL,  bloggInlaggID).setVisible(true);
-        }catch(SQLException e){}
-                
+        try {
+            new RedigeraInlagg(db, rubrik, text, skapatAv, filURL, bloggInlaggID).setVisible(true);
+        } catch (SQLException e) {
+        }
+
     }//GEN-LAST:event_btnRedigeraActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
-        try{
-        int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera detta inlägg?", null, 
+        try {
+            int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera detta inlägg?", null,
                     JOptionPane.OK_CANCEL_OPTION);
 
-        if(input == 0){
-            SQL.raderaBloggInlagg(db, bloggInlaggID);
-        }
-        }
-        catch(NoSuchAlgorithmException e){
-            
-        }
-        catch(SQLException i){
-            
+            if (input == 0) {
+                SQL.raderaBloggInlagg(db, bloggInlaggID);
+            }
+        } catch (NoSuchAlgorithmException e) {
+
+        } catch (SQLException i) {
+
         }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
+    private void btnGillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGillaActionPerformed
+
+        try {
+            if (gillad == false) {
+                gillad = true;
+                SQL.gillaInformellBlogginlagg(db, anvandarID, bloggInlaggID);
+
+                String InlaggID = Integer.toString(bloggInlaggID);
+                btnGilla.setText("Ogilla");
+                lblAntalLikes.setText(SQL.getAntalLikes(db, InlaggID));
+
+            } else if (gillad == true) {
+                gillad = false;
+                SQL.taBortLike(db, anvandarID, bloggInlaggID);
+
+                String InlaggID = Integer.toString(bloggInlaggID);
+                btnGilla.setText("Gilla");
+                lblAntalLikes.setText(SQL.getAntalLikes(db, InlaggID));
+
+            }
+
+        } catch (NoSuchAlgorithmException e) {
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnGillaActionPerformed
+
+//    private boolean getGillad()
+//    {
+//    boolean isGillad = false;
+//    
+//    if(gillad == true){
+//    isGillad = true;
+//    }
+//    
+//    return isGillad;
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGilla;
     private javax.swing.JButton btnRedigera;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAntalLikes;
     private javax.swing.JLabel lblDatumTid;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JTextArea txtBloggtext;
