@@ -43,46 +43,42 @@ public class SQL {
         }
     }
 
-
-    public static ArrayList epostTillAnvandarID(Connection db, ArrayList <String> epostLista) throws SQLException{
+    public static ArrayList epostTillAnvandarID(Connection db, ArrayList<String> epostLista) throws SQLException {
         ArrayList<Integer> idLista = new ArrayList<>();
-        
-        for(String epost : epostLista){
-        String sql = "SELECT AnvandarID FROM Anvandare WHERE Epost = '" + epost + "'";
-        
-        Statement statement = db.createStatement();
-        ResultSet resultat = statement.executeQuery(sql);
-         
-                while (resultat.next()) {
-                    idLista.add(resultat.getInt("AnvandarID"));
-        
-                }        
+
+        for (String epost : epostLista) {
+            String sql = "SELECT AnvandarID FROM Anvandare WHERE Epost = '" + epost + "'";
+
+            Statement statement = db.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
+
+            while (resultat.next()) {
+                idLista.add(resultat.getInt("AnvandarID"));
+
+            }
         }
-            System.out.println(idLista);
-            return idLista;
+        System.out.println(idLista);
+        return idLista;
     }
-    
-    public static void skapaProjektGruppIDatabas(Connection db, ArrayList<Integer> anvandare, String gruppNamn, String gruppBeskrivning, String kategori, int anvandarID) throws SQLException{
-        
+
+    public static void skapaProjektGruppIDatabas(Connection db, ArrayList<Integer> anvandare, String gruppNamn, String gruppBeskrivning, String kategori, int anvandarID) throws SQLException {
+
         String utvecklingsArbetsIDSQL = "SELECT MAX(UtvecklingsarbetsID) FROM Utvecklingsarbete";
-        
-      
+
         Statement utvecklingStatement = db.createStatement();
         ResultSet resultat = utvecklingStatement.executeQuery(utvecklingsArbetsIDSQL);
         String antalUtvecklingsArbeten = resultat.getString(1);
 
-           
         int nyttID;
-        try{
+        try {
             int intSQLUtvecklingsArbete = Integer.parseInt(antalUtvecklingsArbeten);
             nyttID = intSQLUtvecklingsArbete + 1;
-            }
-        catch(NumberFormatException e){
-              nyttID = 1;
-            }
-        
+        } catch (NumberFormatException e) {
+            nyttID = 1;
+        }
+
         String sql = "INSERT INTO Utvecklingsarbete VALUES (?,?,?,?) ";
-        
+
         PreparedStatement statement = db.prepareStatement(sql);
         statement.setInt(1, nyttID);
         statement.setString(2, gruppNamn);
@@ -90,28 +86,26 @@ public class SQL {
         statement.setInt(4, anvandarID);
 
         statement.executeUpdate();
-        
+
         String sql2 = "INSERT INTO " + kategori + " VALUES (?) ";
-        
+
         PreparedStatement statement2 = db.prepareStatement(sql2);
         statement2.setInt(1, nyttID);
-        
-        statement2.executeUpdate();
-           
-        
-        for(Integer enAnvandare : anvandare){
-        String sql3 = "INSERT INTO UtvecklingsDeltagare VALUES (?,?) ";
-        
-        PreparedStatement statement3 = db.prepareStatement(sql3);
-        statement3.setInt(1, nyttID);
-        statement3.setInt(2, enAnvandare);
 
-        statement3.executeUpdate();
-       } 
+        statement2.executeUpdate();
+
+        for (Integer enAnvandare : anvandare) {
+            String sql3 = "INSERT INTO UtvecklingsDeltagare VALUES (?,?) ";
+
+            PreparedStatement statement3 = db.prepareStatement(sql3);
+            statement3.setInt(1, nyttID);
+            statement3.setInt(2, enAnvandare);
+
+            statement3.executeUpdate();
+        }
     }
-    
-    public static ArrayList getAnvandareItemList(Connection db) throws SQLException{
-        
+
+    public static ArrayList getAnvandareItemList(Connection db) throws SQLException {
 
         String sql = "SELECT AnvandarID, Epost, Fornamn, Efternamn, Telefonnummer, Admin FROM Anvandare";
 
@@ -195,6 +189,21 @@ public class SQL {
         statement2.setInt(1, nyttBloggInlagg);
 
         statement2.executeUpdate();
+    }
+
+    public static boolean getFormellaInlagg(Connection db, String blogginlaggsID) {
+        boolean formelltInlagg = false;
+        try{
+        String sql = "SELECT * FROM FormellBlogg where InlaggsID = " + blogginlaggsID;
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+        System.out.println(formelltInlagg);
+        while (resultat.next()) {
+            formelltInlagg = true;
+        }
+        System.out.println(formelltInlagg);}
+        catch(SQLException e){}
+        return formelltInlagg;
     }
 
     public static ArrayList<ArrayList<String>> lasFormellaBlogginlagg(Connection db) throws SQLException {
@@ -420,44 +429,33 @@ public class SQL {
         String antalLikes = resultat.getString("antalLikes");
         return antalLikes;
     }
-    
+
     public static boolean getLikeStatus(Connection db, int anvandarID, String blogginlaggsID) {
         boolean gillad = false;
-        try{
-        ArrayList<Integer> anvandareSomGillat = new ArrayList<Integer>();
-        
-        String sql = "SELECT AnvandarID FROM HarGillat WHERE BlogginlaggsID = " + blogginlaggsID; 
-        Statement statement = db.createStatement();
-        ResultSet resultat = statement.executeQuery(sql);
-        
-//        int harGillat = resultat.getInt("AnvandarID");
-        
-        System.out.println(resultat);
-        while (resultat.next()) {
-            System.out.println("test1");
-            
-            
-            anvandareSomGillat.add(resultat.getInt("AnvandarID"));
-            
+        try {
+            ArrayList<Integer> anvandareSomGillat = new ArrayList<Integer>();
 
-           
-        }
+            String sql = "SELECT AnvandarID FROM HarGillat WHERE BlogginlaggsID = " + blogginlaggsID;
+            Statement statement = db.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
 
-        for (Integer anvandare : anvandareSomGillat) {
-           
-           if(anvandare == anvandarID)
-           {
-               System.out.println("test");
-            gillad = true;
-           }
-            
-            
+            System.out.println(resultat);
+            while (resultat.next()) {
+
+                anvandareSomGillat.add(resultat.getInt("AnvandarID"));
+
+            }
+
+            for (Integer anvandare : anvandareSomGillat) {
+
+                if (anvandare == anvandarID) {
+                    gillad = true;
+                }
+
+            }
+
+        } catch (SQLException e) {
         }
-        
-        }
-        catch(SQLException e){
-        System.out.println(e.getMessage());}
-        System.out.println(gillad);
         return gillad;
     }
 }

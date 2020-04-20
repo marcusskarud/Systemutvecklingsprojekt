@@ -49,6 +49,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblDatumTid.setText(datum);
 
         try {
+            
             lblAntalLikes.setText(SQL.getAntalLikes(db, bloggInlaggID));
 
             if (SQL.getLikeStatus(db, anvandarID, bloggInlaggID)) {
@@ -56,6 +57,15 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             } else {
                 btnGilla.setText("Gilla");
             }
+            
+            if(SQL.getFormellaInlagg(db, bloggInlaggID))
+            {
+                System.out.println("Visas");
+                btnGilla.setVisible(false);
+                lblAntalLikes.setVisible(false);
+            
+            }
+            
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
         }
@@ -136,14 +146,14 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGilla)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                        .addGap(524, 524, 524)
+                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRedigera)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTaBort))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                         .addComponent(lblDatumTid, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
