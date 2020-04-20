@@ -6,6 +6,7 @@
 package systemutvecklingsprojekt;
 
 
+import java.sql.Array;
     import java.sql.Connection;
     import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,10 +23,12 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
      */
         private static Connection db;
         DefaultListModel valdMedlemListModel = new DefaultListModel();
+        private int anvandarID;
     
     
-    public SkapaNyttProjekt(Connection db) {
+    public SkapaNyttProjekt(Connection db, int anvandarID) {
         this.db = db;
+        this.anvandarID = anvandarID;
         initComponents();
         this.setLocationRelativeTo(null); //SÄTTER FÖNSTRET I MITTEN AV SKÄRMEN NÄR DEN SKAPAS
        
@@ -102,9 +105,14 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
 
         lblKategoriProjekt.setText("Välj kategori");
 
+        buttonGroup1.add(rdioForskning);
         rdioForskning.setText("Forskningsprojekt");
+        rdioForskning.setActionCommand("Forskning"); // NOI18N
 
+        buttonGroup1.add(rdioUtbildning);
+        rdioUtbildning.setSelected(true);
         rdioUtbildning.setText("Utbildningsprojekt");
+        rdioUtbildning.setActionCommand("Utbildning"); // NOI18N
 
         jLabel2.setText("Projektgruppens namn");
 
@@ -115,6 +123,11 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
         jLabel3.setText("Beskrivning av projektet");
 
         btnSkapaGrupp.setText("Skapa ny grupp");
+        btnSkapaGrupp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkapaGruppActionPerformed(evt);
+            }
+        });
 
         listValjMedlemmar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(listValjMedlemmar);
@@ -122,6 +135,11 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
         jScrollPane3.setViewportView(listValdaMedlemmar);
 
         btnTaBortMedl.setText("Ta bort");
+        btnTaBortMedl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortMedlActionPerformed(evt);
+            }
+        });
 
         btnLaggTillMedl.setText("Lägg till");
         btnLaggTillMedl.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +253,50 @@ public class SkapaNyttProjekt extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLaggTillMedlActionPerformed
 
+    private void btnTaBortMedlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortMedlActionPerformed
+            try{
+                 listValdaMedlemmar.getSelectedValue();
+                 valdMedlemListModel.removeElementAt(listValdaMedlemmar.getSelectedIndex());
+            }
+            catch(Exception e){
+                
+            }
+    }//GEN-LAST:event_btnTaBortMedlActionPerformed
+
+    private void btnSkapaGruppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaGruppActionPerformed
+     
+        if(Validering.textIsEmpty(txtProjektRubrik) || Validering.textAreaIsEmpty(txtAreaBeskrivning) || listValdaMedlemmar.getModel().getSize() == 0){
+            
+                JOptionPane.showMessageDialog(null, "Vänligen fyll i Rubrik, Beskrivning och lägg till medlemmar!");
+        }
+        else{
+                ArrayList<String> medlemsEpostLista = new ArrayList<>();
+                String valdKategori = buttonGroup1.getSelection().getActionCommand();
+                          
+                
+             for(int i = 0; i<listValdaMedlemmar.getModel().getSize(); i++){
+                String[] enMedlem = listValdaMedlemmar.getModel().getElementAt(i).split(" ");
+                    medlemsEpostLista.add(enMedlem[2]);
+                
+                 System.out.println(medlemsEpostLista);
+        } 
+            try{
+                ArrayList<Integer> enIDLista = SQL.epostTillAnvandarID(db, medlemsEpostLista);
+                 
+                 SQL.skapaProjektGruppIDatabas(db, enIDLista, txtProjektRubrik.getText(), txtAreaBeskrivning.getText(), valdKategori, anvandarID); //kallar på metod som insertar i tabellen
+                }
+                catch(SQLException e){
+                }
+            
+            JOptionPane.showMessageDialog(null, "Grupp är nu skapad med namn: " + txtProjektRubrik.getText() + ". ");
+            txtProjektRubrik.setText("");
+            txtAreaBeskrivning.setText("");
+            valdMedlemListModel.clear();
+            listValdaMedlemmar.setModel(valdMedlemListModel);
+        }
+    }//GEN-LAST:event_btnSkapaGruppActionPerformed
+
+    
     private void laggTillMedlemmar(){
         boolean finnsRedan = false;
         String valdMedlem = listValjMedlemmar.getSelectedValue();

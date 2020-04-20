@@ -15,6 +15,8 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -41,7 +43,75 @@ public class SQL {
         }
     }
 
-    public static ArrayList getAnvandareItemList(Connection db) throws SQLException {
+
+    public static ArrayList epostTillAnvandarID(Connection db, ArrayList <String> epostLista) throws SQLException{
+        ArrayList<Integer> idLista = new ArrayList<>();
+        
+        for(String epost : epostLista){
+        String sql = "SELECT AnvandarID FROM Anvandare WHERE Epost = '" + epost + "'";
+        
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+         
+                while (resultat.next()) {
+                    idLista.add(resultat.getInt("AnvandarID"));
+        
+                }        
+        }
+            System.out.println(idLista);
+            return idLista;
+    }
+    
+    public static void skapaProjektGruppIDatabas(Connection db, ArrayList<Integer> anvandare, String gruppNamn, String gruppBeskrivning, String kategori, int anvandarID) throws SQLException{
+        
+        String utvecklingsArbetsIDSQL = "SELECT MAX(UtvecklingsarbetsID) FROM Utvecklingsarbete";
+        
+      
+        Statement utvecklingStatement = db.createStatement();
+        ResultSet resultat = utvecklingStatement.executeQuery(utvecklingsArbetsIDSQL);
+        String antalUtvecklingsArbeten = resultat.getString(1);
+
+           
+        int nyttID;
+        try{
+            int intSQLUtvecklingsArbete = Integer.parseInt(antalUtvecklingsArbeten);
+            nyttID = intSQLUtvecklingsArbete + 1;
+            }
+        catch(NumberFormatException e){
+              nyttID = 1;
+            }
+        
+        String sql = "INSERT INTO Utvecklingsarbete VALUES (?,?,?,?) ";
+        
+        PreparedStatement statement = db.prepareStatement(sql);
+        statement.setInt(1, nyttID);
+        statement.setString(2, gruppNamn);
+        statement.setString(3, gruppBeskrivning);
+        statement.setInt(4, anvandarID);
+
+        statement.executeUpdate();
+        
+        String sql2 = "INSERT INTO " + kategori + " VALUES (?) ";
+        
+        PreparedStatement statement2 = db.prepareStatement(sql2);
+        statement2.setInt(1, nyttID);
+        
+        statement2.executeUpdate();
+           
+        
+        for(Integer enAnvandare : anvandare){
+        String sql3 = "INSERT INTO UtvecklingsDeltagare VALUES (?,?) ";
+        
+        PreparedStatement statement3 = db.prepareStatement(sql3);
+        statement3.setInt(1, nyttID);
+        statement3.setInt(2, enAnvandare);
+
+        statement3.executeUpdate();
+       } 
+    }
+    
+    public static ArrayList getAnvandareItemList(Connection db) throws SQLException{
+        
 
         String sql = "SELECT AnvandarID, Epost, Fornamn, Efternamn, Telefonnummer, Admin FROM Anvandare";
 

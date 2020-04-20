@@ -776,7 +776,7 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new SkapaNyttProjekt(db).setVisible(true);
+        new SkapaNyttProjekt(db, anvandarID).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void uppdateraFormellBlogg() throws SQLException {
