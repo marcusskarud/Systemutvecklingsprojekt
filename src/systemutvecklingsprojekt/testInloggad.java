@@ -703,7 +703,7 @@ private static Connection db;
             }
          }
          else{
-             if(checkPdf(filNamn)){}
+             if(checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)){}
          }
         }
 

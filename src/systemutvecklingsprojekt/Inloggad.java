@@ -834,6 +834,15 @@ public class Inloggad extends javax.swing.JFrame {
         
         ArrayList<String> utbildningsArray = new ArrayList<>();
         
+            for(ArrayList<String> hamtadArray : projektArray){
+                if(!hamtadArray.isEmpty()){
+                    
+                     for(String projektNamn : hamtadArray){
+                         
+                     } 
+                }
+            }
+        
         cmbProjektLista.setModel(cmbProjektModel);
     }
     
