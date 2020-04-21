@@ -51,6 +51,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
         pnlInformellBlogg.setLayout(new BoxLayout(pnlInformellBlogg, BoxLayout.Y_AXIS));
+        pnlProjektInlagg.setLayout(new BoxLayout(pnlProjektInlagg, BoxLayout.Y_AXIS));
 
         if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(2);
@@ -147,6 +148,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnSkapaNyProjektgrupp = new javax.swing.JButton();
         scrlProjektGrupper = new javax.swing.JScrollPane();
+        pnlProjektInlagg = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
         jButton9.setText("jButton9");
@@ -663,6 +665,19 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout pnlProjektInlaggLayout = new javax.swing.GroupLayout(pnlProjektInlagg);
+        pnlProjektInlagg.setLayout(pnlProjektInlaggLayout);
+        pnlProjektInlaggLayout.setHorizontalGroup(
+            pnlProjektInlaggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 697, Short.MAX_VALUE)
+        );
+        pnlProjektInlaggLayout.setVerticalGroup(
+            pnlProjektInlaggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 637, Short.MAX_VALUE)
+        );
+
+        scrlProjektGrupper.setViewportView(pnlProjektInlagg);
+
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/ProjektGrupperMild.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -676,17 +691,13 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(scrlProjektGrupper, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrlProjektGrupper, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblValjProjektgrupp)
-                            .addComponent(btnNyttProjektInlagg)
-                            .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSkapaNyProjektgrupp)))
+                    .addComponent(lblValjProjektgrupp)
+                    .addComponent(btnNyttProjektInlagg)
+                    .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSkapaNyProjektgrupp))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -701,12 +712,12 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrlProjektGrupper)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnNyttProjektInlagg)
-                        .addGap(39, 39, 39)
                         .addComponent(lblValjProjektgrupp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNyttProjektInlagg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSkapaNyProjektgrupp)
                         .addGap(14, 14, 14))))
         );
@@ -809,15 +820,25 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPubliceraActionPerformed
 
     private void btnNyttProjektInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttProjektInlaggActionPerformed
-
-        String rubrik = "";
-        String text = "";
-        String filURL = "";
-        String skrivenAv = Integer.toString(anvandarID);
-        String projektInlaggID = Integer.toString(1);
-        ProjektInlagg projektInlagg = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID);
-        projektInlagg.setVisible(true);
-
+        if(!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
+          try{ 
+            String rubrik = "";
+            String text = "";
+            String filURL = "";
+            String skrivenAv = Integer.toString(anvandarID);
+            String projektInlaggID = Integer.toString(1);
+            int projektGruppID = SQL.hamtaProjektGruppID(db, cmbProjektLista.getSelectedItem().toString());
+            ProjektInlagg projektInlagg = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID, projektGruppID);
+            projektInlagg.setVisible(true);
+            
+          }catch(SQLException e){
+          
+          }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Var v‰nlig v‰lj en projektgrupp i rullistan.");
+        }
+         
     }//GEN-LAST:event_btnNyttProjektInlaggActionPerformed
 
     private void btnSkapaNyProjektgruppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaNyProjektgruppActionPerformed
@@ -828,11 +849,39 @@ public class Inloggad extends javax.swing.JFrame {
     private void cmbProjektListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjektListaActionPerformed
         //scrlProjektGrupper .add(); 
 
+        pnlProjektInlagg.removeAll();
+       
+        validate();
+        if (!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") || !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") || !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
+            try {
+                ArrayList<ArrayList<String>> projektInlagg = SQL.lasInProjektGrupper(db, cmbProjektLista.getSelectedItem().toString());
+                ArrayList<ProjektInlaggsPanel> inlaggPaneler = new ArrayList<>();
 
+                for (ArrayList<String> inlagg : projektInlagg) {
+                    String projektInlaggID = inlagg.get(0);
+                    String rubrik = inlagg.get(1);
+                    String text = inlagg.get(2);
+                    String filURL = inlagg.get(3);
+                    String skapatAvID = inlagg.get(4);
+                    String namn = inlagg.get(6);
+                    ProjektInlaggsPanel nyttProjektInlagg = new ProjektInlaggsPanel(db, rubrik, text, skapatAvID, filURL, anvandarID, namn, projektInlaggID);
+                    inlaggPaneler.add(nyttProjektInlagg);
+                }
+
+                for (ProjektInlaggsPanel inlagg : inlaggPaneler) {
+                    pnlProjektInlagg.add(inlagg);
+                }
+                revalidate();
+            } catch (SQLException e) {
+
+            }
+            
+        }
+        revalidate();
     }//GEN-LAST:event_cmbProjektListaActionPerformed
 
     private void fyllPÂCmbProjektgrupper() throws SQLException {
-        //Object o = String.ValueOf();
+
         ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
 
         for (ArrayList<String> hamtadArray : projektArray) {
@@ -1095,6 +1144,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel pnlAdminRights;
     private javax.swing.JPanel pnlFormellBlogg;
     private javax.swing.JPanel pnlInformellBlogg;
+    private javax.swing.JPanel pnlProjektInlagg;
     private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JRadioButton rbtnAdmin;
     private javax.swing.JScrollPane scrlProjektGrupper;

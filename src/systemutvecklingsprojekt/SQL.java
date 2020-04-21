@@ -94,7 +94,7 @@ public class SQL {
                     }
                     
                     if(deltarIForskning == false && deltarIUtbildning == false){
-                        forskningsLista.add("Inga ForskningsProjekt");   //Skapar en icke-funktionell item i cmb som agerar rubrik.
+                        forskningsLista.add("Inga Projekt");   //Skapar en icke-funktionell item i cmb som agerar rubrik.
                         //utbildningsLista.add("Inga UtbildningsProjekt"); //Skapar en icke-funktionell item i cmb som agerar rubrik.
                     }
                         projektNamnLista.add(forskningsLista);
@@ -131,6 +131,23 @@ public class SQL {
         }
         
         return projektInlaggLista;
+    }
+    
+    public static int hamtaProjektGruppID(Connection db, String gruppNamn)throws SQLException{
+        String sql = "SELECT UtvecklingsarbetsID FROM Utvecklingsarbete WHERE Namn = '" + gruppNamn + "'";
+                Statement statement = db.createStatement();
+                ResultSet resultat = statement.executeQuery(sql);
+        
+                int gruppID = 0;
+                
+                while (resultat.next()){
+                    gruppID = resultat.getInt("UtvecklingsarbetsID");
+                }
+             if(gruppID == 0){
+                 System.out.println("gruppID är noll 0");
+             }
+             return gruppID;
+    
     }
     
     public static String hamtaDenSomSkrivit(Connection db, String vemSomSkrivit)throws SQLException{
@@ -470,6 +487,12 @@ public class SQL {
 
     }
 
+    public static void raderaProjektInlagg(Connection db, int projektInlaggsID)throws NoSuchAlgorithmException, SQLException {
+        String sql = "DELETE FROM Utvecklingsarbetsinlagg WHERE InlaggsID = " + projektInlaggsID;
+        PreparedStatement taBortStatement = db.prepareStatement(sql);
+        taBortStatement.executeUpdate();
+    }
+    
     private static String getTid() {
         SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp klockslag = new Timestamp(System.currentTimeMillis());
@@ -502,8 +525,8 @@ public class SQL {
 
     }
 
-    public static String getProjektNamn(Connection db) throws NoSuchAlgorithmException, SQLException {
-        String sql = "SELECT namn FROM Utvecklingsarbete WHERE utvecklingsarbetsID = 1";
+    public static String getProjektNamn(Connection db, int projektGruppID) throws NoSuchAlgorithmException, SQLException {
+        String sql = "SELECT namn FROM Utvecklingsarbete WHERE utvecklingsarbetsID = " + projektGruppID;
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
         String projektnamn = resultat.getString("Namn");

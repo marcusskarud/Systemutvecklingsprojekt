@@ -35,11 +35,12 @@ public class ProjektInlagg extends javax.swing.JFrame {
     private String filNamn;
     private File fil;
     private String filePath;
+    private int projektGruppID;
 
     /**
      * Creates new form ProjektInlagg
      */
-    public ProjektInlagg(Connection db, String rubrik, String text, String skrivenAv, String filURL, int anvandarID, String projektInlaggID) {
+    public ProjektInlagg(Connection db, String rubrik, String text, String skrivenAv, String filURL, int anvandarID, String projektInlaggID, int projektGruppID) {
         this.db = db;
         this.rubrik = rubrik;
         this.text = text;
@@ -48,12 +49,13 @@ public class ProjektInlagg extends javax.swing.JFrame {
         this.anvandarID = anvandarID;
         this.projektInlaggID = Integer.parseInt(projektInlaggID);
         this.filNamn = "";
+        this.projektGruppID = projektGruppID;
 
         initComponents();
 
         try {
 
-            String projektRubrik = SQL.getProjektNamn(db);
+            String projektRubrik = SQL.getProjektNamn(db, projektGruppID);
             lblProjektRubrik.setText(projektRubrik);
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
@@ -173,7 +175,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
                     sparaFil(fil, filNamn);
                 }
 
-                SQL.laggaTillProjektInlagg(db, rubrik, text, filePath, skrivenAv, 1);
+                SQL.laggaTillProjektInlagg(db, rubrik, text, filePath, skrivenAv, projektGruppID);
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
                 dispose();
             }
