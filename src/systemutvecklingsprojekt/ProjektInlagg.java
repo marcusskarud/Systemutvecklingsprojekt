@@ -35,7 +35,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
     private String filNamn;
     private File fil;
     private String filePath;
-    
+
     /**
      * Creates new form ProjektInlagg
      */
@@ -48,20 +48,17 @@ public class ProjektInlagg extends javax.swing.JFrame {
         this.anvandarID = anvandarID;
         this.projektInlaggID = Integer.parseInt(projektInlaggID);
         this.filNamn = "";
-        
+
         initComponents();
-        
+
         try {
-            
-         
-        
-      String projektRubrik = SQL.getProjektNamn(db); 
-        lblProjektRubrik.setText(projektRubrik);}
-        
-        catch(NoSuchAlgorithmException e){}
-        catch(SQLException e){}
-        
-        
+
+            String projektRubrik = SQL.getProjektNamn(db);
+            lblProjektRubrik.setText(projektRubrik);
+        } catch (NoSuchAlgorithmException e) {
+        } catch (SQLException e) {
+        }
+
     }
 
     /**
@@ -111,7 +108,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
             }
         });
 
-        lblVisaFilnamn.setText("jLabel1");
+        lblVisaFilnamn.setText("Filnamn");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,26 +166,26 @@ public class ProjektInlagg extends javax.swing.JFrame {
             } else if (Validering.textAreaIsEmpty(txtBrodtext)) {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i brödtext");
             } else {
-                
-                if(filNamn.equals("")){
+
+                if (filNamn.equals("")) {
                     filePath = "";
-                }
-                else{
+                } else {
                     sparaFil(fil, filNamn);
                 }
-                
+
                 SQL.laggaTillProjektInlagg(db, rubrik, text, filePath, skrivenAv, 1);
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
                 dispose();
             }
         } catch (SQLException e) {
 
-        }catch(NoSuchAlgorithmException er){}
-        
+        } catch (NoSuchAlgorithmException er) {
+        }
+
     }//GEN-LAST:event_btnPubliceraActionPerformed
-    
+
     private void btnLaggTillFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillFilActionPerformed
-        
+
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         fil = chooser.getSelectedFile();
@@ -196,54 +193,50 @@ public class ProjektInlagg extends javax.swing.JFrame {
         String filName = String.valueOf(fil);
 
         if (!filName.equals("null")) {
-             filNamn = chooser.getName(fil);
-         
+            filNamn = chooser.getName(fil);
+
             if (checkPdf(filNamn)) {
-               
+
                 lblVisaFilnamn.setText(filNamn);
             } else {
                 JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
             }
-         
-         
-         }
-        
-        
-        
+
+        }
+
     }//GEN-LAST:event_btnLaggTillFilActionPerformed
 
-    
-     public boolean checkPdf(String fileName) {
+    public boolean checkPdf(String fileName) {
         boolean filCheck = false;
-        try{
-        if (visaFilTyp(fileName).equals("application/pdf")) {
-            filCheck = true;
-        }
-        }catch(NullPointerException e){
+        try {
+            if (visaFilTyp(fileName).equals("application/pdf")) {
+                filCheck = true;
+            }
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
         }
 
         return filCheck;
     }
-     public void sparaFil(File fil, String namn) {
+
+    public void sparaFil(File fil, String namn) {
         System.out.println(namn);
         InputStream is = null;
         OutputStream os = null;
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
-        filePath=temp.toString();
+        filePath = temp.toString();
         System.out.println(filePath);
-       try {
-       is = new FileInputStream(fil);
-       os = new FileOutputStream(destination);
-       } catch(FileNotFoundException e){} 
-        
-     
+        try {
+            is = new FileInputStream(fil);
+            os = new FileOutputStream(destination);
+        } catch (FileNotFoundException e) {
+        }
 
     }
-     
-     public String visaFilTyp(String fileName){
-        
+
+    public String visaFilTyp(String fileName) {
+
         String fileType = "Undetermined";
         final File file = new File(fileName);
 
@@ -251,11 +244,9 @@ public class ProjektInlagg extends javax.swing.JFrame {
             fileType = Files.probeContentType(file.toPath());
             System.out.println(fileType);
 
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("kan inte hitta filtypen för: " + fileName + " på grund av " + e);
-        }
-        catch(NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
         }
 
