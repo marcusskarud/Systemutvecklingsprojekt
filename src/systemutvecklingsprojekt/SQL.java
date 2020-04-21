@@ -458,4 +458,48 @@ public class SQL {
         }
         return gillad;
     }
+    
+    public static void sorteraEfterLikes1(Connection db)throws SQLException{
+        
+        String sql = "SELECT *, Count(*) as antalLikes FROM Blogginlagg join informellBlogg on blogginlagg.bloggInlaggsID = inlaggsID join HarGillat on Blogginlagg.bloggInlaggsID = Hargillat.blogginlaggsID Group by harGillat.BlogginlaggsID Order By antalLikes desc;";
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+    
+    }
+    public static ArrayList<ArrayList<String>> sorteraEfterLikes(Connection db) throws SQLException {
+        ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
+
+        String sql = "SELECT *, Count(*) as antalLikes FROM Blogginlagg join informellBlogg on blogginlagg.bloggInlaggsID = inlaggsID join HarGillat on Blogginlagg.bloggInlaggsID = Hargillat.blogginlaggsID Group by harGillat.BlogginlaggsID Order By antalLikes desc";
+
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> arr = new ArrayList<String>();
+
+            arr.add(resultat.getString("Rubrik"));
+            arr.add(resultat.getString("Text"));
+            arr.add(resultat.getString("FilURL"));
+            arr.add(resultat.getString("Datumtid"));
+            arr.add(String.valueOf(resultat.getInt("SkapatAv")));
+            arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
+
+            retur.add(arr);
+
+        }
+
+        for (ArrayList<String> inlagg : retur) {
+            String rubrik = inlagg.get(0);
+            String text = inlagg.get(1);
+            String filURL = inlagg.get(2);
+            String datum = inlagg.get(3);
+            String skapatAv = inlagg.get(4);
+            String bloggInlaggID = inlagg.get(5);
+            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text + " " + filURL + " "
+                    + datum + " " + skapatAv + " " + bloggInlaggID);
+        }
+
+        return retur;
+    }
 }
+
