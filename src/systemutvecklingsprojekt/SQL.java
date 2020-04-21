@@ -209,7 +209,7 @@ public class SQL {
     public static ArrayList<ArrayList<String>> lasFormellaBlogginlagg(Connection db) throws SQLException {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
 
-        String sql = "SELECT * FROM Blogginlagg join formellBlogg on bloggInlaggsID = inlaggsID";
+        String sql = "SELECT * FROM Blogginlagg join formellBlogg on bloggInlaggsID = inlaggsID Order By datumtid desc";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
@@ -245,7 +245,7 @@ public class SQL {
     public static ArrayList<ArrayList<String>> lasInformellaBlogginlagg(Connection db) throws SQLException {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
 
-        String sql = "SELECT * FROM Blogginlagg join informellBlogg on bloggInlaggsID = inlaggsID";
+        String sql = "SELECT * FROM Blogginlagg join informellBlogg on bloggInlaggsID = inlaggsID Order By datumtid desc";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
