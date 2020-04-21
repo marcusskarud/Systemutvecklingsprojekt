@@ -180,6 +180,11 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel21.setText("Sök inlägg");
 
         jButton4.setText("Sök");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         btnUppdateraInformell.setText("Uppdatera");
         btnUppdateraInformell.addActionListener(new java.awt.event.ActionListener() {
@@ -820,6 +825,7 @@ public class Inloggad extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbProjektListaActionPerformed
 
+
     private void fyllPåCmbProjektgrupper() throws SQLException{
         
         ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
@@ -832,6 +838,35 @@ public class Inloggad extends javax.swing.JFrame {
     }
     
     
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+           
+        
+        pnlInformellBlogg.removeAll();
+
+        ArrayList<ArrayList<String>> bloggInlagg = SQL.sorteraEfterLikes(db);
+        ArrayList<BloggInlaggsPanel> inlaggPaneler = new ArrayList<>();
+
+        for (ArrayList<String> inlagg : bloggInlagg) {
+            String rubrik = inlagg.get(0);
+            String text = inlagg.get(1);
+            String filURL = inlagg.get(2);
+            String datum = inlagg.get(3);
+            String skapatAv = inlagg.get(4);
+            String bloggInlaggID = inlagg.get(5);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
+            inlaggPaneler.add(nyttInlagg);
+        }
+        for (BloggInlaggsPanel inlagg : inlaggPaneler) {
+            pnlInformellBlogg.add(inlagg);
+        }
+        revalidate();
+    }
+        catch(SQLException e){} 
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
 

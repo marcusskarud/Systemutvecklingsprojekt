@@ -10,7 +10,12 @@ package systemutvecklingsprojekt;
  * @author Ludvig Johansson
  */
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
@@ -24,6 +29,10 @@ public class testInloggad extends javax.swing.JFrame {
 private static Connection db;
     private int anvandarID;
     private String adminStatus;
+    private String filNamn;
+    private File fil;
+    private String filePath;
+    
 
     /**
      * Creates new form Inloggad
@@ -675,28 +684,32 @@ private static Connection db;
     }//GEN-LAST:event_btnUppdateraFormellActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        JFileChooser chooser = new JFileChooser();
+       
+      JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
-        File fil = chooser.getSelectedFile();
+         fil = chooser.getSelectedFile();
 
-        String filNamn = String.valueOf(fil);
+        String filName = String.valueOf(fil);
 
-        if (!filNamn.equals("null")) {
-            System.out.println(filNamn);
-            String fileName = fil.getAbsolutePath();
-            System.out.println(fileName);
-            System.out.println(fil);
-            String namn = chooser.getName(fil);
-            if (checkPdf(namn)) {
-                sparaFil(fil, namn);
-                jLabel22.setText(namn);
+        if (!filName.equals("null")) {
+             filNamn = chooser.getName(fil);
+         if(cmbInlaggsTyp.getSelectedItem().equals("Formell blogg")){
+            
+            if (checkPdf(filNamn)) {
+               
+                jLabel22.setText(filNamn);
             } else {
                 JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
             }
+         }
+         else{
+             if(checkPdf(filNamn)){}
+         }
         }
 
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
 
         try {
@@ -705,9 +718,11 @@ private static Connection db;
             } else if (Validering.textAreaIsEmpty(txtBrodtext)) {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i brödtext");
             } else {
-                SQL.laggaTillBloggInlagg(db, txtSattRubrik.getText(), txtBrodtext.getText(), " ", anvandarID, cmbInlaggsTyp.getSelectedItem().toString());
+                sparaFil(fil, filNamn);
+                SQL.laggaTillBloggInlagg(db, txtSattRubrik.getText(), txtBrodtext.getText(), filePath, anvandarID, cmbInlaggsTyp.getSelectedItem().toString());
                 tomFalt();
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
+                 
             }
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
@@ -820,16 +835,21 @@ private static Connection db;
         }
     }
 
-    public String visaFilTyp(String fileName) {
-
+    public String visaFilTyp(String fileName){
+        
         String fileType = "Undetermined";
         final File file = new File(fileName);
 
         try {
             fileType = Files.probeContentType(file.toPath());
+            System.out.println(fileType);
 
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             System.out.println("kan inte hitta filtypen för: " + fileName + " på grund av " + e);
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
         }
 
         return fileType;
@@ -837,8 +857,29 @@ private static Connection db;
 
     public boolean checkPdf(String fileName) {
         boolean filCheck = false;
-
+        try{
         if (visaFilTyp(fileName).equals("application/pdf")) {
+            filCheck = true;
+        }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
+        }
+
+        return filCheck;
+    }
+    public boolean checkPng(String fileName) {
+        boolean filCheck = false;
+
+        if (visaFilTyp(fileName).equals("image/png")) {
+            filCheck = true;
+        }
+
+        return filCheck;
+    }
+    public boolean checkJpg(String fileName) {
+        boolean filCheck = false;
+
+        if (visaFilTyp(fileName).equals("image/jpeg")) {
             filCheck = true;
         }
 
@@ -847,11 +888,18 @@ private static Connection db;
 
     public void sparaFil(File fil, String namn) {
         System.out.println(namn);
+        InputStream is = null;
+        OutputStream os = null;
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
-
-        boolean bool = fil.renameTo(destination);
-        System.out.print(bool);
+        filePath=temp.toString();
+        System.out.println(filePath);
+       try {
+       is = new FileInputStream(fil);
+       os = new FileOutputStream(destination);
+       } catch(FileNotFoundException e){} 
+        
+     
 
     }
 
