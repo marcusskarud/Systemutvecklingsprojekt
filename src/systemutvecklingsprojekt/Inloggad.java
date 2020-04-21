@@ -34,23 +34,23 @@ public class Inloggad extends javax.swing.JFrame {
         this.db = db;
         this.anvandarID = anvandarID;
         this.adminStatus = adminStatus;
+        cmbProjektModel = new DefaultComboBoxModel();
 
         pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
         pnlInformellBlogg.setLayout(new BoxLayout(pnlInformellBlogg, BoxLayout.Y_AXIS));
         
 
         if (adminStatus.equals("N")) {
-            tabbedPaneBar.remove(3);
+            tabbedPaneBar.remove(2);
         }
 
         try {
             uppdateraInformellBlogg();
             uppdateraFormellBlogg();
-            SQL.hamtaProjektGruppNamn(db, anvandarID);
-            
-        } catch (SQLException e) {
+            fyllPÂCmbProjektgrupper();    
+        } 
+        catch (SQLException e) {
         }
-
     }
 
     /**
@@ -135,7 +135,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrlProjektGrupper = new javax.swing.JScrollPane();
         jLabel4 = new javax.swing.JLabel();
 
         jButton9.setText("jButton9");
@@ -660,7 +660,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrlProjektGrupper, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -683,7 +683,7 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(scrlProjektGrupper)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton6)
                         .addGap(39, 39, 39)
@@ -822,28 +822,28 @@ public class Inloggad extends javax.swing.JFrame {
     
         
     private void cmbProjektListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjektListaActionPerformed
-        // TODO add your handling code here:
+        //scrlProjektGrupper .add(); 
+        
+        
     }//GEN-LAST:event_cmbProjektListaActionPerformed
 
 
     private void fyllPÂCmbProjektgrupper() throws SQLException{
-        
+        //Object o = String.ValueOf();
         ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
         
-        ArrayList<String> forskningsArray = new ArrayList<>();
-        
-        ArrayList<String> utbildningsArray = new ArrayList<>();
         
             for(ArrayList<String> hamtadArray : projektArray){
-                if(!hamtadArray.isEmpty()){
-                    
-                     for(String projektNamn : hamtadArray){
-                         
-                     } 
+                if(hamtadArray != null){
+                    for(String projektNamn : hamtadArray){
+                        //cmbProjektLista.addItem(projektNamn);
+                        
+                        cmbProjektModel.addElement(projektNamn);
+                    } 
                 }
             }
         
-        cmbProjektLista.setModel(cmbProjektModel);
+               cmbProjektLista.setModel(cmbProjektModel);
     }
     
     
@@ -989,7 +989,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField11;
@@ -1001,6 +1000,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel pnlInformellBlogg;
     private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JRadioButton rbtnAdmin;
+    private javax.swing.JScrollPane scrlProjektGrupper;
     private javax.swing.JTabbedPane tabbedPaneBar;
     private javax.swing.JTextArea txtBrodtext;
     private javax.swing.JTextField txtEfternamn;
