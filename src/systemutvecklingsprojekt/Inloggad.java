@@ -180,11 +180,6 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel21.setText("Sök inlägg");
 
         jButton4.setText("Sök");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
         btnUppdateraInformell.setText("Uppdatera");
         btnUppdateraInformell.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +189,11 @@ public class Inloggad extends javax.swing.JFrame {
         });
 
         btnSorteraLikes.setText("Sortera efter likes");
+        btnSorteraLikes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSorteraLikesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -839,10 +839,10 @@ public class Inloggad extends javax.swing.JFrame {
     
     
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSorteraLikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteraLikesActionPerformed
+        
         try {
            
-        
         pnlInformellBlogg.removeAll();
 
         ArrayList<ArrayList<String>> bloggInlagg = SQL.sorteraEfterLikes(db);
@@ -864,7 +864,8 @@ public class Inloggad extends javax.swing.JFrame {
         revalidate();
     }
         catch(SQLException e){} 
-    }//GEN-LAST:event_jButton4ActionPerformed
+        
+    }//GEN-LAST:event_btnSorteraLikesActionPerformed
 
 
     public void uppdateraFormellBlogg() throws SQLException {

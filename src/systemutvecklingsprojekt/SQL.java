@@ -497,17 +497,10 @@ public class SQL {
         return gillad;
     }
     
-    public static void sorteraEfterLikes1(Connection db)throws SQLException{
-        
-        String sql = "SELECT *, Count(*) as antalLikes FROM Blogginlagg join informellBlogg on blogginlagg.bloggInlaggsID = inlaggsID join HarGillat on Blogginlagg.bloggInlaggsID = Hargillat.blogginlaggsID Group by harGillat.BlogginlaggsID Order By antalLikes desc;";
-        Statement statement = db.createStatement();
-        ResultSet resultat = statement.executeQuery(sql);
-    
-    }
     public static ArrayList<ArrayList<String>> sorteraEfterLikes(Connection db) throws SQLException {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
 
-        String sql = "SELECT *, Count(*) as antalLikes FROM Blogginlagg join informellBlogg on blogginlagg.bloggInlaggsID = inlaggsID join HarGillat on Blogginlagg.bloggInlaggsID = Hargillat.blogginlaggsID Group by harGillat.BlogginlaggsID Order By antalLikes desc";
+        String sql = "SELECT *, Count(*) as antalLikes FROM Blogginlagg join informellBlogg on blogginlagg.bloggInlaggsID = inlaggsID LEFT join HarGillat on Blogginlagg.bloggInlaggsID = Hargillat.blogginlaggsID Group by harGillat.BlogginlaggsID Order By antalLikes desc";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
