@@ -43,44 +43,36 @@ public class SQL {
         }
     }
 
-    //Dessa kan tas bort
-//    SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
-//    SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = 1);
-    
-    public static ArrayList hamtaProjektGruppNamn(Connection db, int anvandarID) throws SQLException{
+    public static ArrayList hamtaProjektGruppNamn(Connection db, int anvandarID) throws SQLException {
         ArrayList<ArrayList<String>> projektNamnLista = new ArrayList<>();
-        
+
         ArrayList<String> forskningsLista = new ArrayList<String>();
-        
+
         ArrayList<String> utbildningsLista = new ArrayList<String>();
-        
-            
-            
-             String sqlForskning = "SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
-                 Statement statement = db.createStatement();
-                 ResultSet forskning = statement.executeQuery(sqlForskning);
 
-             while (forskning.next()) {
-                            forskningsLista.add(forskning.getString("Namn"));    
-             }
-                         
-             String sqlUtbildning = "SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
-                 Statement statement2 = db.createStatement();
-                 ResultSet utbildning = statement2.executeQuery(sqlUtbildning);
+        String sqlForskning = "SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+        Statement statement = db.createStatement();
+        ResultSet forskning = statement.executeQuery(sqlForskning);
 
-             while (utbildning.next()) {
-                            utbildningsLista.add(utbildning.getString("Namn"));    
-             }
-            
-                        projektNamnLista.add(forskningsLista);
-                        projektNamnLista.add(utbildningsLista);
-            
-                        System.out.println(projektNamnLista);
-            return projektNamnLista;
+        while (forskning.next()) {
+            forskningsLista.add(forskning.getString("Namn"));
+        }
+
+        String sqlUtbildning = "SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+        Statement statement2 = db.createStatement();
+        ResultSet utbildning = statement2.executeQuery(sqlUtbildning);
+
+        while (utbildning.next()) {
+            utbildningsLista.add(utbildning.getString("Namn"));
+        }
+
+        projektNamnLista.add(forskningsLista);
+        projektNamnLista.add(utbildningsLista);
+
+        System.out.println(projektNamnLista);
+        return projektNamnLista;
     }
-    
-    
-    
+
     public static ArrayList epostTillAnvandarID(Connection db, ArrayList<String> epostLista) throws SQLException {
         ArrayList<Integer> idLista = new ArrayList<>();
 
@@ -231,16 +223,16 @@ public class SQL {
 
     public static boolean getFormellaInlagg(Connection db, String blogginlaggsID) {
         boolean formelltInlagg = false;
-        try{
-        String sql = "SELECT * FROM FormellBlogg where InlaggsID = " + blogginlaggsID;
-        Statement statement = db.createStatement();
-        ResultSet resultat = statement.executeQuery(sql);
-        System.out.println(formelltInlagg);
-        while (resultat.next()) {
-            formelltInlagg = true;
+        try {
+            String sql = "SELECT * FROM FormellBlogg where InlaggsID = " + blogginlaggsID;
+            Statement statement = db.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
+
+            while (resultat.next()) {
+                formelltInlagg = true;
+            }
+        } catch (SQLException e) {
         }
-        System.out.println(formelltInlagg);}
-        catch(SQLException e){}
         return formelltInlagg;
     }
 
@@ -367,13 +359,11 @@ public class SQL {
     public static void redigeraBloggInlagg(Connection db, int bloggInlaggsID, String rubrik, String text, String filURL, int skapatAv) /*throws NoSuchAlgorithmException, SQLException */ {
         try {
             String sql;
-            System.out.println("innan");
+
             if (filURL == null || filURL.isEmpty()) {
                 sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
-                System.out.println("if");
             } else {
                 sql = "UPDATE BloggInlagg SET Rubrik = '" + rubrik + "', Text = '" + text + "', FilURL = '" + filURL + "' WHERE BloggInlaggsID = " + bloggInlaggsID;
-                System.out.println("else");
             }
             PreparedStatement uppdateraStatement = db.prepareStatement(sql);
             uppdateraStatement.executeUpdate();
@@ -393,10 +383,14 @@ public class SQL {
         String sql2 = "DELETE FROM Bloggamne WHERE BlogginlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement2 = db.prepareStatement(sql2);
         taBortStatement2.executeUpdate();
-
-        String sql3 = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;
+        String sql3 = "DELETE FROM HarGillat WHERE BloggInlaggsID = " + bloggInlaggsID;
         PreparedStatement taBortStatement3 = db.prepareStatement(sql3);
         taBortStatement3.executeUpdate();
+
+        String sql4 = "DELETE FROM BloggInlagg WHERE BloggInlaggsID = " + bloggInlaggsID;
+        PreparedStatement taBortStatement4 = db.prepareStatement(sql4);
+        taBortStatement4.executeUpdate();
+
     }
 
     private static String getTid() {
@@ -477,7 +471,6 @@ public class SQL {
             Statement statement = db.createStatement();
             ResultSet resultat = statement.executeQuery(sql);
 
-            System.out.println(resultat);
             while (resultat.next()) {
 
                 anvandareSomGillat.add(resultat.getInt("AnvandarID"));
@@ -496,7 +489,7 @@ public class SQL {
         }
         return gillad;
     }
-    
+
     public static ArrayList<ArrayList<String>> sorteraEfterLikes(Connection db) throws SQLException {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
 
@@ -526,11 +519,8 @@ public class SQL {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            System.out.println("Rubrik: " + rubrik + "\n" + "Text: " + text + " " + filURL + " "
-                    + datum + " " + skapatAv + " " + bloggInlaggID);
         }
 
         return retur;
     }
 }
-
