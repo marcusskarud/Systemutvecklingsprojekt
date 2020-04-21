@@ -43,35 +43,112 @@ public class SQL {
         }
     }
 
+
+    //Dessa kan tas bort
+//    SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+//    SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = 1);
+    
+
+    
+
     public static ArrayList hamtaProjektGruppNamn(Connection db, int anvandarID) throws SQLException {
+
+         boolean deltarIForskning = false;
+         boolean deltarIUtbildning = false;
+        
         ArrayList<ArrayList<String>> projektNamnLista = new ArrayList<>();
 
         ArrayList<String> forskningsLista = new ArrayList<String>();
 
         ArrayList<String> utbildningsLista = new ArrayList<String>();
 
-        String sqlForskning = "SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
-        Statement statement = db.createStatement();
-        ResultSet forskning = statement.executeQuery(sqlForskning);
+        
+            
+            
+             String sqlForskning = "SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+                 Statement statement = db.createStatement();
+                 ResultSet forskning = statement.executeQuery(sqlForskning);
 
-        while (forskning.next()) {
-            forskningsLista.add(forskning.getString("Namn"));
-        }
+                
+                    while (forskning.next()) {
+                            forskningsLista.add(forskning.getString("Namn"));   
+                            deltarIForskning = true;
+                    }
+                   
+                
+             String sqlUtbildning = "SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+                 Statement statement2 = db.createStatement();
+                 ResultSet utbildning = statement2.executeQuery(sqlUtbildning);
 
-        String sqlUtbildning = "SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
-        Statement statement2 = db.createStatement();
-        ResultSet utbildning = statement2.executeQuery(sqlUtbildning);
-
-        while (utbildning.next()) {
-            utbildningsLista.add(utbildning.getString("Namn"));
-        }
-
-        projektNamnLista.add(forskningsLista);
-        projektNamnLista.add(utbildningsLista);
-
-        System.out.println(projektNamnLista);
-        return projektNamnLista;
+                    while (utbildning.next()) {
+                            utbildningsLista.add(utbildning.getString("Namn")); 
+                            deltarIUtbildning = true;
+                    }
+            
+                    if(deltarIForskning == true){
+                        forskningsLista.add(0, "Forskning:"); //Skapar en icke-funktionell item i cmb som agerar rubrik.
+                    }
+                    
+                    if(deltarIUtbildning == true){
+                        utbildningsLista.add(0, "Utbildning:"); //Skapar en icke-funktionell item i cmb som agerar rubrik.
+                    }
+                    
+                    if(deltarIForskning == false && deltarIUtbildning == false){
+                        forskningsLista.add("Inga ForskningsProjekt");   //Skapar en icke-funktionell item i cmb som agerar rubrik.
+                        //utbildningsLista.add("Inga UtbildningsProjekt"); //Skapar en icke-funktionell item i cmb som agerar rubrik.
+                    }
+                        projektNamnLista.add(forskningsLista);
+                        projektNamnLista.add(utbildningsLista);
+            
+                        System.out.println(projektNamnLista);
+            return projektNamnLista;
     }
+    
+    public static ArrayList lasInProjektGrupper(Connection db, String utvecklingsArbetsNamn)throws SQLException{
+ 
+        ArrayList<ArrayList<String>> projektInlaggLista = new ArrayList<ArrayList<String>>();
+        
+        
+        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "')";
+
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+        
+
+        while (resultat.next()) {
+            ArrayList<String> inlaggsInfoLista = new ArrayList<String>();
+
+            inlaggsInfoLista.add(String.valueOf(resultat.getInt("InlaggsID")));
+            inlaggsInfoLista.add(resultat.getString("Rubrik"));
+            inlaggsInfoLista.add(resultat.getString("Text"));
+            inlaggsInfoLista.add(resultat.getString("FilURL"));
+            inlaggsInfoLista.add(String.valueOf(resultat.getInt("SkrivenAv")));
+            inlaggsInfoLista.add(String.valueOf(resultat.getInt("TillhörArbete")));
+            inlaggsInfoLista.add(hamtaDenSomSkrivit(db, String.valueOf(resultat.getInt("SkrivenAv"))));
+                    
+            projektInlaggLista.add(inlaggsInfoLista);
+
+        }
+        
+        return projektInlaggLista;
+    }
+    
+    public static String hamtaDenSomSkrivit(Connection db, String vemSomSkrivit)throws SQLException{
+                String sql = "SELECT Fornamn, Efternamn FROM Anvandare WHERE AnvandarID = " + vemSomSkrivit;
+                Statement statement = db.createStatement();
+                ResultSet resultat = statement.executeQuery(sql);
+        
+                String forfattare = "";
+                
+                while (resultat.next()){
+                    forfattare = resultat.getString("Fornamn") + " " + resultat.getString("Efternamn");
+                }
+                
+        return forfattare;
+    }
+    
+
+
 
     public static ArrayList epostTillAnvandarID(Connection db, ArrayList<String> epostLista) throws SQLException {
         ArrayList<Integer> idLista = new ArrayList<>();
