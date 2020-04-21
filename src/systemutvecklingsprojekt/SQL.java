@@ -43,6 +43,44 @@ public class SQL {
         }
     }
 
+    //Dessa kan tas bort
+//    SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+//    SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = 1);
+    
+    public static ArrayList hamtaProjektGruppNamn(Connection db, int anvandarID) throws SQLException{
+        ArrayList<ArrayList<String>> projektNamnLista = new ArrayList<>();
+        
+        ArrayList<String> forskningsLista = new ArrayList<String>();
+        
+        ArrayList<String> utbildningsLista = new ArrayList<String>();
+        
+            
+            
+             String sqlForskning = "SELECT Namn FROM Utvecklingsarbete JOIN Forskning ON Utvecklingsarbete.UtvecklingsarbetsID = Forskning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+                 Statement statement = db.createStatement();
+                 ResultSet forskning = statement.executeQuery(sqlForskning);
+
+             while (forskning.next()) {
+                            forskningsLista.add(forskning.getString("Namn"));    
+             }
+                         
+             String sqlUtbildning = "SELECT Namn FROM Utvecklingsarbete JOIN Utbildning ON Utvecklingsarbete.UtvecklingsarbetsID = Utbildning.UtvecklingsarbetsID WHERE Utvecklingsarbete.UtvecklingsarbetsID IN (SELECT UtvecklingsarbetsID FROM UtvecklingsDeltagare WHERE AnvandarID = " + anvandarID + ")";
+                 Statement statement2 = db.createStatement();
+                 ResultSet utbildning = statement2.executeQuery(sqlUtbildning);
+
+             while (utbildning.next()) {
+                            utbildningsLista.add(utbildning.getString("Namn"));    
+             }
+            
+                        projektNamnLista.add(forskningsLista);
+                        projektNamnLista.add(utbildningsLista);
+            
+                        System.out.println(projektNamnLista);
+            return projektNamnLista;
+    }
+    
+    
+    
     public static ArrayList epostTillAnvandarID(Connection db, ArrayList<String> epostLista) throws SQLException {
         ArrayList<Integer> idLista = new ArrayList<>();
 
@@ -98,8 +136,8 @@ public class SQL {
             String sql3 = "INSERT INTO UtvecklingsDeltagare VALUES (?,?) ";
 
             PreparedStatement statement3 = db.prepareStatement(sql3);
-            statement3.setInt(1, nyttID);
-            statement3.setInt(2, enAnvandare);
+            statement3.setInt(1, enAnvandare);
+            statement3.setInt(2, nyttID);
 
             statement3.executeUpdate();
         }

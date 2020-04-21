@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Inloggad extends javax.swing.JFrame {
     private static Connection db;
     private int anvandarID;
     private String adminStatus;
+    private DefaultComboBoxModel cmbProjektModel;
 
     /**
      * Creates new form Inloggad
@@ -35,6 +37,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
         pnlInformellBlogg.setLayout(new BoxLayout(pnlInformellBlogg, BoxLayout.Y_AXIS));
+        
 
         if (adminStatus.equals("N")) {
             tabbedPaneBar.remove(3);
@@ -43,6 +46,8 @@ public class Inloggad extends javax.swing.JFrame {
         try {
             uppdateraInformellBlogg();
             uppdateraFormellBlogg();
+            SQL.hamtaProjektGruppNamn(db, anvandarID);
+            
         } catch (SQLException e) {
         }
 
@@ -73,6 +78,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         btnUppdateraInformell = new javax.swing.JButton();
+        btnSorteraLikes = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         ScrollPane3 = new javax.swing.JScrollPane();
         pnlFormellBlogg = new javax.swing.JPanel();
@@ -125,7 +131,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbProjektLista = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -182,24 +188,30 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
+        btnSorteraLikes.setText("Sortera efter likes");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(41, 41, 41))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(41, 41, 41))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4)
+                                .addGap(12, 12, 12))))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnUppdateraInformell)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addComponent(jLabel20)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton4))))
-                .addGap(12, 12, 12)
+                        .addComponent(btnSorteraLikes)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,9 +233,11 @@ public class Inloggad extends javax.swing.JFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
                             .addComponent(jLabel20))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                        .addComponent(btnSorteraLikes)
+                        .addGap(63, 63, 63)
                         .addComponent(btnUppdateraInformell)
-                        .addGap(224, 224, 224))))
+                        .addGap(225, 225, 225))))
         );
 
         jTabbedPane2.addTab("Informell", jPanel7);
@@ -469,7 +483,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7))
-                .addContainerGap(902, Short.MAX_VALUE))
+                .addContainerGap(909, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,7 +595,7 @@ public class Inloggad extends javax.swing.JFrame {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66))
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
         );
@@ -613,10 +627,9 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Forskning: projektnamn" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbProjektLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbProjektListaActionPerformed(evt);
             }
         });
 
@@ -636,7 +649,7 @@ public class Inloggad extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel4)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1021, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -648,8 +661,8 @@ public class Inloggad extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6)))
+                            .addComponent(jButton6)
+                            .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
@@ -670,9 +683,9 @@ public class Inloggad extends javax.swing.JFrame {
                         .addComponent(jButton6)
                         .addGap(39, 39, 39)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(14, 14, 14))))
         );
@@ -800,15 +813,25 @@ public class Inloggad extends javax.swing.JFrame {
         new SkapaNyttProjekt(db, anvandarID).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void fyllPÂCmbProjektgrupper(){
-      
-    }
+    
     
         
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbProjektListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjektListaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbProjektListaActionPerformed
 
+    private void fyllPÂCmbProjektgrupper() throws SQLException{
+        
+        ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
+        
+        ArrayList<String> forskningsArray = new ArrayList<>();
+        
+        ArrayList<String> utbildningsArray = new ArrayList<>();
+        
+        cmbProjektLista.setModel(cmbProjektModel);
+    }
+    
+    
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
 
@@ -869,9 +892,11 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane3;
     private javax.swing.JButton btnPublicera;
     private javax.swing.JButton btnSkapaKonto;
+    private javax.swing.JButton btnSorteraLikes;
     private javax.swing.JButton btnUppdateraFormell;
     private javax.swing.JButton btnUppdateraInformell;
     private javax.swing.JComboBox<String> cmbInlaggsTyp;
+    private javax.swing.JComboBox<String> cmbProjektLista;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -883,7 +908,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
