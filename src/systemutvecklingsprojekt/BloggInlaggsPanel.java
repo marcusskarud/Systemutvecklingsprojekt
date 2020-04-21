@@ -47,6 +47,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblRubrik.setText(rubrik);
         txtBloggtext.setText(text);
         lblDatumTid.setText(datum);
+        //txtVisaFil.setVisible(false);
 
         try {
             
@@ -98,6 +99,11 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblDatumTid = new javax.swing.JLabel();
         btnGilla = new javax.swing.JButton();
         lblAntalLikes = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtVisaFil = new javax.swing.JTextArea();
+        lblForfattare = new javax.swing.JLabel();
+
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtBloggtext.setEditable(false);
         txtBloggtext.setColumns(20);
@@ -122,7 +128,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             }
         });
 
-        lblDatumTid.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDatumTid.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDatumTid.setText("Datumtid visas här");
 
         btnGilla.setText("Gilla");
@@ -135,6 +141,15 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblAntalLikes.setText("45");
         lblAntalLikes.setMinimumSize(new java.awt.Dimension(10, 10));
 
+        txtVisaFil.setEditable(false);
+        txtVisaFil.setColumns(20);
+        txtVisaFil.setRows(5);
+        txtVisaFil.setBorder(null);
+        jScrollPane2.setViewportView(txtVisaFil);
+
+        lblForfattare.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblForfattare.setText("Admin Adminsson");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,19 +157,24 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGilla)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRedigera)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTaBort))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                        .addComponent(lblDatumTid, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDatumTid, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(lblForfattare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGilla)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(325, 325, 325)
+                        .addComponent(btnRedigera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTaBort)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -162,18 +182,20 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRubrik)
-                    .addComponent(lblDatumTid))
+                    .addComponent(lblForfattare, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRubrik))
+                .addGap(10, 10, 10)
+                .addComponent(lblDatumTid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnRedigera)
-                        .addComponent(btnTaBort))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnGilla)
-                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGilla)
+                    .addComponent(lblAntalLikes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTaBort)
+                    .addComponent(btnRedigera))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -243,9 +265,12 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnRedigera;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAntalLikes;
     private javax.swing.JLabel lblDatumTid;
+    private javax.swing.JLabel lblForfattare;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JTextArea txtBloggtext;
+    private javax.swing.JTextArea txtVisaFil;
     // End of variables declaration//GEN-END:variables
 }

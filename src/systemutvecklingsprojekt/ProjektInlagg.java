@@ -5,9 +5,18 @@
  */
 package systemutvecklingsprojekt;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +32,9 @@ public class ProjektInlagg extends javax.swing.JFrame {
     private String filURL;
     private int anvandarID;
     private int projektInlaggID;
+    private String filNamn;
+    private File fil;
+    private String filePath;
     
     /**
      * Creates new form ProjektInlagg
@@ -35,6 +47,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
         this.filURL = filURL;
         this.anvandarID = anvandarID;
         this.projektInlaggID = Integer.parseInt(projektInlaggID);
+        this.filNamn = "";
         
         initComponents();
         
@@ -68,6 +81,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
         lblBrodtext = new javax.swing.JLabel();
         lblProjektRubrik = new javax.swing.JLabel();
         btnLaggTillFil = new javax.swing.JButton();
+        lblVisaFilnamn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,6 +105,13 @@ public class ProjektInlagg extends javax.swing.JFrame {
         lblProjektRubrik.setText("Projektnamn");
 
         btnLaggTillFil.setText("Lägg till fil");
+        btnLaggTillFil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillFilActionPerformed(evt);
+            }
+        });
+
+        lblVisaFilnamn.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +124,8 @@ public class ProjektInlagg extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnLaggTillFil)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblVisaFilnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPublicera))
                     .addComponent(lblRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,7 +149,8 @@ public class ProjektInlagg extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPublicera)
-                    .addComponent(btnLaggTillFil))
+                    .addComponent(btnLaggTillFil)
+                    .addComponent(lblVisaFilnamn))
                 .addContainerGap())
         );
 
@@ -136,7 +160,6 @@ public class ProjektInlagg extends javax.swing.JFrame {
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
         String rubrik = txtRubrik.getText();
         String text = txtBrodtext.getText();
-        String filURL = "";
         int skrivenAv = anvandarID;
 
         try {
@@ -146,7 +169,15 @@ public class ProjektInlagg extends javax.swing.JFrame {
             } else if (Validering.textAreaIsEmpty(txtBrodtext)) {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i brödtext");
             } else {
-                SQL.laggaTillProjektInlagg(db, rubrik, text, filURL, skrivenAv, 1);
+                
+                if(filNamn.equals("")){
+                    filePath = "";
+                }
+                else{
+                    sparaFil(fil, filNamn);
+                }
+                
+                SQL.laggaTillProjektInlagg(db, rubrik, text, filePath, skrivenAv, 1);
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
                 dispose();
             }
@@ -155,7 +186,81 @@ public class ProjektInlagg extends javax.swing.JFrame {
         }catch(NoSuchAlgorithmException er){}
         
     }//GEN-LAST:event_btnPubliceraActionPerformed
+    
+    private void btnLaggTillFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillFilActionPerformed
+        
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        fil = chooser.getSelectedFile();
 
+        String filName = String.valueOf(fil);
+
+        if (!filName.equals("null")) {
+             filNamn = chooser.getName(fil);
+         
+            if (checkPdf(filNamn)) {
+               
+                lblVisaFilnamn.setText(filNamn);
+            } else {
+                JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
+            }
+         
+         
+         }
+        
+        
+        
+    }//GEN-LAST:event_btnLaggTillFilActionPerformed
+
+    
+     public boolean checkPdf(String fileName) {
+        boolean filCheck = false;
+        try{
+        if (visaFilTyp(fileName).equals("application/pdf")) {
+            filCheck = true;
+        }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
+        }
+
+        return filCheck;
+    }
+     public void sparaFil(File fil, String namn) {
+        System.out.println(namn);
+        InputStream is = null;
+        OutputStream os = null;
+        File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
+        File destination = new File(temp.getAbsolutePath());
+        filePath=temp.toString();
+        System.out.println(filePath);
+       try {
+       is = new FileInputStream(fil);
+       os = new FileOutputStream(destination);
+       } catch(FileNotFoundException e){} 
+        
+     
+
+    }
+     
+     public String visaFilTyp(String fileName){
+        
+        String fileType = "Undetermined";
+        final File file = new File(fileName);
+
+        try {
+            fileType = Files.probeContentType(file.toPath());
+            System.out.println(fileType);
+
+        } 
+        catch (IOException e) {
+            System.out.println("kan inte hitta filtypen för: " + fileName + " på grund av " + e);
+        }
+        catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
+        }
+
+        return fileType;
+    }
     /**
      * @param args the command line arguments
      */
@@ -198,6 +303,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
     private javax.swing.JLabel lblBrodtext;
     private javax.swing.JLabel lblProjektRubrik;
     private javax.swing.JLabel lblRubrik;
+    private javax.swing.JLabel lblVisaFilnamn;
     private javax.swing.JTextArea txtBrodtext;
     private javax.swing.JTextField txtRubrik;
     // End of variables declaration//GEN-END:variables

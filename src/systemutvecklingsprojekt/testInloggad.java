@@ -43,6 +43,7 @@ private static Connection db;
         this.db = db;
         this.anvandarID = anvandarID;
         this.adminStatus = adminStatus;
+        this.filNamn = "";
 
         pnlFormellBlogg.setLayout(new BoxLayout(pnlFormellBlogg, BoxLayout.Y_AXIS));
         pnlInformellBlogg.setLayout(new BoxLayout(pnlInformellBlogg, BoxLayout.Y_AXIS));
@@ -699,11 +700,18 @@ private static Connection db;
                
                 jLabel22.setText(filNamn);
             } else {
+                
                 JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
             }
          }
          else{
-             if(checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)){}
+             if(checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)){
+                jLabel22.setText(filNamn);
+             }
+             else {
+                JOptionPane.showMessageDialog(null, "Du måste välja en pdf, jpg eller en png");
+             }
+             
          }
         }
 
@@ -718,7 +726,12 @@ private static Connection db;
             } else if (Validering.textAreaIsEmpty(txtBrodtext)) {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i brödtext");
             } else {
-                sparaFil(fil, filNamn);
+                if(filNamn.equals("")){
+                    filePath = "";
+                }
+                else{
+                    sparaFil(fil, filNamn);
+                }
                 SQL.laggaTillBloggInlagg(db, txtSattRubrik.getText(), txtBrodtext.getText(), filePath, anvandarID, cmbInlaggsTyp.getSelectedItem().toString());
                 tomFalt();
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
