@@ -37,6 +37,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         this.anvandarID = anvandarID;
         initComponents();
         lblValtdatumResultat.setVisible(false);
+        lblValtDatum.setVisible(false);
         formeterarTid (jSpinnerStartTid);
         formeterarTid (jSpinnerslutTid);
         revalidate();
@@ -361,6 +362,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         System.out.println(aktivtDatum);
         
         lblValtdatumResultat.setVisible(true);
+        lblValtDatum.setVisible(true);
         lblValtdatumResultat.setText(aktivtDatum);
         
     }//GEN-LAST:event_jCalPropertyChange
