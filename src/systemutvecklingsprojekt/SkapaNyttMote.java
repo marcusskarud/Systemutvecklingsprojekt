@@ -9,8 +9,10 @@ package systemutvecklingsprojekt;
 import java.sql.Array;
     import java.sql.Connection;
     import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -34,6 +36,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         this.db = db;
         this.anvandarID = anvandarID;
         initComponents();
+        lblValtdatumResultat.setVisible(false);
         formeterarTid (jSpinnerStartTid);
         formeterarTid (jSpinnerslutTid);
         revalidate();
@@ -94,6 +97,8 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jCal = new com.toedter.calendar.JCalendar();
+        lblValtDatum = new javax.swing.JLabel();
+        lblValtdatumResultat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,6 +154,19 @@ public class SkapaNyttMote extends javax.swing.JFrame {
 
         jLabel9.setText("Sluttid:");
 
+        jCal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jCalMousePressed(evt);
+            }
+        });
+        jCal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jCalPropertyChange(evt);
+            }
+        });
+
+        lblValtDatum.setText("Valt datum:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,18 +198,25 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSpinnerStartTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(145, 145, 145)
                                         .addComponent(btnSkapaMote)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jSpinnerStartTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel9)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblValtDatum)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(lblValtdatumResultat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(116, 116, 116)))))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
@@ -229,7 +254,12 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnLaggTillMedl)
-                                    .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblValtDatum)
+                                            .addComponent(lblValtdatumResultat))))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -282,18 +312,58 @@ public class SkapaNyttMote extends javax.swing.JFrame {
             try{
                 ArrayList<Integer> enIDLista = SQL.epostTillAnvandarID(db, medlemsEpostLista);
                 
-                 //SQL.skapaNyttMote(db, enIDLista, txtProjektRubrik.getText(), txtAreaBeskrivning.getText(), datumtid, jSpinnerStartTid.toString(), jSpinnerslutTid.toString(), anvandarID);
+                 SimpleDateFormat tidformaterare = new SimpleDateFormat("HH:mm");
+                 String motesStartTid = tidformaterare.format(jSpinnerStartTid.getValue());
+                 String motesSlutTid = tidformaterare.format(jSpinnerslutTid.getValue());
+                 
+                 SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd");
+                 String datum = datumformaterare.format(jCal.getDate());
+                 SQL.skapaNyttMote(db, enIDLista, txtProjektRubrik.getText(), txtAreaBeskrivning.getText(), datum, motesStartTid, motesSlutTid, anvandarID);
                 }
                 catch(SQLException e){
                 }
             
-            JOptionPane.showMessageDialog(null, "Mötetsinbjudan till  " + txtProjektRubrik.getText() + " är nu skickat.");
+            
+            
+            JOptionPane.showMessageDialog(null, "Mötetsinbjudan till " + txtProjektRubrik.getText() + " är nu skickat.");
             txtProjektRubrik.setText("");
             txtAreaBeskrivning.setText("");
             valdMedlemListModel.clear();
             listValdaMedlemmar.setModel(valdMedlemListModel);
         }
     }//GEN-LAST:event_btnSkapaMoteActionPerformed
+
+    private void jCalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCalMousePressed
+        // TODO add your handling code here:
+        Calendar calVart = jCal.getCalendar();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        Date date = calVart.getTime();
+//      Ändrar  formatet på datumet.
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+        String aktivtDatum = null;
+        aktivtDatum = format1.format(date);
+        
+        System.out.println(aktivtDatum);
+    }//GEN-LAST:event_jCalMousePressed
+
+    private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
+
+        Calendar calVart = jCal.getCalendar();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        Date date = calVart.getTime();
+//      Ändrar  formatet på datumet.
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+        String aktivtDatum = null;
+        aktivtDatum = format1.format(date);
+        
+        System.out.println(aktivtDatum);
+        
+        lblValtdatumResultat.setVisible(true);
+        lblValtdatumResultat.setText(aktivtDatum);
+        
+    }//GEN-LAST:event_jCalPropertyChange
 
     public static void formeterarTid (JSpinner spinner){
     
@@ -393,6 +463,8 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinnerStartTid;
     private javax.swing.JSpinner jSpinnerslutTid;
+    private javax.swing.JLabel lblValtDatum;
+    private javax.swing.JLabel lblValtdatumResultat;
     private javax.swing.JList<String> listValdaMedlemmar;
     private javax.swing.JList<String> listValjMedlemmar;
     private javax.swing.JTextArea txtAreaBeskrivning;
