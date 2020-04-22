@@ -109,7 +109,7 @@ public class SQL {
         ArrayList<ArrayList<String>> projektInlaggLista = new ArrayList<ArrayList<String>>();
         
         
-        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "')";
+        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "') order by InlaggsID desc";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
@@ -622,5 +622,24 @@ public class SQL {
         }
 
         return retur;
+    }
+    
+    public static String getFilURL(Connection conn, int inlaggsID) {
+        String filURL = "";
+        
+
+        try {
+            String sql = "SELECT filURL from Utvecklingsarbetsinlagg where InlaggsID = " + inlaggsID;
+            Statement statement = conn.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
+            filURL = resultat.getString("filURL");
+            
+            
+             
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return filURL;
     }
 }

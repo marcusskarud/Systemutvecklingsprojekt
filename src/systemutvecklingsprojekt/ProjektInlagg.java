@@ -13,9 +13,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -193,18 +196,24 @@ public class ProjektInlagg extends javax.swing.JFrame {
         fil = chooser.getSelectedFile();
 
         String filName = String.valueOf(fil);
+        int input = JOptionPane.showConfirmDialog(null, "Din fil kommer försvinna från din dator. "
+                + "Var vänlig och skapa en kopia om du vill ha kvar filen på datorn. ", null,
+                JOptionPane.OK_CANCEL_OPTION);
 
-        if (!filName.equals("null")) {
-            filNamn = chooser.getName(fil);
+        if (input == 0) {
+            if (!filName.equals("null")) {
+                filNamn = chooser.getName(fil);
 
-            if (checkPdf(filNamn)) {
+                if (checkPdf(filNamn)) {
 
-                lblVisaFilnamn.setText(filNamn);
-            } else {
-                JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
+                    lblVisaFilnamn.setText(filNamn);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
+                }
+
             }
-
         }
+
 
     }//GEN-LAST:event_btnLaggTillFilActionPerformed
 
@@ -222,18 +231,11 @@ public class ProjektInlagg extends javax.swing.JFrame {
     }
 
     public void sparaFil(File fil, String namn) {
-        System.out.println(namn);
-        InputStream is = null;
-        OutputStream os = null;
+
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
         filePath = temp.toString();
-        System.out.println(filePath);
-        try {
-            is = new FileInputStream(fil);
-            os = new FileOutputStream(destination);
-        } catch (FileNotFoundException e) {
-        }
+        fil.renameTo(destination);
 
     }
 
@@ -254,6 +256,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
 
         return fileType;
     }
+
     /**
      * @param args the command line arguments
      */
