@@ -65,17 +65,12 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jFrame1 = new javax.swing.JFrame();
-        lblKategoriProjekt = new javax.swing.JLabel();
-        rdioForskning = new javax.swing.JRadioButton();
-        rdioUtbildning = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelmotesrubrik = new javax.swing.JLabel();
         txtProjektRubrik = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaBeskrivning = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        btnSkapaGrupp = new javax.swing.JButton();
+        btnSkapaMote = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listValjMedlemmar = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -88,42 +83,20 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblKategoriProjekt.setText("Välj kategori");
-
-        buttonGroup1.add(rdioForskning);
-        rdioForskning.setText("Forskningsprojekt");
-        rdioForskning.setActionCommand("Forskning"); // NOI18N
-
-        buttonGroup1.add(rdioUtbildning);
-        rdioUtbildning.setSelected(true);
-        rdioUtbildning.setText("Utbildningsprojekt");
-        rdioUtbildning.setActionCommand("Utbildning"); // NOI18N
-
-        jLabel2.setText("Projektgruppens namn");
+        jLabelmotesrubrik.setText("Mötesnamn");
 
         txtAreaBeskrivning.setColumns(20);
         txtAreaBeskrivning.setRows(5);
         jScrollPane1.setViewportView(txtAreaBeskrivning);
 
-        jLabel3.setText("Beskrivning av projektet");
+        jLabel3.setText("Beskrivning av mötet:");
 
-        btnSkapaGrupp.setText("Skapa ny grupp");
-        btnSkapaGrupp.addActionListener(new java.awt.event.ActionListener() {
+        btnSkapaMote.setText("Skapa nytt möte");
+        btnSkapaMote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSkapaGruppActionPerformed(evt);
+                btnSkapaMoteActionPerformed(evt);
             }
         });
 
@@ -165,36 +138,24 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnLaggTillMedl)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(175, 175, 175)
-                                        .addComponent(lblKategoriProjekt))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel2)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txtProjektRubrik, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(btnSkapaGrupp, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnTaBortMedl)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(255, 255, 255)
-                                .addComponent(rdioUtbildning)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdioForskning)))
+                            .addComponent(btnLaggTillMedl)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabelmotesrubrik)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtProjektRubrik, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSkapaMote, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTaBortMedl)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -206,14 +167,8 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(lblKategoriProjekt)
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdioUtbildning)
-                            .addComponent(rdioForskning))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabelmotesrubrik)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtProjektRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -235,11 +190,9 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLaggTillMedl)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSkapaGrupp)
+                        .addComponent(btnSkapaMote)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -261,7 +214,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnTaBortMedlActionPerformed
 
-    private void btnSkapaGruppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaGruppActionPerformed
+    private void btnSkapaMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaMoteActionPerformed
      
         if(Validering.textIsEmpty(txtProjektRubrik) || Validering.textAreaIsEmpty(txtAreaBeskrivning) || listValdaMedlemmar.getModel().getSize() == 0){
             
@@ -269,9 +222,8 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         }
         else{
                 ArrayList<String> medlemsEpostLista = new ArrayList<>();
-                String valdKategori = buttonGroup1.getSelection().getActionCommand();
-                          
                 
+                          
              for(int i = 0; i<listValdaMedlemmar.getModel().getSize(); i++){
                 String[] enMedlem = listValdaMedlemmar.getModel().getElementAt(i).split(" ");
                     medlemsEpostLista.add(enMedlem[2]);
@@ -280,19 +232,19 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         } 
             try{
                 ArrayList<Integer> enIDLista = SQL.epostTillAnvandarID(db, medlemsEpostLista);
-                 
-                 SQL.skapaProjektGruppIDatabas(db, enIDLista, txtProjektRubrik.getText(), txtAreaBeskrivning.getText(), valdKategori, anvandarID); //kallar på metod som insertar i tabellen
+                
+                 //SQL.skapaNyttMote(db, enIDLista, txtProjektRubrik.getText(), txtAreaBeskrivning.getText(), datumtid, startTid, slutTid, anvandarID);
                 }
                 catch(SQLException e){
                 }
             
-            JOptionPane.showMessageDialog(null, "Grupp är nu skapad med namn: " + txtProjektRubrik.getText() + ". ");
+            JOptionPane.showMessageDialog(null, "Mötetsinbjudan är skickad" + txtProjektRubrik.getText() + ". ");
             txtProjektRubrik.setText("");
             txtAreaBeskrivning.setText("");
             valdMedlemListModel.clear();
             listValdaMedlemmar.setModel(valdMedlemListModel);
         }
-    }//GEN-LAST:event_btnSkapaGruppActionPerformed
+    }//GEN-LAST:event_btnSkapaMoteActionPerformed
 
     
     private void laggTillMedlemmar(){
@@ -357,25 +309,20 @@ public class SkapaNyttMote extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTillMedl;
-    private javax.swing.JButton btnSkapaGrupp;
+    private javax.swing.JButton btnSkapaMote;
     private javax.swing.JButton btnTaBortMedl;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelmotesrubrik;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblKategoriProjekt;
     private javax.swing.JList<String> listValdaMedlemmar;
     private javax.swing.JList<String> listValjMedlemmar;
-    private javax.swing.JRadioButton rdioForskning;
-    private javax.swing.JRadioButton rdioUtbildning;
     private javax.swing.JTextArea txtAreaBeskrivning;
     private javax.swing.JTextField txtProjektRubrik;
     // End of variables declaration//GEN-END:variables

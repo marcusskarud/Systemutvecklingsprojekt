@@ -184,6 +184,35 @@ public class SQL {
         System.out.println(idLista);
         return idLista;
     }
+    
+    public static void skapaNyttMote(Connection db, ArrayList<Integer> anvandrare,String namn, String beskrivning, String datumtid, String startTid, String slutTid, int skapare) throws SQLException{
+        String MotesIDDSQL = "SELECT MAX(MotesID) FROM Mote";
+
+        Statement utvecklingStatement = db.createStatement();
+        ResultSet resultat = utvecklingStatement.executeQuery(MotesIDDSQL);
+        String antalMoten = resultat.getString(1);
+
+        int nyttID;
+        try {
+            int intSQLUtvecklingsArbete = Integer.parseInt(antalMoten);
+            nyttID = intSQLUtvecklingsArbete + 1;
+        } catch (NumberFormatException e) {
+            nyttID = 1;
+        }
+        
+         String sql = "INSERT INTO Mote VALUES (?,?,?,?) ";
+
+        PreparedStatement statement = db.prepareStatement(sql);
+        statement.setInt(1, nyttID);
+        statement.setString(2, namn);
+        statement.setString(3, beskrivning);
+        statement.setString(4, datumtid);
+        statement.setString(5, startTid);
+        statement.setString(6, slutTid);
+        statement.setInt(7, skapare);
+        
+        statement.executeUpdate();
+    }
 
     public static void skapaProjektGruppIDatabas(Connection db, ArrayList<Integer> anvandare, String gruppNamn, String gruppBeskrivning, String kategori, int anvandarID) throws SQLException {
 
