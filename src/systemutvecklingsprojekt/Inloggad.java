@@ -23,7 +23,7 @@ import javax.swing.BoxLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
-import java.util.Calendar; 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -825,8 +825,8 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbProjektListaActionPerformed
 
     private void btnNyttProjektInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttProjektInlaggActionPerformed
-        if(!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
-            try{
+        if (!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
+            try {
                 String rubrik = "";
                 String text = "";
                 String filURL = "";
@@ -836,11 +836,10 @@ public class Inloggad extends javax.swing.JFrame {
                 ProjektInlagg projektInlagg = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID, projektGruppID);
                 projektInlagg.setVisible(true);
 
-            }catch(SQLException e){
+            } catch (SQLException e) {
 
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Var vänlig välj en projektgrupp i rullistan.");
         }
 
@@ -914,24 +913,30 @@ public class Inloggad extends javax.swing.JFrame {
 
         String filName = String.valueOf(fil);
 
-        if (!filName.equals("null")) {
-            filNamn = chooser.getName(fil);
-            if (cmbInlaggsTyp.getSelectedItem().equals("Formell blogg")) {
+        int input = JOptionPane.showConfirmDialog(null, "Din fil kommer försvinna från din dator. "
+                + "Var vänlig och skapa en kopia om du vill ha kvar filen på datorn. ", null,
+                JOptionPane.OK_CANCEL_OPTION);
 
-                if (checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)) {
+        if (input == 0) {
+            if (!filName.equals("null")) {
+                filNamn = chooser.getName(fil);
+                if (cmbInlaggsTyp.getSelectedItem().equals("Formell blogg")) {
 
-                    lblVisaFilnamn.setText(filNamn);
+                    if (checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)) {
+
+                        lblVisaFilnamn.setText(filNamn);
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Du måste välja en pdf, jpg eller en png");
+                    }
                 } else {
+                    if (checkPng(filNamn) || checkJpg(filNamn)) {
+                        lblVisaFilnamn.setText(filNamn);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Du måste välja en jpg eller en png");
+                    }
 
-                    JOptionPane.showMessageDialog(null, "Du måste välja en pdf, jpg eller en png");
                 }
-            } else {
-                if (checkPng(filNamn) || checkJpg(filNamn)) {
-                    lblVisaFilnamn.setText(filNamn);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Du måste välja en jpg eller en png");
-                }
-
             }
         }
     }//GEN-LAST:event_btnLaggTillFilActionPerformed
@@ -1025,14 +1030,12 @@ public class Inloggad extends javax.swing.JFrame {
 //        } catch (InfException e) {
 //            JOptionPane.showMessageDialog(null, e);
 //        }
-        
-         txtVisaResultat.setText(aktivtDatum);
+        txtVisaResultat.setText(aktivtDatum);
     }//GEN-LAST:event_btnVisaResultatActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        new SkapaNyttMote( db, anvandarID).setVisible(true);
+        new SkapaNyttMote(db, anvandarID).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
-
 
     private void fyllPåCmbProjektgrupper() throws SQLException {
 
@@ -1050,7 +1053,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         cmbProjektLista.setModel(cmbProjektModel);
     }
-
 
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
@@ -1150,18 +1152,10 @@ public class Inloggad extends javax.swing.JFrame {
     }
 
     public void sparaFil(File fil, String namn) {
-        System.out.println(namn);
-        InputStream is = null;
-        OutputStream os = null;
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
         filePath = temp.toString();
-        System.out.println(filePath);
-        try {
-            is = new FileInputStream(fil);
-            os = new FileOutputStream(destination);
-        } catch (FileNotFoundException e) {
-        }
+        fil.renameTo(destination);
     }
 
     private void tomFalt() {
@@ -1173,6 +1167,7 @@ public class Inloggad extends javax.swing.JFrame {
         rbtnAdmin.setSelected(false);
         txtBrodtext.setText("");
         txtSattRubrik.setText("");
+        lblVisaFilnamn.setText("*Visa vald filnamn här*");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
