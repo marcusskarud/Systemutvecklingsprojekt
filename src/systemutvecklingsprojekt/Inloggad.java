@@ -82,6 +82,7 @@ public class Inloggad extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jFrame1 = new javax.swing.JFrame();
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jSeparator1 = new javax.swing.JSeparator();
         tabbedPaneBar = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -1230,6 +1231,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
