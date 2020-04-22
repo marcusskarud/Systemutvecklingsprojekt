@@ -17,11 +17,15 @@ import java.nio.file.Files;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.BoxLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
+import java.util.Calendar; 
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -123,6 +127,10 @@ public class Inloggad extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtVisaResultat = new javax.swing.JTextArea();
+        btnVisaResultat = new javax.swing.JButton();
+        jCal = new com.toedter.calendar.JCalendar();
         pnlAdminRights = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -497,6 +505,17 @@ public class Inloggad extends javax.swing.JFrame {
 
         jButton8.setText("Möten");
 
+        txtVisaResultat.setColumns(20);
+        txtVisaResultat.setRows(5);
+        jScrollPane2.setViewportView(txtVisaResultat);
+
+        btnVisaResultat.setText("Visa Resultat");
+        btnVisaResultat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaResultatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -504,9 +523,25 @@ public class Inloggad extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
-                .addContainerGap(909, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton7)
+                        .addContainerGap(909, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 519, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(btnVisaResultat)
+                                        .addGap(36, 36, 36))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,8 +549,15 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVisaResultat))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         tabbedPaneBar.addTab("Kalender", jPanel3);
@@ -738,6 +780,66 @@ public class Inloggad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSkapaNyProjektgruppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaNyProjektgruppActionPerformed
+        new SkapaNyttProjekt(db, anvandarID).setVisible(true);
+    }//GEN-LAST:event_btnSkapaNyProjektgruppActionPerformed
+
+    private void cmbProjektListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjektListaActionPerformed
+        //scrlProjektGrupper .add();
+
+        pnlProjektInlagg.removeAll();
+
+        validate();
+        if (!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") || !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") || !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
+            try {
+                ArrayList<ArrayList<String>> projektInlagg = SQL.lasInProjektGrupper(db, cmbProjektLista.getSelectedItem().toString());
+                ArrayList<ProjektInlaggsPanel> inlaggPaneler = new ArrayList<>();
+
+                for (ArrayList<String> inlagg : projektInlagg) {
+                    String projektInlaggID = inlagg.get(0);
+                    String rubrik = inlagg.get(1);
+                    String text = inlagg.get(2);
+                    String filURL = inlagg.get(3);
+                    String skapatAvID = inlagg.get(4);
+                    String namn = inlagg.get(6);
+                    ProjektInlaggsPanel nyttProjektInlagg = new ProjektInlaggsPanel(db, rubrik, text, skapatAvID, filURL, anvandarID, namn, projektInlaggID);
+                    inlaggPaneler.add(nyttProjektInlagg);
+                }
+
+                for (ProjektInlaggsPanel inlagg : inlaggPaneler) {
+                    pnlProjektInlagg.add(inlagg);
+                }
+                revalidate();
+            } catch (SQLException e) {
+
+            }
+
+        }
+        revalidate();
+    }//GEN-LAST:event_cmbProjektListaActionPerformed
+
+    private void btnNyttProjektInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttProjektInlaggActionPerformed
+        if(!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
+            try{
+                String rubrik = "";
+                String text = "";
+                String filURL = "";
+                String skrivenAv = Integer.toString(anvandarID);
+                String projektInlaggID = Integer.toString(1);
+                int projektGruppID = SQL.hamtaProjektGruppID(db, cmbProjektLista.getSelectedItem().toString());
+                ProjektInlagg projektInlagg = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID, projektGruppID);
+                projektInlagg.setVisible(true);
+
+            }catch(SQLException e){
+
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Var vänlig välj en projektgrupp i rullistan.");
+        }
+
+    }//GEN-LAST:event_btnNyttProjektInlaggActionPerformed
+
     private void btnSkapaKontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaKontoActionPerformed
 
         String epost = txtEpost.getText();
@@ -776,26 +878,6 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
-    private void btnUppdateraInformellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraInformellActionPerformed
-
-        try {
-            uppdateraInformellBlogg();
-            uppdateraFormellBlogg();
-            revalidate();
-        } catch (SQLException e) {
-        }
-    }//GEN-LAST:event_btnUppdateraInformellActionPerformed
-
-    private void btnUppdateraFormellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraFormellActionPerformed
-
-        try {
-            uppdateraFormellBlogg();
-            uppdateraInformellBlogg();
-            revalidate();
-        } catch (SQLException e) {
-        }
-    }//GEN-LAST:event_btnUppdateraFormellActionPerformed
-
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
 
         try {
@@ -816,115 +898,7 @@ public class Inloggad extends javax.swing.JFrame {
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
         }
-
     }//GEN-LAST:event_btnPubliceraActionPerformed
-
-    private void btnNyttProjektInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttProjektInlaggActionPerformed
-        if(!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
-          try{ 
-            String rubrik = "";
-            String text = "";
-            String filURL = "";
-            String skrivenAv = Integer.toString(anvandarID);
-            String projektInlaggID = Integer.toString(1);
-            int projektGruppID = SQL.hamtaProjektGruppID(db, cmbProjektLista.getSelectedItem().toString());
-            ProjektInlagg projektInlagg = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID, projektGruppID);
-            projektInlagg.setVisible(true);
-            
-          }catch(SQLException e){
-          
-          }
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Var vänlig välj en projektgrupp i rullistan.");
-        }
-         
-    }//GEN-LAST:event_btnNyttProjektInlaggActionPerformed
-
-    private void btnSkapaNyProjektgruppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaNyProjektgruppActionPerformed
-        new SkapaNyttProjekt(db, anvandarID).setVisible(true);
-    }//GEN-LAST:event_btnSkapaNyProjektgruppActionPerformed
-
-
-    private void cmbProjektListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjektListaActionPerformed
-        //scrlProjektGrupper .add(); 
-
-        pnlProjektInlagg.removeAll();
-       
-        validate();
-        if (!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") || !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") || !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
-            try {
-                ArrayList<ArrayList<String>> projektInlagg = SQL.lasInProjektGrupper(db, cmbProjektLista.getSelectedItem().toString());
-                ArrayList<ProjektInlaggsPanel> inlaggPaneler = new ArrayList<>();
-
-                for (ArrayList<String> inlagg : projektInlagg) {
-                    String projektInlaggID = inlagg.get(0);
-                    String rubrik = inlagg.get(1);
-                    String text = inlagg.get(2);
-                    String filURL = inlagg.get(3);
-                    String skapatAvID = inlagg.get(4);
-                    String namn = inlagg.get(6);
-                    ProjektInlaggsPanel nyttProjektInlagg = new ProjektInlaggsPanel(db, rubrik, text, skapatAvID, filURL, anvandarID, namn, projektInlaggID);
-                    inlaggPaneler.add(nyttProjektInlagg);
-                }
-
-                for (ProjektInlaggsPanel inlagg : inlaggPaneler) {
-                    pnlProjektInlagg.add(inlagg);
-                }
-                revalidate();
-            } catch (SQLException e) {
-
-            }
-            
-        }
-        revalidate();
-    }//GEN-LAST:event_cmbProjektListaActionPerformed
-
-    private void fyllPåCmbProjektgrupper() throws SQLException {
-
-        ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
-
-        for (ArrayList<String> hamtadArray : projektArray) {
-            if (hamtadArray != null) {
-                for (String projektNamn : hamtadArray) {
-                    //cmbProjektLista.addItem(projektNamn);
-
-                    cmbProjektModel.addElement(projektNamn);
-                }
-            }
-        }
-
-        cmbProjektLista.setModel(cmbProjektModel);
-    }
-
-
-    private void btnSorteraLikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteraLikesActionPerformed
-
-        try {
-
-            pnlInformellBlogg.removeAll();
-
-            ArrayList<ArrayList<String>> bloggInlagg = SQL.sorteraEfterLikes(db);
-            ArrayList<BloggInlaggsPanel> inlaggPaneler = new ArrayList<>();
-
-            for (ArrayList<String> inlagg : bloggInlagg) {
-                String rubrik = inlagg.get(0);
-                String text = inlagg.get(1);
-                String filURL = inlagg.get(2);
-                String datum = inlagg.get(3);
-                String skapatAv = inlagg.get(4);
-                String bloggInlaggID = inlagg.get(5);
-                BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
-                inlaggPaneler.add(nyttInlagg);
-            }
-            for (BloggInlaggsPanel inlagg : inlaggPaneler) {
-                pnlInformellBlogg.add(inlagg);
-            }
-            revalidate();
-        } catch (SQLException e) {
-        }
-
-    }//GEN-LAST:event_btnSorteraLikesActionPerformed
 
     private void btnLaggTillFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillFilActionPerformed
 
@@ -954,8 +928,118 @@ public class Inloggad extends javax.swing.JFrame {
 
             }
         }
-
     }//GEN-LAST:event_btnLaggTillFilActionPerformed
+
+    private void btnUppdateraFormellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraFormellActionPerformed
+
+        try {
+            uppdateraFormellBlogg();
+            uppdateraInformellBlogg();
+            revalidate();
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnUppdateraFormellActionPerformed
+
+    private void btnSorteraLikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteraLikesActionPerformed
+
+        try {
+
+            pnlInformellBlogg.removeAll();
+
+            ArrayList<ArrayList<String>> bloggInlagg = SQL.sorteraEfterLikes(db);
+            ArrayList<BloggInlaggsPanel> inlaggPaneler = new ArrayList<>();
+
+            for (ArrayList<String> inlagg : bloggInlagg) {
+                String rubrik = inlagg.get(0);
+                String text = inlagg.get(1);
+                String filURL = inlagg.get(2);
+                String datum = inlagg.get(3);
+                String skapatAv = inlagg.get(4);
+                String bloggInlaggID = inlagg.get(5);
+                BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
+                inlaggPaneler.add(nyttInlagg);
+            }
+            for (BloggInlaggsPanel inlagg : inlaggPaneler) {
+                pnlInformellBlogg.add(inlagg);
+            }
+            revalidate();
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnSorteraLikesActionPerformed
+
+    private void btnUppdateraInformellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraInformellActionPerformed
+
+        try {
+            uppdateraInformellBlogg();
+            uppdateraFormellBlogg();
+            revalidate();
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnUppdateraInformellActionPerformed
+
+    private void btnVisaResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaResultatActionPerformed
+        //Rensar all information i textrutan.
+        txtVisaResultat.setText(null);
+
+//      Hämtar ut all information från vårt kalenderobjekt.      
+        Calendar calVart = jCal.getCalendar();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        Date date = calVart.getTime();
+//      Ändrar  formatet på datumet.
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+        String aktivtDatum = null;
+        aktivtDatum = format1.format(date);
+
+//        try {
+//            aktivtDatum = format1.format(date);
+//
+//            // Hämtar ut ID, förnamn, efternamn, mötestid, mötesdatum och lokal för varje möte.
+//            ArrayList<HashMap<String, String>> informationMoteLista;
+//            informationMoteLista = db.fetchRows("SELECT ANVANDARE.FORNAMN, EFTERNAMN, DELTAMOTE.MOTESID, MOTE.STARTTID, MOTE.SLUTTID, MOTE.DATUM, MOTE.MOTESID, MOTE.LOKAL FROM ANVANDARE\n"
+//                    + "JOIN DELTAMOTE ON ANVANDARE.PNR = DELTAMOTE.PNR\n"
+//                    + "JOIN MOTE ON DELTAMOTE.MOTESID = MOTE.MOTESID\n"
+//                    + "WHERE MOTE.DATUM = '" + aktivtDatum + "'");
+//            // Kontrollerar om det finns några mötet denna dag.
+//            if (informationMoteLista != null) {
+//                for (HashMap<String, String> informationData : informationMoteLista) {
+//                    String fnamn = informationData.get("FORNAMN");
+//                    String enamn = informationData.get("EFTERNAMN");
+//                    String starttid = informationData.get("STARTTID");
+//                    String sluttid = informationData.get("SLUTTID");
+//                    String datum = informationData.get("DATUM");
+//                    String lokal = informationData.get("LOKAL");
+//                    txtVisaResultat.append("Namn: " + fnamn + " " + enamn + " Datum: " + datum + " Tid: " + starttid + "-" + sluttid +" Lokal: " + lokal + "\n");
+//                }
+//            } // Om inget möte finns detta datum skrivs detta ut i textrutan.
+//            else {
+//                txtVisaResultat.setText("Finns inga möten detta datum.");
+//            }
+//        } catch (InfException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+        
+         txtVisaResultat.setText(aktivtDatum);
+    }//GEN-LAST:event_btnVisaResultatActionPerformed
+
+
+    private void fyllPåCmbProjektgrupper() throws SQLException {
+
+        ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
+
+        for (ArrayList<String> hamtadArray : projektArray) {
+            if (hamtadArray != null) {
+                for (String projektNamn : hamtadArray) {
+                    //cmbProjektLista.addItem(projektNamn);
+
+                    cmbProjektModel.addElement(projektNamn);
+                }
+            }
+        }
+
+        cmbProjektLista.setModel(cmbProjektModel);
+    }
+
 
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
@@ -1090,6 +1174,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton btnSorteraLikes;
     private javax.swing.JButton btnUppdateraFormell;
     private javax.swing.JButton btnUppdateraInformell;
+    private javax.swing.JButton btnVisaResultat;
     private javax.swing.JComboBox<String> cmbInlaggsTyp;
     private javax.swing.JComboBox<String> cmbProjektLista;
     private javax.swing.JButton jButton10;
@@ -1099,6 +1184,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private com.toedter.calendar.JCalendar jCal;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
@@ -1133,6 +1219,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField11;
@@ -1155,5 +1242,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JTextField txtFornamn;
     private javax.swing.JTextField txtSattRubrik;
     private javax.swing.JTextField txtTelefonnummer;
+    private javax.swing.JTextArea txtVisaResultat;
     // End of variables declaration//GEN-END:variables
 }
