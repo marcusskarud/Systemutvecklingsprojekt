@@ -224,7 +224,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
                 filCheck = true;
             }
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
+            //JOptionPane.showMessageDialog(null, "Programmet stöder inte den typen av filer. Var god välj pdf, jpg eller png");
         }
 
         return filCheck;
