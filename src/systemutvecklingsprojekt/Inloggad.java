@@ -504,6 +504,11 @@ public class Inloggad extends javax.swing.JFrame {
         jButton7.setText("Ny händelse");
 
         jButton8.setText("Möten");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         txtVisaResultat.setColumns(20);
         txtVisaResultat.setRows(5);
@@ -1021,6 +1026,10 @@ public class Inloggad extends javax.swing.JFrame {
         
          txtVisaResultat.setText(aktivtDatum);
     }//GEN-LAST:event_btnVisaResultatActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        new SkapaNyttMote( db, anvandarID).setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     private void fyllPåCmbProjektgrupper() throws SQLException {
