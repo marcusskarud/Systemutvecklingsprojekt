@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  * @author MarcusSkarud
@@ -111,4 +112,35 @@ public class SQL2 {
 
         return datumTid;
     }
+    
+    public static ArrayList<ArrayList<String>> sqlKalender(Connection db, String datum) throws NoSuchAlgorithmException, SQLException{
+        ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+        String sql = "?select namn, beskrivning, anvandare.fornamn, starttid, sluttid from mote join anvandare on mote.skapare = anvandare.anvandarID where datum = '" + datum + "'";
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while(resultat.next()){
+            ArrayList<String> aLista = new ArrayList<String>();
+            aLista.add(resultat.getString("namn"));
+            aLista.add(resultat.getString("beskrivning"));
+            aLista.add(resultat.getString("anvandare.fornamn"));
+            aLista.add(resultat.getString("starttid"));
+            aLista.add(resultat.getString("sluttid"));
+            aLista.add("----------------------------------------------------------");
+            
+            lista.add(aLista);
+        }
+        
+        for(ArrayList<String> moten : lista){
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);    
+            String streck = moten.get(5);
+        }
+        
+        return lista;
+    }
+        
 }

@@ -82,6 +82,7 @@ public class Inloggad extends javax.swing.JFrame {
         jTextField11 = new javax.swing.JTextField();
         jFrame1 = new javax.swing.JFrame();
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        jSeparator1 = new javax.swing.JSeparator();
         tabbedPaneBar = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -504,6 +505,11 @@ public class Inloggad extends javax.swing.JFrame {
         jButton7.setText("Ny händelse");
 
         jButton8.setText("Möten");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         txtVisaResultat.setColumns(20);
         txtVisaResultat.setRows(5);
@@ -987,9 +993,26 @@ public class Inloggad extends javax.swing.JFrame {
         cal.add(Calendar.DATE, 0);
         Date date = calVart.getTime();
 //      Ändrar  formatet på datumet.
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String aktivtDatum = null;
         aktivtDatum = format1.format(date);
+        
+        
+        try{
+            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum);
+            
+            for(ArrayList<String> moten : mote){
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);    
+            String streck = moten.get(5);
+            txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+        }
+        }catch(NoSuchAlgorithmException e){
+        }catch(SQLException e){
+        }
 
 //        try {
 //            aktivtDatum = format1.format(date);
@@ -1018,9 +1041,12 @@ public class Inloggad extends javax.swing.JFrame {
 //        } catch (InfException e) {
 //            JOptionPane.showMessageDialog(null, e);
 //        }
-        
-         txtVisaResultat.setText(aktivtDatum);
+
     }//GEN-LAST:event_btnVisaResultatActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        new SkapaNyttMote( db, anvandarID).setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     private void fyllPåCmbProjektgrupper() throws SQLException {
@@ -1221,6 +1247,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
