@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.sql.Connection;
 import java.security.NoSuchAlgorithmException;
@@ -26,6 +27,7 @@ import javax.swing.JFileChooser;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  *
@@ -864,7 +866,7 @@ public class Inloggad extends javax.swing.JFrame {
         String epost = txtEpost.getText();
         String fornamn = txtFornamn.getText();
         String efternamn = txtEfternamn.getText();
-        String losenord = new String(pswLosenord.getPassword());
+        String losenord = genereratLosenord();
         String telefonNummer = txtTelefonnummer.getText();
         String admin = "";
 
@@ -880,14 +882,14 @@ public class Inloggad extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vänligen fyll i förnamn");
         } else if (Validering.textIsEmpty(txtEfternamn)) {
             JOptionPane.showMessageDialog(null, "Vänligen fyll i efternamn");
-        } else if (Validering.passwordIsEmpty(pswLosenord)) {
+        } /*else if (Validering.passwordIsEmpty(pswLosenord)) {
             JOptionPane.showMessageDialog(null, "Vänligen fyll i ett lösenord");
-        } else if (Validering.textIsEmpty(txtTelefonnummer) || Validering.checkPhoneLength(txtTelefonnummer)) {
+        } */else if (Validering.textIsEmpty(txtTelefonnummer) || Validering.checkPhoneLength(txtTelefonnummer)) {
             JOptionPane.showMessageDialog(null, "Telefonnummer måste vara mellan 1-30 siffror");
         } else {
             try {
                 SQL.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
-                JOptionPane.showMessageDialog(null, "Kontot har skapats!");
+                JOptionPane.showMessageDialog(null, "Kontot har skapats!" + System.lineSeparator() + "Ditt lösenord är: " + losenord + System.lineSeparator() + "Du kan ändra lösenordet när du loggat in.");
                 tomFalt();
             } catch (NoSuchAlgorithmException i) {
 
@@ -897,6 +899,35 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaKontoActionPerformed
 
+    private String genereratLosenord() {
+
+        // lower limit for LowerCase Letters 
+        int lowerLimit = 97;
+
+        // lower limit for LowerCase Letters 
+        int upperLimit = 122;
+
+        Random random = new Random();
+
+        // Create a StringBuffer to store the result 
+        StringBuffer r = new StringBuffer(6);
+
+        for (int i = 0; i < 6; i++) {
+
+            // take a random value between 97 and 122 
+            int nextRandomChar = lowerLimit
+                    + (int) (random.nextFloat()
+                    * (upperLimit - lowerLimit + 1));
+
+            // append a character at the end of bs 
+            r.append((char) nextRandomChar);
+        }
+
+        // return the resultant string 
+        return r.toString();
+    }
+
+    
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
 
         try {
@@ -1054,6 +1085,7 @@ public class Inloggad extends javax.swing.JFrame {
         System.out.println(aktivtDatum);
 
 
+
         try {
             ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum);
 
@@ -1088,6 +1120,27 @@ public class Inloggad extends javax.swing.JFrame {
         }catch(NoSuchAlgorithmException e){
 
             System.out.print(e);
+
+        }
+
+        try {
+            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
+
+            for (ArrayList<String> moten : mote) {
+                String namn = moten.get(0);
+                String beskrivning = moten.get(1);
+                String fornamn = moten.get(2);
+                String starttid = moten.get(3);
+                String sluttid = moten.get(4);
+                String streck = moten.get(5);
+
+                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+            }
+        } catch (NoSuchAlgorithmException e) {
+            System.out.print(e);
+        } catch (SQLException e) {
+
+        
 
         }
 
