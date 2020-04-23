@@ -51,7 +51,7 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         lblForfattare.setText(namn);
         btnTaBort.setVisible(false);
 
-        if (SQL.getFilURL(db, Integer.parseInt(projektInlaggID)).equals("")) {
+        if (SQL.getUtvecklingFilURL(db, Integer.parseInt(projektInlaggID)).equals("")) {
             btnPDFfil.setVisible(false);
         }
 
@@ -162,10 +162,10 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
 
         if (Desktop.isDesktopSupported()) {
             try {
-                if (!SQL.getFilURL(db, projektInlaggID).equals("")) {
-                    File myFile = new File(SQL.getFilURL(db, projektInlaggID));
+                if (!SQL.getUtvecklingFilURL(db, projektInlaggID).equals("")) {
+                    File myFile = new File(SQL.getUtvecklingFilURL(db, projektInlaggID));
                     System.out.println(projektInlaggID);
-                    System.out.println(SQL.getFilURL(db, projektInlaggID));
+                    System.out.println(SQL.getUtvecklingFilURL(db, projektInlaggID));
                     Desktop.getDesktop().open(myFile);
                 } else {
                     btnPDFfil.setText("Ingen fil");

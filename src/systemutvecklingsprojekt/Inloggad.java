@@ -890,11 +890,13 @@ public class Inloggad extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i rubrik");
             } else if (Validering.textAreaIsEmpty(txtBrodtext)) {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i brödtext");
+            } else if (cmbInlaggsTyp.getSelectedItem().toString().equals("Informell blogg") && filNamn.contains(".pdf")) {
+                JOptionPane.showMessageDialog(null, "Du måste välja en jpg eller en png");
             } else {
                 if (filNamn.equals("")) {
                     filePath = "";
                 } else {
-                    sparaFil(fil, filNamn);
+                    sparaFil(fil, filNamn);                
                 }
                 SQL.laggaTillBloggInlagg(db, txtSattRubrik.getText(), txtBrodtext.getText(), filePath, anvandarID, cmbInlaggsTyp.getSelectedItem().toString());
                 tomFalt();

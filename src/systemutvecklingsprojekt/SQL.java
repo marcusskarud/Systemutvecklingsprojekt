@@ -362,6 +362,21 @@ public class SQL {
         }
         return formelltInlagg;
     }
+    
+    public static boolean getInformellaInlagg(Connection db, String blogginlaggsID) {
+        boolean informelltInlagg = false;
+        try {
+            String sql = "SELECT * FROM InformellBlogg where InlaggsID = " + blogginlaggsID;
+            Statement statement = db.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
+
+            while (resultat.next()) {
+                informelltInlagg = true;
+            }
+        } catch (SQLException e) {
+        }
+        return informelltInlagg;
+    }
 
     public static ArrayList<ArrayList<String>> lasFormellaBlogginlagg(Connection db) throws SQLException {
         ArrayList<ArrayList<String>> retur = new ArrayList<ArrayList<String>>();
@@ -659,16 +674,33 @@ public class SQL {
         return retur;
     }
     
-    public static String getFilURL(Connection conn, int inlaggsID) {
+    public static String getUtvecklingFilURL(Connection db, int inlaggsID) {
         String filURL = "";
         
 
         try {
             String sql = "SELECT filURL from Utvecklingsarbetsinlagg where InlaggsID = " + inlaggsID;
-            Statement statement = conn.createStatement();
+            Statement statement = db.createStatement();
             ResultSet resultat = statement.executeQuery(sql);
             filURL = resultat.getString("filURL");
             
+            
+             
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return filURL;
+    }
+    
+    public static String getBloggFilURL(Connection db, int inlaggsID) {
+        String filURL = "";
+        
+        try {
+            String sql = "SELECT filURL from Blogginlagg where BlogginlaggsID = " + inlaggsID;
+            Statement statement = db.createStatement();
+            ResultSet resultat = statement.executeQuery(sql);
+            filURL = resultat.getString("filURL");
             
              
         } catch (Exception e) {
