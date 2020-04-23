@@ -355,7 +355,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         cal.add(Calendar.DATE, 0);
         Date date = calVart.getTime();
 //      Ändrar  formatet på datumet.
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String aktivtDatum = null;
         aktivtDatum = format1.format(date);
         
