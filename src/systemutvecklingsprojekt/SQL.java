@@ -170,7 +170,12 @@ public class SQL {
         return idLista;
     }
 
-    public static void skapaNyttMote(Connection db, ArrayList<Integer> anvandrare, String namn, String beskrivning, String datumtid, String startTid, String slutTid, int skapare) throws SQLException {
+    
+ 
+
+
+    public static void skapaNyttMote(Connection db, ArrayList<Integer> anvandare, String namn, String beskrivning, String datumtid, String startTid, String slutTid, int skapare) throws SQLException {
+
         String MotesIDDSQL = "SELECT MAX(MotesID) FROM Mote";
 
         Statement utvecklingStatement = db.createStatement();
@@ -200,7 +205,45 @@ public class SQL {
 
         statement.executeUpdate();
 
+        
+        for (Integer enAnvandare : anvandare) {
+            String sql2 = "INSERT INTO Motesdeltagare VALUES (?,?) ";
+
+            PreparedStatement statement2 = db.prepareStatement(sql2);
+            statement2.setInt(1, nyttID);
+            statement2.setInt(2, enAnvandare);
+
+            statement2.executeUpdate();
+        }
+        
+
     }
+    
+    public static ArrayList<String> kollaOmLedigtDatum(Connection db, String datum, ArrayList<Integer> anvandarID) throws SQLException{
+       // String sql = "SELECT MotesID FROM Motesdeltagare JOIN Mote ON Motesdeltagare.MotesID = MotesID WHERE AnvandarID = '" + "'";
+                ArrayList<String> uppTagnaMedlemmar = new ArrayList<String>();
+           
+                String sql = "SELECT AnvandarID FROM Motesdeltagare JOIN Mote ON Motesdeltagare.MotesID = Mote.MotesID WHERE Datum = '" + datum +"'";
+                Statement statement = db.createStatement();
+                ResultSet resultat = statement.executeQuery(sql);
+
+            while (resultat.next()) {
+                for(Integer inValdaAnv : anvandarID){
+                    if(inValdaAnv == resultat.getInt("AnvandarID")){
+                       String sql1 = "SELECT Fornamn, Efternamn, Epost FROM Anvandare WHERE AnvandarID = " + inValdaAnv + "";
+                       Statement statement1 = db.createStatement();
+                       ResultSet resultat1 = statement1.executeQuery(sql1);
+                            while (resultat1.next()){
+                                String svar = resultat1.getString("Fornamn") + " " + resultat1.getString("Efternamn") + "\n" + resultat1.getString("Epost");
+                                    uppTagnaMedlemmar.add(svar);
+                            }
+                    }
+                }    
+        }
+          return uppTagnaMedlemmar; 
+    }
+    
+    
 
     public static void skapaProjektGruppIDatabas(Connection db, ArrayList<Integer> anvandare, String gruppNamn, String gruppBeskrivning, String kategori, int anvandarID) throws SQLException {
 

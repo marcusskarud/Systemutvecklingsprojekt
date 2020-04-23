@@ -28,16 +28,22 @@ public class SkapaNyttMote extends javax.swing.JFrame {
      * Creates new form SkapaNyttProjekt
      */
         private static Connection db;
-        DefaultListModel valdMedlemListModel = new DefaultListModel();
+        private DefaultListModel valdMedlemListModel;
+        private DefaultListModel valjMedlemListModell;
         private int anvandarID;
     
     
     public SkapaNyttMote(Connection db, int anvandarID) {
         this.db = db;
         this.anvandarID = anvandarID;
+        valdMedlemListModel = new DefaultListModel();
+        valjMedlemListModell = new DefaultListModel();
         initComponents();
         lblValtdatumResultat.setVisible(false);
         lblValtDatum.setVisible(false);
+        txtUpptagnaAnv.setVisible(false);
+        lblUpptagnaAnv.setVisible(false);
+        jScrollPane4.setVisible(false);
         formeterarTid (jSpinnerStartTid);
         formeterarTid (jSpinnerslutTid);
         revalidate();
@@ -50,18 +56,18 @@ public class SkapaNyttMote extends javax.swing.JFrame {
             catch(SQLException e){
                 
             }
-        
+        listValjMedlemmar.setSelectedIndex(0);
     }
     
     private void listaAllaAnvandare() throws SQLException{
-        DefaultListModel listModell = new DefaultListModel();
+        
         ArrayList<ArrayList<String>> resultatLista = SQL.getAnvandareItemList(db);
         
             for(ArrayList<String> anvandare : resultatLista){
                 String anvandarInfo = anvandare.get(2) + " " + anvandare.get(3) + " "  + anvandare.get(1);
                 
-                listModell.addElement(anvandarInfo);
-                listValjMedlemmar.setModel(listModell);
+                valjMedlemListModell.addElement(anvandarInfo);
+                listValjMedlemmar.setModel(valjMedlemListModell);
                 System.out.println(anvandarInfo);
             }
   
@@ -76,6 +82,9 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jLabelmotesrubrik = new javax.swing.JLabel();
         txtProjektRubrik = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -100,6 +109,16 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         jCal = new com.toedter.calendar.JCalendar();
         lblValtDatum = new javax.swing.JLabel();
         lblValtdatumResultat = new javax.swing.JLabel();
+        jChkPubliktMote = new javax.swing.JCheckBox();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtUpptagnaAnv = new javax.swing.JTextArea();
+        lblUpptagnaAnv = new javax.swing.JLabel();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -163,60 +182,80 @@ public class SkapaNyttMote extends javax.swing.JFrame {
 
         lblValtDatum.setText("Valt datum:");
 
+        jChkPubliktMote.setText("Publikt möte");
+        jChkPubliktMote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jChkPubliktMoteActionPerformed(evt);
+            }
+        });
+
+        txtUpptagnaAnv.setColumns(20);
+        txtUpptagnaAnv.setLineWrap(true);
+        txtUpptagnaAnv.setRows(5);
+        jScrollPane4.setViewportView(txtUpptagnaAnv);
+
+        lblUpptagnaAnv.setText("Ej tillgängliga användare");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLaggTillMedl)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLaggTillMedl)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabelmotesrubrik)
-                                        .addComponent(txtProjektRubrik)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnTaBortMedl)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(145, 145, 145)
-                                        .addComponent(btnSkapaMote)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jSpinnerStartTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblValtDatum)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblValtdatumResultat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(116, 116, 116)))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jChkPubliktMote))
+                            .addComponent(jLabelmotesrubrik, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtProjektRubrik, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTaBortMedl)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(145, 145, 145)
+                                    .addComponent(btnSkapaMote)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jSpinnerStartTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblValtDatum)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(lblValtdatumResultat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(116, 116, 116)))))
+                            .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblUpptagnaAnv)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20)))
+                .addComponent(jLabel7))
+            .addComponent(jLabel1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,28 +264,34 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(5, 5, 5)
                         .addComponent(jLabelmotesrubrik)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProjektRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTaBortMedl))
+                                .addComponent(btnTaBortMedl)
+                                .addGap(43, 43, 43)
+                                .addComponent(lblUpptagnaAnv)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtProjektRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jChkPubliktMote))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnLaggTillMedl)
@@ -255,15 +300,15 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(lblValtDatum)
-                                            .addComponent(lblValtdatumResultat))))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jSpinnerStartTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSkapaMote)
+                                            .addComponent(lblValtdatumResultat))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jSpinnerStartTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSkapaMote)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -276,6 +321,12 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     private void btnLaggTillMedlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMedlActionPerformed
         laggTillMedlemmar();
         
+        try{
+            kollaLedigDatum();
+        }
+        catch(SQLException e){
+        }
+        
         
     }//GEN-LAST:event_btnLaggTillMedlActionPerformed
 
@@ -284,9 +335,15 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                  listValdaMedlemmar.getSelectedValue();
                  valdMedlemListModel.removeElementAt(listValdaMedlemmar.getSelectedIndex());
             }
-            catch(Exception e){
-                
+            catch(Exception e){  
             }
+            
+            try{
+            kollaLedigDatum();
+           }
+            catch(SQLException e){
+            }
+            
     }//GEN-LAST:event_btnTaBortMedlActionPerformed
 
     private void btnSkapaMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaMoteActionPerformed
@@ -297,14 +354,13 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         }
         else{
                 ArrayList<String> medlemsEpostLista = new ArrayList<>();
-                
-                          
+           
              for(int i = 0; i<listValdaMedlemmar.getModel().getSize(); i++){
                 String[] enMedlem = listValdaMedlemmar.getModel().getElementAt(i).split(" ");
                     medlemsEpostLista.add(enMedlem[2]);
                 
                  System.out.println(medlemsEpostLista);
-        } 
+            } 
             try{
                 ArrayList<Integer> enIDLista = SQL.epostTillAnvandarID(db, medlemsEpostLista);
                 
@@ -314,10 +370,24 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                  
                  SimpleDateFormat datumformaterare = new SimpleDateFormat("yyyy-MM-dd");
                  String datum = datumformaterare.format(jCal.getDate());
-                 SQL.skapaNyttMote(db, enIDLista, txtProjektRubrik.getText(), txtAreaBeskrivning.getText(), datum, motesStartTid, motesSlutTid, anvandarID);
+                 String motesNamn = txtProjektRubrik.getText();
+                 
+                 if(jChkPubliktMote.isSelected()){
+                      motesNamn = "PUBLIKT MÖTE: \n" + motesNamn;
+                      System.out.println(motesNamn);
+                 }
+                 SQL.skapaNyttMote(db, enIDLista, motesNamn, txtAreaBeskrivning.getText(), datum, motesStartTid, motesSlutTid, anvandarID);
+                 
                 }
                 catch(SQLException e){
                 }
+
+                     JOptionPane.showMessageDialog(null, "Inbjudningar till mötet: '" + txtProjektRubrik.getText() + "' är nu skickade.");
+                     txtProjektRubrik.setText("");
+                     txtAreaBeskrivning.setText("");
+                     valdMedlemListModel.clear();
+                     listValdaMedlemmar.setModel(valdMedlemListModel);
+
             
             
             JOptionPane.showMessageDialog(null, "Mötetsinbjudan till " + txtProjektRubrik.getText() + " är nu skickat.");
@@ -325,16 +395,17 @@ public class SkapaNyttMote extends javax.swing.JFrame {
             txtAreaBeskrivning.setText("");
             valdMedlemListModel.clear();
             listValdaMedlemmar.setModel(valdMedlemListModel);
+
         }
     }//GEN-LAST:event_btnSkapaMoteActionPerformed
 
     private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
-
+        
         Calendar calVart = jCal.getCalendar();
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 0);
         Date date = calVart.getTime();
-//      Ändrar  formatet på datumet.
+        //Ändrar  formatet på datumet.
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String aktivtDatum = null;
         aktivtDatum = format1.format(date);
@@ -344,8 +415,71 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         lblValtdatumResultat.setVisible(true);
         lblValtDatum.setVisible(true);
         lblValtdatumResultat.setText(aktivtDatum);
-        
+        try{
+            kollaLedigDatum();
+        }
+        catch(SQLException e){
+        }
     }//GEN-LAST:event_jCalPropertyChange
+
+    private void uppdateraLedigDatumLista(){
+        revalidate();
+    }
+    
+    
+    private void kollaLedigDatum() throws SQLException{ //Kalla på SQL-klass för att se om användare för valt datum är ledig
+        ArrayList<String> medlemsEpostLista = new ArrayList<>();
+           
+        for(int i = 0; i<listValdaMedlemmar.getModel().getSize(); i++){
+             String[] enMedlem = listValdaMedlemmar.getModel().getElementAt(i).split(" ");
+             medlemsEpostLista.add(enMedlem[2]);
+                
+             System.out.println(medlemsEpostLista);
+        } 
+            Calendar calVart = jCal.getCalendar();
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, 0);
+            Date date = calVart.getTime();
+            //Ändrar  formatet på datumet.
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            String aktivtDatum = null;
+            aktivtDatum = format1.format(date);
+            
+            ArrayList<String> upptagnaAnv = SQL.kollaOmLedigtDatum(db, aktivtDatum, SQL.epostTillAnvandarID(db, medlemsEpostLista));
+                if(upptagnaAnv.isEmpty()){
+                    jScrollPane4.setVisible(false);
+                    txtUpptagnaAnv.setVisible(false);
+                    lblUpptagnaAnv.setVisible(true);
+                    lblUpptagnaAnv.setText("Datumet är ledigt");
+                }
+                else{
+                    jScrollPane4.setVisible(true);
+                    txtUpptagnaAnv.setVisible(true);
+                    lblUpptagnaAnv.setVisible(true);
+                    lblUpptagnaAnv.setText("Upptagna användare");
+                    
+                    String textAttPrinta = "";
+                    for(String uppTagen : upptagnaAnv){
+                    textAttPrinta += uppTagen;    
+                    }
+                      txtUpptagnaAnv.setText(textAttPrinta);
+                }    
+        //Printa i textArea
+    }
+    
+    
+    
+    private void jChkPubliktMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChkPubliktMoteActionPerformed
+        // TODO add your handling code here:
+        if(jChkPubliktMote.isSelected()){
+            listValdaMedlemmar.setModel(valjMedlemListModell);
+
+        }
+        else{
+            listValdaMedlemmar.setModel(valdMedlemListModel);
+        }
+        
+    }//GEN-LAST:event_jChkPubliktMoteActionPerformed
 
     public static void formeterarTid (JSpinner spinner){
     
@@ -431,6 +565,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     private javax.swing.JButton btnSkapaMote;
     private javax.swing.JButton btnTaBortMedl;
     private com.toedter.calendar.JCalendar jCal;
+    private javax.swing.JCheckBox jChkPubliktMote;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -440,16 +575,22 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelmotesrubrik;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinnerStartTid;
     private javax.swing.JSpinner jSpinnerslutTid;
+    private javax.swing.JLabel lblUpptagnaAnv;
     private javax.swing.JLabel lblValtDatum;
     private javax.swing.JLabel lblValtdatumResultat;
     private javax.swing.JList<String> listValdaMedlemmar;
     private javax.swing.JList<String> listValjMedlemmar;
     private javax.swing.JTextArea txtAreaBeskrivning;
     private javax.swing.JTextField txtProjektRubrik;
+    private javax.swing.JTextArea txtUpptagnaAnv;
     // End of variables declaration//GEN-END:variables
 }
