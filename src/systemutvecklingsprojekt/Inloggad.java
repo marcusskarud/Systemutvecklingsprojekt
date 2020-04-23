@@ -1053,6 +1053,7 @@ public class Inloggad extends javax.swing.JFrame {
         aktivtDatum = format1.format(date);
         System.out.println(aktivtDatum);
 
+
         try {
             ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum);
 
@@ -1069,6 +1070,23 @@ public class Inloggad extends javax.swing.JFrame {
         } catch (NoSuchAlgorithmException e) {
             System.out.print(e);
         } catch (SQLException e) {
+
+        
+        try{
+            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
+            
+            for(ArrayList<String> moten : mote){
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);    
+            String streck = moten.get(5);
+            
+            txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+        }
+        }catch(NoSuchAlgorithmException e){
+
             System.out.print(e);
 
         }
