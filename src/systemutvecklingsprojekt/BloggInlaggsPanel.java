@@ -8,6 +8,10 @@ package systemutvecklingsprojekt;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -50,7 +54,7 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         //txtVisaFil.setVisible(false);
 
         try {
-            
+
             lblAntalLikes.setText(SQL.getAntalLikes(db, bloggInlaggID));
 
             if (SQL.getLikeStatus(db, anvandarID, bloggInlaggID)) {
@@ -58,15 +62,18 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             } else {
                 btnGilla.setText("Gilla");
             }
-            
-            if(SQL.getFormellaInlagg(db, bloggInlaggID))
-            {
+
+            if (SQL.getFormellaInlagg(db, bloggInlaggID)) {
                 System.out.println("Visas");
                 btnGilla.setVisible(false);
                 lblAntalLikes.setVisible(false);
-            
+
             }
-            
+
+            if (SQL.getInformellaInlagg(db, bloggInlaggID)) {
+                btnPDFfil.setVisible(false);
+            }
+
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
         }
@@ -78,6 +85,26 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
             btnTaBort.setVisible(true);
         } else if (adminStatus.equals("J")) {
             btnTaBort.setVisible(true);
+        }
+
+        if (!SQL.getBloggFilURL(db, Integer.parseInt(bloggInlaggID)).equals("")) {
+            String lokalFilURL = SQL.getBloggFilURL(db, Integer.parseInt(bloggInlaggID));
+
+            String fyraSista = lokalFilURL.substring(lokalFilURL.length() - 4);
+
+            if (!fyraSista.equals(".pdf")) {
+
+                btnPDFfil.setVisible(false);
+                ImageIcon imageIcon = new ImageIcon(lokalFilURL); // load the image to a imageIcon
+                Image image = imageIcon.getImage(); // transform it 
+                Image newimg = image.getScaledInstance(360, 311, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+                imageIcon = new ImageIcon(newimg);  // transform it back
+                lblBild.setIcon(new ImageIcon(newimg));
+            }
+
+        }
+        else {
+         btnPDFfil.setVisible(false);
         }
 
     }
@@ -99,9 +126,9 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblDatumTid = new javax.swing.JLabel();
         btnGilla = new javax.swing.JButton();
         lblAntalLikes = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtVisaFil = new javax.swing.JTextArea();
         lblForfattare = new javax.swing.JLabel();
+        btnPDFfil = new javax.swing.JButton();
+        lblBild = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -141,14 +168,15 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         lblAntalLikes.setText("45");
         lblAntalLikes.setMinimumSize(new java.awt.Dimension(10, 10));
 
-        txtVisaFil.setEditable(false);
-        txtVisaFil.setColumns(20);
-        txtVisaFil.setRows(5);
-        txtVisaFil.setBorder(null);
-        jScrollPane2.setViewportView(txtVisaFil);
-
         lblForfattare.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblForfattare.setText("Admin Adminsson");
+
+        btnPDFfil.setText("Öppna PDF-fil");
+        btnPDFfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFfilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -159,22 +187,24 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblDatumTid, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                             .addComponent(lblForfattare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnGilla)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAntalLikes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(325, 325, 325)
+                        .addGap(177, 177, 177)
+                        .addComponent(btnPDFfil)
+                        .addGap(53, 53, 53)
                         .addComponent(btnRedigera)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTaBort)))
+                        .addComponent(btnTaBort))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblBild, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -187,15 +217,18 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(lblDatumTid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                    .addComponent(lblBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGilla)
-                    .addComponent(lblAntalLikes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTaBort)
-                    .addComponent(btnRedigera))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnGilla)
+                        .addComponent(lblAntalLikes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTaBort)
+                        .addComponent(btnRedigera)
+                        .addComponent(btnPDFfil)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -249,6 +282,26 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnGillaActionPerformed
 
+    private void btnPDFfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFfilActionPerformed
+
+        if (Desktop.isDesktopSupported()) {
+            try {
+                if (!SQL.getBloggFilURL(db, bloggInlaggID).equals("")) {
+                    File myFile = new File(SQL.getBloggFilURL(db, bloggInlaggID));
+                    System.out.println(bloggInlaggID);
+                    System.out.println(SQL.getBloggFilURL(db, bloggInlaggID));
+                    Desktop.getDesktop().open(myFile);
+                } else {
+                    btnPDFfil.setText("Ingen fil");
+                    System.out.println("Finns ingen fil");
+                }
+            } catch (IOException ex) {
+                // no application registered for PDFs
+            }
+        }
+
+    }//GEN-LAST:event_btnPDFfilActionPerformed
+
 //    private boolean getGillad()
 //    {
 //    boolean isGillad = false;
@@ -262,15 +315,15 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGilla;
+    private javax.swing.JButton btnPDFfil;
     private javax.swing.JButton btnRedigera;
     private javax.swing.JButton btnTaBort;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAntalLikes;
+    private javax.swing.JLabel lblBild;
     private javax.swing.JLabel lblDatumTid;
     private javax.swing.JLabel lblForfattare;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JTextArea txtBloggtext;
-    private javax.swing.JTextArea txtVisaFil;
     // End of variables declaration//GEN-END:variables
 }
