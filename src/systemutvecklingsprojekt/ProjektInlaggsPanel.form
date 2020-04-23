@@ -35,8 +35,8 @@
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel1" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnPDFfil" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -61,9 +61,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTaBort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btnPDFfil" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,10 +108,9 @@
         <Property name="text" type="java.lang.String" value="Admin Adminsson"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JButton" name="btnPDFfil">
       <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Bifogad Fil"/>
+        <Property name="text" type="java.lang.String" value="&#xd6;ppna PDF-fil"/>
       </Properties>
     </Component>
   </SubComponents>
