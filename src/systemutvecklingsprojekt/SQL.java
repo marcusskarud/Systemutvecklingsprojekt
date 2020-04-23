@@ -191,7 +191,8 @@ public class SQL {
         Statement utvecklingStatement = db.createStatement();
         ResultSet resultat = utvecklingStatement.executeQuery(MotesIDDSQL);
         String antalMoten = resultat.getString(1);
-
+        
+       
         int nyttID;
         try {
             int intSQLUtvecklingsArbete = Integer.parseInt(antalMoten);
@@ -200,18 +201,21 @@ public class SQL {
             nyttID = 1;
         }
         
-         String sql = "INSERT INTO Mote VALUES (?,?,?,?) ";
-
+         String sql = "INSERT INTO Mote VALUES (?,?,?,?,?,?,?) ";
+       
         PreparedStatement statement = db.prepareStatement(sql);
         statement.setInt(1, nyttID);
         statement.setString(2, namn);
         statement.setString(3, beskrivning);
-        statement.setString(4, datumtid);
-        statement.setString(5, startTid);
-        statement.setString(6, slutTid);
-        statement.setInt(7, skapare);
+        statement.setInt(4, skapare);
+        statement.setString(5, datumtid);
+        statement.setString(6, startTid);
+        statement.setString(7, slutTid);
+        
+        System.out.println(nyttID + " "+ namn + " "+ beskrivning + " "+ skapare + " "+ datumtid + " "+ startTid + " "+ slutTid);
         
         statement.executeUpdate();
+        
     }
 
     public static void skapaProjektGruppIDatabas(Connection db, ArrayList<Integer> anvandare, String gruppNamn, String gruppBeskrivning, String kategori, int anvandarID) throws SQLException {
