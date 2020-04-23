@@ -115,7 +115,7 @@ public class SQL2 {
 
     public static ArrayList<ArrayList<String>> sqlKalender(Connection db, String datum, int id) throws NoSuchAlgorithmException, SQLException {
         ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
-        String sql = "select namn, beskrivning, anvandare.fornamn, starttid, sluttid from mote join motesdeltagare on mote.motesid = motesdeltagare.motesid JOIN anvandare ON motesdeltagare.anvandarid = anvandare.anvandarid where mote.datum = '" + datum + "' AND motesdeltagare.anvandarid =" + id;
+        String sql = "SELECT namn, beskrivning, anvandare.fornamn, starttid, sluttid FROM mote INNER JOIN anvandare ON skapare=anvandare.AnvandarID INNER JOIN motesdeltagare ON mote.motesID=motesdeltagare.motesID WHERE datum ='"+datum+"' AND motesdeltagare.AnvandarID="+id;
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
 
