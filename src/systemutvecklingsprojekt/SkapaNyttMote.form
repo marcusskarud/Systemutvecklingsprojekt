@@ -222,7 +222,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSkapaMote">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Skapa nytt m&#xf6;te"/>
+        <Property name="text" type="java.lang.String" value="Skicka inbjudan"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSkapaMoteActionPerformed"/>
@@ -342,7 +342,6 @@
     </Component>
     <Component class="com.toedter.calendar.JCalendar" name="jCal">
       <Events>
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCalMousePressed"/>
         <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jCalPropertyChange"/>
       </Events>
     </Component>
