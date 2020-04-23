@@ -101,6 +101,11 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         lblForfattare.setText("Admin Adminsson");
 
         btnPDFfil.setText("Öppna PDF-fil");
+        btnPDFfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFfilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

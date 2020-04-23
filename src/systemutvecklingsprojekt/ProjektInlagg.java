@@ -198,8 +198,20 @@ public class ProjektInlagg extends javax.swing.JFrame {
             filNamn = chooser.getName(fil);
 
             if (checkPdf(filNamn)) {
+            int input = JOptionPane.showConfirmDialog(null, "Filen kommer försvinna från din dator. "
+                    + "Om du vill spara filen på datorn, skapa en kopia innan du publicerar.", null,
+                    JOptionPane.OK_CANCEL_OPTION);
 
+            if (input == 0) {
                 lblVisaFilnamn.setText(filNamn);
+                //System.out.println("1. " + filNamn);
+            } else if(input == 2){
+                lblVisaFilnamn.setText("Filnamn");
+                //System.out.println("2. " + filNamn);
+                filNamn = "";
+                //System.out.println("2.1 " + filNamn);
+            }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Du måste välja en pdf fil");
             }
@@ -222,19 +234,10 @@ public class ProjektInlagg extends javax.swing.JFrame {
     }
 
     public void sparaFil(File fil, String namn) {
-        System.out.println(namn);
-        InputStream is = null;
-        OutputStream os = null;
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
         filePath = temp.toString();
-        System.out.println(filePath);
-        try {
-            is = new FileInputStream(fil);
-            os = new FileOutputStream(destination);
-        } catch (FileNotFoundException e) {
-        }
-
+        fil.renameTo(destination);
     }
 
     public String visaFilTyp(String fileName) {

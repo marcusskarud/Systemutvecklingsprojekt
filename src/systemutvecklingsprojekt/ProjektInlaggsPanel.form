@@ -112,6 +112,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xd6;ppna PDF-fil"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPDFfilActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
