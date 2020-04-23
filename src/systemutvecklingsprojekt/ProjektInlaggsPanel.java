@@ -8,13 +8,10 @@ package systemutvecklingsprojekt;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Desktop;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 
 /**
  *
@@ -30,6 +27,7 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
     private String filURL;
     private int anvandarID;
     private int projektInlaggID;
+
 
     /**
      * Creates new form BloggInlaggsPanel
@@ -51,13 +49,10 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         lblForfattare.setText(namn);
         btnTaBort.setVisible(false);
 
-        if (SQL.getFilURL(db, Integer.parseInt(projektInlaggID)).equals("")) {
-            btnPDFfil.setVisible(false);
-        }
-
+       
         if (anvandarID == this.skapatAvID) {
             btnTaBort.setVisible(true);
-        }
+        } 
     }
 
     /**
@@ -74,7 +69,7 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         btnTaBort = new javax.swing.JButton();
         lblRubrik = new javax.swing.JLabel();
         lblForfattare = new javax.swing.JLabel();
-        btnPDFfil = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -97,12 +92,8 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         lblForfattare.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblForfattare.setText("Admin Adminsson");
 
-        btnPDFfil.setText("Öppna PDF-fil");
-        btnPDFfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPDFfilActionPerformed(evt);
-            }
-        });
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Bifogad Fil");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,8 +110,8 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnTaBort)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPDFfil))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(lblForfattare, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -138,8 +129,8 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTaBort)
-                    .addComponent(btnPDFfil))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,30 +149,20 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnTaBortActionPerformed
 
-    private void btnPDFfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFfilActionPerformed
-
-        if (Desktop.isDesktopSupported()) {
-            try {
-                if (!SQL.getFilURL(db, projektInlaggID).equals("")) {
-                    File myFile = new File(SQL.getFilURL(db, projektInlaggID));
-                    System.out.println(projektInlaggID);
-                    System.out.println(SQL.getFilURL(db, projektInlaggID));
-                    Desktop.getDesktop().open(myFile);
-                } else {
-                    btnPDFfil.setText("Ingen fil");
-                    System.out.println("Finns ingen fil");
-                }
-            } catch (IOException ex) {
-                // no application registered for PDFs
-            }
-        }
-
-    }//GEN-LAST:event_btnPDFfilActionPerformed
-
+//    private boolean getGillad()
+//    {
+//    boolean isGillad = false;
+//    
+//    if(gillad == true){
+//    isGillad = true;
+//    }
+//    
+//    return isGillad;
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPDFfil;
     private javax.swing.JButton btnTaBort;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblForfattare;
     private javax.swing.JLabel lblRubrik;

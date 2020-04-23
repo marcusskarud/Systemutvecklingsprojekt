@@ -109,7 +109,7 @@ public class SQL {
         ArrayList<ArrayList<String>> projektInlaggLista = new ArrayList<ArrayList<String>>();
         
         
-        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "') order by InlaggsID desc";
+        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "')";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
@@ -380,8 +380,7 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
-            arr.add(hamtaDenSomSkrivit(db, String.valueOf(resultat.getInt("SkapatAv"))));
-            
+
             retur.add(arr);
 
         }
@@ -417,7 +416,6 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
-            arr.add(hamtaDenSomSkrivit(db, String.valueOf(resultat.getInt("SkapatAv"))));
 
             retur.add(arr);
 
@@ -657,24 +655,5 @@ public class SQL {
         }
 
         return retur;
-    }
-    
-    public static String getFilURL(Connection conn, int inlaggsID) {
-        String filURL = "";
-        
-
-        try {
-            String sql = "SELECT filURL from Utvecklingsarbetsinlagg where InlaggsID = " + inlaggsID;
-            Statement statement = conn.createStatement();
-            ResultSet resultat = statement.executeQuery(sql);
-            filURL = resultat.getString("filURL");
-            
-            
-             
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return filURL;
     }
 }

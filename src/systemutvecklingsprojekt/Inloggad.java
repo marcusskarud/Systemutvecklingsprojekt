@@ -23,7 +23,7 @@ import javax.swing.BoxLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
-import java.util.Calendar;
+import java.util.Calendar; 
 import java.util.Date;
 import java.util.HashMap;
 
@@ -45,11 +45,12 @@ public class Inloggad extends javax.swing.JFrame {
      * Creates new form Inloggad
      */
     public Inloggad(Connection db, int anvandarID, String adminStatus) {
-        initComponents();
+       
 
         this.db = db;
         this.anvandarID = anvandarID;
-        this.adminStatus = adminStatus;
+        this.adminStatus = adminStatus; 
+        initComponents();
         this.filNamn = "";
         cmbProjektModel = new DefaultComboBoxModel();
 
@@ -125,13 +126,6 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtBrodtext = new javax.swing.JTextArea();
-        jPanel3 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtVisaResultat = new javax.swing.JTextArea();
-        btnVisaResultat = new javax.swing.JButton();
-        jCal = new com.toedter.calendar.JCalendar();
         pnlAdminRights = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -159,6 +153,14 @@ public class Inloggad extends javax.swing.JFrame {
         scrlProjektGrupper = new javax.swing.JScrollPane();
         pnlProjektInlagg = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtVisaResultat = new javax.swing.JTextArea();
+        btnVisaResultat = new javax.swing.JButton();
+        jCal = new com.toedter.calendar.JCalendar();
+        btnMinaMoten = new javax.swing.JButton();
 
         jButton9.setText("jButton9");
 
@@ -502,72 +504,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         tabbedPaneBar.addTab("Blogg", jPanel1);
 
-        jButton7.setText("Ny händelse");
-
-        jButton8.setText("Möten");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
-        txtVisaResultat.setColumns(20);
-        txtVisaResultat.setRows(5);
-        jScrollPane2.setViewportView(txtVisaResultat);
-
-        btnVisaResultat.setText("Visa Resultat");
-        btnVisaResultat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaResultatActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton7)
-                        .addContainerGap(909, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 519, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 36, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(btnVisaResultat)
-                                        .addGap(36, 36, 36))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)))))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCal, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVisaResultat))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(282, Short.MAX_VALUE))
-        );
-
-        tabbedPaneBar.addTab("Kalender", jPanel3);
-
         jButton11.setText("Ge adminstatus");
 
         jPanel4.setBackground(new java.awt.Color(68, 73, 255));
@@ -772,6 +708,85 @@ public class Inloggad extends javax.swing.JFrame {
 
         tabbedPaneBar.addTab("Projekt", jPanel2);
 
+        jButton7.setText("Ny händelse");
+
+        jButton8.setText("Möten");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        txtVisaResultat.setColumns(20);
+        txtVisaResultat.setRows(5);
+        jScrollPane2.setViewportView(txtVisaResultat);
+
+        btnVisaResultat.setText("Visa Resultat");
+        btnVisaResultat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaResultatActionPerformed(evt);
+            }
+        });
+
+        jCal.setDate(new java.util.Date(1587630375000L));
+        jCal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jCalPropertyChange(evt);
+            }
+        });
+
+        btnMinaMoten.setText("Visa mina möten");
+        btnMinaMoten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinaMotenActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCal, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnVisaResultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnMinaMoten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jCal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVisaResultat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMinaMoten))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(282, Short.MAX_VALUE))
+        );
+
+        tabbedPaneBar.addTab("Kalender", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -825,8 +840,8 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbProjektListaActionPerformed
 
     private void btnNyttProjektInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttProjektInlaggActionPerformed
-        if (!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
-            try {
+        if(!cmbProjektLista.getSelectedItem().toString().equals("Forskning:") && !cmbProjektLista.getSelectedItem().toString().equals("Utbildning:") && !cmbProjektLista.getSelectedItem().toString().equals("Inga Projekt")) {
+            try{
                 String rubrik = "";
                 String text = "";
                 String filURL = "";
@@ -836,10 +851,11 @@ public class Inloggad extends javax.swing.JFrame {
                 ProjektInlagg projektInlagg = new ProjektInlagg(db, rubrik, text, skrivenAv, filURL, anvandarID, projektInlaggID, projektGruppID);
                 projektInlagg.setVisible(true);
 
-            } catch (SQLException e) {
+            }catch(SQLException e){
 
             }
-        } else {
+        }
+        else{
             JOptionPane.showMessageDialog(null, "Var vänlig välj en projektgrupp i rullistan.");
         }
 
@@ -913,30 +929,24 @@ public class Inloggad extends javax.swing.JFrame {
 
         String filName = String.valueOf(fil);
 
-        int input = JOptionPane.showConfirmDialog(null, "Din fil kommer försvinna från din dator. "
-                + "Var vänlig och skapa en kopia om du vill ha kvar filen på datorn. ", null,
-                JOptionPane.OK_CANCEL_OPTION);
+        if (!filName.equals("null")) {
+            filNamn = chooser.getName(fil);
+            if (cmbInlaggsTyp.getSelectedItem().equals("Formell blogg")) {
 
-        if (input == 0) {
-            if (!filName.equals("null")) {
-                filNamn = chooser.getName(fil);
-                if (cmbInlaggsTyp.getSelectedItem().equals("Formell blogg")) {
+                if (checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)) {
 
-                    if (checkPdf(filNamn) || checkPng(filNamn) || checkJpg(filNamn)) {
-
-                        lblVisaFilnamn.setText(filNamn);
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Du måste välja en pdf, jpg eller en png");
-                    }
+                    lblVisaFilnamn.setText(filNamn);
                 } else {
-                    if (checkPng(filNamn) || checkJpg(filNamn)) {
-                        lblVisaFilnamn.setText(filNamn);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Du måste välja en jpg eller en png");
-                    }
 
+                    JOptionPane.showMessageDialog(null, "Du måste välja en pdf, jpg eller en png");
                 }
+            } else {
+                if (checkPng(filNamn) || checkJpg(filNamn)) {
+                    lblVisaFilnamn.setText(filNamn);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Du måste välja en jpg eller en png");
+                }
+
             }
         }
     }//GEN-LAST:event_btnLaggTillFilActionPerformed
@@ -967,8 +977,7 @@ public class Inloggad extends javax.swing.JFrame {
                 String datum = inlagg.get(3);
                 String skapatAv = inlagg.get(4);
                 String bloggInlaggID = inlagg.get(5);
-                String namn = inlagg.get(6);
-                BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus, namn);
+                BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
                 inlaggPaneler.add(nyttInlagg);
             }
             for (BloggInlaggsPanel inlagg : inlaggPaneler) {
@@ -990,7 +999,19 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraInformellActionPerformed
 
     private void btnVisaResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaResultatActionPerformed
-        //Rensar all information i textrutan.
+
+    }//GEN-LAST:event_btnVisaResultatActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        new SkapaNyttMote( db, anvandarID).setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void btnMinaMotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaMotenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMinaMotenActionPerformed
+
+    private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
+        // TODO add your handling code here:
         txtVisaResultat.setText(null);
 
 //      Hämtar ut all information från vårt kalenderobjekt.      
@@ -999,43 +1020,36 @@ public class Inloggad extends javax.swing.JFrame {
         cal.add(Calendar.DATE, 0);
         Date date = calVart.getTime();
 //      Ändrar  formatet på datumet.
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
-        String aktivtDatum = null;
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+        String aktivtDatum = "";
         aktivtDatum = format1.format(date);
+        System.out.println(aktivtDatum);
+        
+        try{
+            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum);
+            
+            for(ArrayList<String> moten : mote){
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);    
+            String streck = moten.get(5);
+            
+            txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+        }
+        }catch(NoSuchAlgorithmException e){
+            System.out.print(e);
+        }catch(SQLException e){
+                        System.out.print(e);
 
-//        try {
-//            aktivtDatum = format1.format(date);
-//
-//            // Hämtar ut ID, förnamn, efternamn, mötestid, mötesdatum och lokal för varje möte.
-//            ArrayList<HashMap<String, String>> informationMoteLista;
-//            informationMoteLista = db.fetchRows("SELECT ANVANDARE.FORNAMN, EFTERNAMN, DELTAMOTE.MOTESID, MOTE.STARTTID, MOTE.SLUTTID, MOTE.DATUM, MOTE.MOTESID, MOTE.LOKAL FROM ANVANDARE\n"
-//                    + "JOIN DELTAMOTE ON ANVANDARE.PNR = DELTAMOTE.PNR\n"
-//                    + "JOIN MOTE ON DELTAMOTE.MOTESID = MOTE.MOTESID\n"
-//                    + "WHERE MOTE.DATUM = '" + aktivtDatum + "'");
-//            // Kontrollerar om det finns några mötet denna dag.
-//            if (informationMoteLista != null) {
-//                for (HashMap<String, String> informationData : informationMoteLista) {
-//                    String fnamn = informationData.get("FORNAMN");
-//                    String enamn = informationData.get("EFTERNAMN");
-//                    String starttid = informationData.get("STARTTID");
-//                    String sluttid = informationData.get("SLUTTID");
-//                    String datum = informationData.get("DATUM");
-//                    String lokal = informationData.get("LOKAL");
-//                    txtVisaResultat.append("Namn: " + fnamn + " " + enamn + " Datum: " + datum + " Tid: " + starttid + "-" + sluttid +" Lokal: " + lokal + "\n");
-//                }
-//            } // Om inget möte finns detta datum skrivs detta ut i textrutan.
-//            else {
-//                txtVisaResultat.setText("Finns inga möten detta datum.");
-//            }
-//        } catch (InfException e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-        txtVisaResultat.setText(aktivtDatum);
-    }//GEN-LAST:event_btnVisaResultatActionPerformed
+        }
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        new SkapaNyttMote(db, anvandarID).setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+
+
+        
+    }//GEN-LAST:event_jCalPropertyChange
+
 
     private void fyllPåCmbProjektgrupper() throws SQLException {
 
@@ -1054,6 +1068,7 @@ public class Inloggad extends javax.swing.JFrame {
         cmbProjektLista.setModel(cmbProjektModel);
     }
 
+
     public void uppdateraFormellBlogg() throws SQLException {
         pnlFormellBlogg.removeAll();
 
@@ -1067,8 +1082,7 @@ public class Inloggad extends javax.swing.JFrame {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            String namn = inlagg.get(6);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus, namn);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
             inlaggPaneler.add(nyttInlagg);
         }
 
@@ -1091,8 +1105,7 @@ public class Inloggad extends javax.swing.JFrame {
             String datum = inlagg.get(3);
             String skapatAv = inlagg.get(4);
             String bloggInlaggID = inlagg.get(5);
-            String namn = inlagg.get(6);
-            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus, namn);
+            BloggInlaggsPanel nyttInlagg = new BloggInlaggsPanel(db, rubrik, text, skapatAv, datum, filURL, anvandarID, bloggInlaggID, adminStatus);
             inlaggPaneler.add(nyttInlagg);
         }
         for (BloggInlaggsPanel inlagg : inlaggPaneler) {
@@ -1152,10 +1165,18 @@ public class Inloggad extends javax.swing.JFrame {
     }
 
     public void sparaFil(File fil, String namn) {
+        System.out.println(namn);
+        InputStream is = null;
+        OutputStream os = null;
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
         filePath = temp.toString();
-        fil.renameTo(destination);
+        System.out.println(filePath);
+        try {
+            is = new FileInputStream(fil);
+            os = new FileOutputStream(destination);
+        } catch (FileNotFoundException e) {
+        }
     }
 
     private void tomFalt() {
@@ -1167,13 +1188,13 @@ public class Inloggad extends javax.swing.JFrame {
         rbtnAdmin.setSelected(false);
         txtBrodtext.setText("");
         txtSattRubrik.setText("");
-        lblVisaFilnamn.setText("*Visa vald filnamn här*");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ScrollPane1;
     private javax.swing.JScrollPane ScrollPane3;
     private javax.swing.JButton btnLaggTillFil;
+    private javax.swing.JButton btnMinaMoten;
     private javax.swing.JButton btnNyttProjektInlagg;
     private javax.swing.JButton btnPublicera;
     private javax.swing.JButton btnSkapaKonto;
