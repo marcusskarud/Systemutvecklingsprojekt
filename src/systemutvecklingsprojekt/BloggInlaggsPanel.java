@@ -32,12 +32,11 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
     private int anvandarID;
     private int bloggInlaggID;
     private boolean gillad;
-    private String namn;
 
     /**
      * Creates new form BloggInlaggsPanel
      */
-    public BloggInlaggsPanel(Connection db, String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID, String adminStatus, String namn) {
+    public BloggInlaggsPanel(Connection db, String rubrik, String text, String skapatAv, String datum, String filURL, int anvandarID, String bloggInlaggID, String adminStatus) {
         this.db = db;
         this.rubrik = rubrik;
         this.text = text;
@@ -46,14 +45,12 @@ public class BloggInlaggsPanel extends javax.swing.JPanel {
         this.filURL = filURL;
         this.anvandarID = anvandarID;
         this.bloggInlaggID = Integer.parseInt(bloggInlaggID);
-        this.namn = namn;
 
         initComponents();
 
         lblRubrik.setText(rubrik);
         txtBloggtext.setText(text);
         lblDatumTid.setText(datum);
-        lblForfattare.setText(namn);
         //txtVisaFil.setVisible(false);
 
         try {

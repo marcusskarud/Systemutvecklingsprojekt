@@ -109,7 +109,7 @@ public class SQL {
         ArrayList<ArrayList<String>> projektInlaggLista = new ArrayList<ArrayList<String>>();
         
         
-        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "') order by InlaggsID desc";
+        String sql = "SELECT * FROM Utvecklingsarbetsinlagg WHERE TillhörArbete = (SELECT UtvecklingsarbetsID from Utvecklingsarbete WHERE Namn = '" + utvecklingsArbetsNamn + "')";
 
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
@@ -395,8 +395,7 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
-            arr.add(hamtaDenSomSkrivit(db, String.valueOf(resultat.getInt("SkapatAv"))));
-            
+
             retur.add(arr);
 
         }
@@ -432,7 +431,6 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
-            arr.add(hamtaDenSomSkrivit(db, String.valueOf(resultat.getInt("SkapatAv"))));
 
             retur.add(arr);
 
@@ -673,6 +671,7 @@ public class SQL {
 
         return retur;
     }
+
     
     public static String getUtvecklingFilURL(Connection db, int inlaggsID) {
         String filURL = "";
@@ -709,4 +708,5 @@ public class SQL {
         
         return filURL;
     }
+
 }

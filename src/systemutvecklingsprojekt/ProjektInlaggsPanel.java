@@ -9,12 +9,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 
 /**
  *
@@ -30,6 +30,7 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
     private String filURL;
     private int anvandarID;
     private int projektInlaggID;
+
 
     /**
      * Creates new form BloggInlaggsPanel
@@ -51,13 +52,15 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         lblForfattare.setText(namn);
         btnTaBort.setVisible(false);
 
+
         if (SQL.getUtvecklingFilURL(db, Integer.parseInt(projektInlaggID)).equals("")) {
             btnPDFfil.setVisible(false);
         }
 
+
         if (anvandarID == this.skapatAvID) {
             btnTaBort.setVisible(true);
-        }
+        } 
     }
 
     /**
@@ -98,11 +101,6 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
         lblForfattare.setText("Admin Adminsson");
 
         btnPDFfil.setText("Öppna PDF-fil");
-        btnPDFfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPDFfilActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -157,6 +155,7 @@ public class ProjektInlaggsPanel extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_btnTaBortActionPerformed
+
 
     private void btnPDFfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFfilActionPerformed
 

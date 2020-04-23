@@ -111,7 +111,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
 
         jLabel3.setText("Beskrivning av mötet:");
 
-        btnSkapaMote.setText("Skapa nytt möte");
+        btnSkapaMote.setText("Skicka inbjudan");
         btnSkapaMote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSkapaMoteActionPerformed(evt);
@@ -155,11 +155,6 @@ public class SkapaNyttMote extends javax.swing.JFrame {
 
         jLabel9.setText("Sluttid:");
 
-        jCal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jCalMousePressed(evt);
-            }
-        });
         jCal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jCalPropertyChange(evt);
@@ -325,7 +320,6 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                 }
             
             
-            
             JOptionPane.showMessageDialog(null, "Mötetsinbjudan till " + txtProjektRubrik.getText() + " är nu skickat.");
             txtProjektRubrik.setText("");
             txtAreaBeskrivning.setText("");
@@ -334,20 +328,6 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSkapaMoteActionPerformed
 
-    private void jCalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCalMousePressed
-        // TODO add your handling code here:
-        Calendar calVart = jCal.getCalendar();
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 0);
-        Date date = calVart.getTime();
-//      Ändrar  formatet på datumet.
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
-        String aktivtDatum = null;
-        aktivtDatum = format1.format(date);
-        
-        System.out.println(aktivtDatum);
-    }//GEN-LAST:event_jCalMousePressed
-
     private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
 
         Calendar calVart = jCal.getCalendar();
@@ -355,7 +335,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         cal.add(Calendar.DATE, 0);
         Date date = calVart.getTime();
 //      Ändrar  formatet på datumet.
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String aktivtDatum = null;
         aktivtDatum = format1.format(date);
         
