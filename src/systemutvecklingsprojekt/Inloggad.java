@@ -61,7 +61,7 @@ public class Inloggad extends javax.swing.JFrame {
         pnlProjektInlagg.setLayout(new BoxLayout(pnlProjektInlagg, BoxLayout.Y_AXIS));
 
         if (adminStatus.equals("N")) {
-            tabbedPaneBar.remove(2);
+            tabbedPaneBar.remove(1);
         }
 
         try {
@@ -873,14 +873,13 @@ public class Inloggad extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vänligen fyll i förnamn");
         } else if (Validering.textIsEmpty(txtEfternamn)) {
             JOptionPane.showMessageDialog(null, "Vänligen fyll i efternamn");
-        } /*else if (Validering.passwordIsEmpty(pswLosenord)) {
-            JOptionPane.showMessageDialog(null, "Vänligen fyll i ett lösenord");
-        } */else if (Validering.textIsEmpty(txtTelefonnummer) || Validering.checkPhoneLength(txtTelefonnummer)) {
+        } else if (Validering.textIsEmpty(txtTelefonnummer) || Validering.checkPhoneLength(txtTelefonnummer)) {
             JOptionPane.showMessageDialog(null, "Telefonnummer måste vara mellan 1-30 siffror");
         } else {
             try {
                 SQL.laggTillAnvandare(db, epost, fornamn, efternamn, losenord, telefonNummer, admin);
-                JOptionPane.showMessageDialog(null, "Kontot har skapats!" + System.lineSeparator() + "Ditt lösenord är: " + losenord + System.lineSeparator() + "Du kan ändra lösenordet när du loggat in.");
+                JOptionPane.showMessageDialog(null, "Kontot har skapats!" + System.lineSeparator() + "Ditt lösenord är: "
+                        + losenord + System.lineSeparator() + "Du kan ändra lösenordet när du loggar in.");
                 tomFalt();
             } catch (NoSuchAlgorithmException i) {
 
@@ -918,7 +917,7 @@ public class Inloggad extends javax.swing.JFrame {
         return r.toString();
     }
 
-    
+
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
 
         try {
@@ -962,15 +961,14 @@ public class Inloggad extends javax.swing.JFrame {
 
                     if (input == 0) {
                         lblVisaFilnamn.setText(filNamn);
-                        //System.out.println("form1. " + filNamn);
+
                     } else if (input == 2) {
                         lblVisaFilnamn.setText("*Visa vald filnamn här*");
-                        //System.out.println("form2. " + filNamn);
+
                         filNamn = "";
-                        //System.out.println("form2.1 " + filNamn);
+
                     }
 
-                    //lblVisaFilnamn.setText(filNamn);
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Du måste välja en pdf, jpg eller en png");
@@ -983,15 +981,14 @@ public class Inloggad extends javax.swing.JFrame {
 
                     if (input == 0) {
                         lblVisaFilnamn.setText(filNamn);
-                        //System.out.println("inform1. " + filNamn);
+
                     } else if (input == 2) {
                         lblVisaFilnamn.setText("*Visa vald filnamn här*");
-                        //System.out.println("inform2. " + filNamn);
+
                         filNamn = "";
-                        //System.out.println("inform2.1 " + filNamn);
+
                     }
 
-                    //lblVisaFilnamn.setText(filNamn);
                 } else {
                     JOptionPane.showMessageDialog(null, "Du måste välja en jpg eller en png");
                 }
@@ -1049,11 +1046,11 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraInformellActionPerformed
 
     private void btnVisaResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaResultatActionPerformed
-         txtVisaResultat.setText(null);
+        txtVisaResultat.setText(null);
         getTodaysDate();
-         
-         try {
-            ArrayList<ArrayList<String>> mote = SQL2.getPublicMeetings(db,  dagensDatum);
+
+        try {
+            ArrayList<ArrayList<String>> mote = SQL2.getPublicMeetings(db, dagensDatum);
 
             for (ArrayList<String> moten : mote) {
                 String namn = moten.get(0);
@@ -1073,14 +1070,14 @@ public class Inloggad extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVisaResultatActionPerformed
 
-    private void getTodaysDate(){
-    System.currentTimeMillis();
-         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+    private void getTodaysDate() {
+        System.currentTimeMillis();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
-        dagensDatum= formatter.format(date);
-        System.out.println(dagensDatum);
+        dagensDatum = formatter.format(date);
+      
     }
-    
+
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         new SkapaNyttMote(db, anvandarID).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -1089,9 +1086,9 @@ public class Inloggad extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtVisaResultat.setText(null);
         getTodaysDate();
-         
-         try {
-            ArrayList<ArrayList<String>> mote = SQL2.getPrivateMeetings(db,  dagensDatum);
+
+        try {
+            ArrayList<ArrayList<String>> mote = SQL2.getPrivateMeetings(db, dagensDatum);
 
             for (ArrayList<String> moten : mote) {
                 String namn = moten.get(0);
@@ -1124,9 +1121,7 @@ public class Inloggad extends javax.swing.JFrame {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String aktivtDatum = "";
         aktivtDatum = format1.format(date);
-        System.out.println(aktivtDatum);
-
-
+        
 
         try {
             ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
@@ -1220,7 +1215,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         try {
             fileType = Files.probeContentType(file.toPath());
-            System.out.println(fileType);
+            
 
         } catch (IOException e) {
             System.out.println("kan inte hitta filtypen för: " + fileName + " på grund av " + e);
@@ -1277,7 +1272,7 @@ public class Inloggad extends javax.swing.JFrame {
         txtEpost.setText("");
         txtFornamn.setText("");
         txtEfternamn.setText("");
-       
+
         txtTelefonnummer.setText("");
         rbtnAdmin.setSelected(false);
         txtBrodtext.setText("");
