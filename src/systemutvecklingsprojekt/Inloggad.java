@@ -41,6 +41,7 @@ public class Inloggad extends javax.swing.JFrame {
     private String filNamn;
     private File fil;
     private String filePath;
+    private String dagensDatum;
     private DefaultComboBoxModel cmbProjektModel;
 
     /**
@@ -134,14 +135,12 @@ public class Inloggad extends javax.swing.JFrame {
         txtTelefonnummer = new javax.swing.JTextField();
         txtFornamn = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         btnSkapaKonto = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         txtEfternamn = new javax.swing.JTextField();
         rbtnAdmin = new javax.swing.JRadioButton();
-        pswLosenord = new javax.swing.JPasswordField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -511,8 +510,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel12.setText("E-post (inlogg)");
 
-        jLabel13.setText("Lösenord");
-
         jLabel15.setText("Telefonnummer");
 
         jLabel16.setText("Förnamn");
@@ -535,13 +532,11 @@ public class Inloggad extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtTelefonnummer)
-                    .addComponent(rbtnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(pswLosenord))
+                    .addComponent(rbtnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -567,16 +562,12 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pswLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jLabel15)
-                .addGap(10, 10, 10)
-                .addComponent(txtTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                    .addComponent(txtTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSkapaKonto)
                     .addComponent(rbtnAdmin))
@@ -722,7 +713,7 @@ public class Inloggad extends javax.swing.JFrame {
         txtVisaResultat.setRows(5);
         jScrollPane2.setViewportView(txtVisaResultat);
 
-        btnVisaResultat.setText("Visa Resultat");
+        btnVisaResultat.setText("Visa publika möten");
         btnVisaResultat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisaResultatActionPerformed(evt);
@@ -1058,15 +1049,64 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraInformellActionPerformed
 
     private void btnVisaResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaResultatActionPerformed
+         getTodaysDate();
+         
+         try {
+            ArrayList<ArrayList<String>> mote = SQL2.getPublicMeetings(db,  dagensDatum);
 
+            for (ArrayList<String> moten : mote) {
+                String namn = moten.get(0);
+                String beskrivning = moten.get(1);
+                String fornamn = moten.get(2);
+                String starttid = moten.get(3);
+                String sluttid = moten.get(4);
+                String datum = moten.get(5);
+                String streck = moten.get(6);
+
+                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+            }
+        } catch (NoSuchAlgorithmException e) {
+            System.out.print(e);
+        } catch (SQLException e) {
+
+        }
     }//GEN-LAST:event_btnVisaResultatActionPerformed
 
+    private void getTodaysDate(){
+    System.currentTimeMillis();
+         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        dagensDatum= formatter.format(date);
+        System.out.println(dagensDatum);
+    }
+    
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         new SkapaNyttMote(db, anvandarID).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void btnMinaMotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaMotenActionPerformed
         // TODO add your handling code here:
+        getTodaysDate();
+         
+         try {
+            ArrayList<ArrayList<String>> mote = SQL2.getPrivateMeetings(db,  dagensDatum);
+
+            for (ArrayList<String> moten : mote) {
+                String namn = moten.get(0);
+                String beskrivning = moten.get(1);
+                String fornamn = moten.get(2);
+                String starttid = moten.get(3);
+                String sluttid = moten.get(4);
+                String datum = moten.get(5);
+                String streck = moten.get(6);
+
+                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+            }
+        } catch (NoSuchAlgorithmException e) {
+            System.out.print(e);
+        } catch (SQLException e) {
+
+        }
     }//GEN-LAST:event_btnMinaMotenActionPerformed
 
     private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
@@ -1103,32 +1143,7 @@ public class Inloggad extends javax.swing.JFrame {
             System.out.print(e);
         } catch (SQLException e) {
 
-        
-
         }
-
-
-        try {
-            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
-
-            for (ArrayList<String> moten : mote) {
-                String namn = moten.get(0);
-                String beskrivning = moten.get(1);
-                String fornamn = moten.get(2);
-                String starttid = moten.get(3);
-                String sluttid = moten.get(4);
-                String streck = moten.get(5);
-
-                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
-            }
-        } catch (NoSuchAlgorithmException e) {
-            System.out.print(e);
-        } catch (SQLException e) {
-
-        
-
-        }
-
 
 
     }//GEN-LAST:event_jCalPropertyChange
@@ -1260,7 +1275,7 @@ public class Inloggad extends javax.swing.JFrame {
         txtEpost.setText("");
         txtFornamn.setText("");
         txtEfternamn.setText("");
-        pswLosenord.setText("");
+       
         txtTelefonnummer.setText("");
         rbtnAdmin.setSelected(false);
         txtBrodtext.setText("");
@@ -1297,7 +1312,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -1340,7 +1354,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFormellBlogg;
     private javax.swing.JPanel pnlInformellBlogg;
     private javax.swing.JPanel pnlProjektInlagg;
-    private javax.swing.JPasswordField pswLosenord;
     private javax.swing.JRadioButton rbtnAdmin;
     private javax.swing.JScrollPane scrlProjektGrupper;
     private javax.swing.JTabbedPane tabbedPaneBar;

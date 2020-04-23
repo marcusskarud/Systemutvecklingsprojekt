@@ -112,14 +112,14 @@ public class SQL2 {
 
         return datumTid;
     }
-    
-    public static ArrayList<ArrayList<String>> sqlKalender(Connection db, String datum, int id) throws NoSuchAlgorithmException, SQLException{
+
+    public static ArrayList<ArrayList<String>> sqlKalender(Connection db, String datum, int id) throws NoSuchAlgorithmException, SQLException {
         ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
-        String sql = "select namn, beskrivning, anvandare.fornamn, starttid, sluttid from mote join motesdeltagare on mote.motesid = motesdeltagare.motesid JOIN anvandare ON motesdeltagare.anvandarid = anvandare.anvandarid where mote.datum = '" + datum + "' AND motesdeltagare.anvandarid ="+ id ;
+        String sql = "select namn, beskrivning, anvandare.fornamn, starttid, sluttid from mote join motesdeltagare on mote.motesid = motesdeltagare.motesid JOIN anvandare ON motesdeltagare.anvandarid = anvandare.anvandarid where mote.datum = '" + datum + "' AND motesdeltagare.anvandarid =" + id;
         Statement statement = db.createStatement();
         ResultSet resultat = statement.executeQuery(sql);
 
-        while(resultat.next()){
+        while (resultat.next()) {
             ArrayList<String> aLista = new ArrayList<String>();
             aLista.add(resultat.getString("namn"));
             aLista.add(resultat.getString("beskrivning"));
@@ -127,20 +127,88 @@ public class SQL2 {
             aLista.add(resultat.getString("starttid"));
             aLista.add(resultat.getString("sluttid"));
             aLista.add("----------------------------------------------------------");
-            
+
             lista.add(aLista);
         }
-        
-        for(ArrayList<String> moten : lista){
+
+        for (ArrayList<String> moten : lista) {
             String namn = moten.get(0);
             String beskrivning = moten.get(1);
             String fornamn = moten.get(2);
             String starttid = moten.get(3);
-            String sluttid = moten.get(4);    
+            String sluttid = moten.get(4);
             String streck = moten.get(5);
         }
-        
+
         return lista;
     }
+
+    public static ArrayList<ArrayList<String>> getPublicMeetings(Connection db, String dagensDatum) throws NoSuchAlgorithmException, SQLException {
         
+        ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+        String sql = "SELECT namn, beskrivning, anvandare.fornamn, starttid, sluttid, datum FROM mote Join anvandare ON mote.skapare = anvandare.anvandarID WHERE datum >='" + dagensDatum + "' AND mote.namn LIKE 'PUBLIKT MÖTE:%' ORDER BY datum ASC ";
+
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> aLista = new ArrayList<String>();
+            aLista.add(resultat.getString("namn"));
+            aLista.add(resultat.getString("beskrivning"));
+            aLista.add(resultat.getString("fornamn"));
+            aLista.add(resultat.getString("starttid"));
+            aLista.add(resultat.getString("sluttid"));
+            aLista.add(resultat.getString("datum"));
+            aLista.add("---------------------------------------------------------------------------");
+
+            lista.add(aLista);
+        }
+
+        for (ArrayList<String> moten : lista) {
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);
+            String datum = moten.get(5);
+            String streck = moten.get(6);
+
+        }
+        return lista;
+    }
+    
+    public static ArrayList<ArrayList<String>> getPrivateMeetings(Connection db, String dagensDatum) throws NoSuchAlgorithmException, SQLException {
+        
+        ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+        String sql = "SELECT namn, beskrivning, anvandare.fornamn, starttid, sluttid, datum FROM mote Join anvandare ON mote.skapare = anvandare.anvandarID WHERE datum >='" + dagensDatum + "' AND mote.namn NOT LIKE 'PUBLIKT MÖTE:%' ORDER BY datum ASC ";
+
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> aLista = new ArrayList<String>();
+            aLista.add(resultat.getString("namn"));
+            aLista.add(resultat.getString("beskrivning"));
+            aLista.add(resultat.getString("fornamn"));
+            aLista.add(resultat.getString("starttid"));
+            aLista.add(resultat.getString("sluttid"));
+            aLista.add(resultat.getString("datum"));
+            aLista.add("---------------------------------------------------------------------------");
+
+            lista.add(aLista);
+        }
+
+        for (ArrayList<String> moten : lista) {
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);
+            String datum = moten.get(5);
+            String streck = moten.get(6);
+
+        }
+        return lista;
+    }
+
 }
