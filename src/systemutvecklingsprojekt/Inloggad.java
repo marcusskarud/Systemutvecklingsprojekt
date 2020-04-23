@@ -1026,7 +1026,7 @@ public class Inloggad extends javax.swing.JFrame {
         System.out.println(aktivtDatum);
         
         try{
-            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum);
+            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
             
             for(ArrayList<String> moten : mote){
             String namn = moten.get(0);
@@ -1166,17 +1166,18 @@ public class Inloggad extends javax.swing.JFrame {
 
     public void sparaFil(File fil, String namn) {
         System.out.println(namn);
-        InputStream is = null;
-        OutputStream os = null;
+//        InputStream is = null;
+//        OutputStream os = null;
         File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
         File destination = new File(temp.getAbsolutePath());
         filePath = temp.toString();
         System.out.println(filePath);
-        try {
-            is = new FileInputStream(fil);
-            os = new FileOutputStream(destination);
-        } catch (FileNotFoundException e) {
-        }
+        fil.renameTo(destination);
+//        try {
+//            is = new FileInputStream(fil);
+//            os = new FileOutputStream(destination);
+//        } catch (FileNotFoundException e) {
+//        }
     }
 
     private void tomFalt() {
