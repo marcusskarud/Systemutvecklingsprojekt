@@ -1049,7 +1049,8 @@ public class Inloggad extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraInformellActionPerformed
 
     private void btnVisaResultatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaResultatActionPerformed
-         getTodaysDate();
+         txtVisaResultat.setText(null);
+        getTodaysDate();
          
          try {
             ArrayList<ArrayList<String>> mote = SQL2.getPublicMeetings(db,  dagensDatum);
@@ -1086,6 +1087,7 @@ public class Inloggad extends javax.swing.JFrame {
 
     private void btnMinaMotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaMotenActionPerformed
         // TODO add your handling code here:
+        txtVisaResultat.setText(null);
         getTodaysDate();
          
          try {
