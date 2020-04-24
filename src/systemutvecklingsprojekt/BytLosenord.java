@@ -25,6 +25,7 @@ public class BytLosenord extends javax.swing.JFrame {
         this.db = db;
 
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

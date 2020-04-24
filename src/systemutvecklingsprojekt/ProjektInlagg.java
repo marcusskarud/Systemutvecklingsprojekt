@@ -60,7 +60,7 @@ public class ProjektInlagg extends javax.swing.JFrame {
         } catch (NoSuchAlgorithmException e) {
         } catch (SQLException e) {
         }
-
+            this.setLocationRelativeTo(null);
     }
 
     /**
