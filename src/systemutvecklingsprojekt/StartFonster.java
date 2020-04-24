@@ -39,11 +39,11 @@ public class StartFonster extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtEpost = new javax.swing.JTextField();
         btnLoggaIn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         pswLosenord = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnBytLosenord = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,18 +51,12 @@ public class StartFonster extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Informatikgruppen");
 
-        txtEpost.setText("admin@oru.se");
-
         btnLoggaIn.setText("Logga In");
         btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoggaInActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("admin@oru.se       lösen: admin ");
-
-        pswLosenord.setText("admin");
 
         jLabel3.setText("E-post:");
 
@@ -74,6 +68,10 @@ public class StartFonster extends javax.swing.JFrame {
                 btnBytLosenordActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Logga in");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,8 +86,8 @@ public class StartFonster extends javax.swing.JFrame {
                     .addComponent(txtEpost, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jLabel4)
                     .addComponent(pswLosenord, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnBytLosenord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBytLosenord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,7 +108,7 @@ public class StartFonster extends javax.swing.JFrame {
                 .addComponent(btnLoggaIn)
                 .addGap(38, 38, 38)
                 .addComponent(btnBytLosenord)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

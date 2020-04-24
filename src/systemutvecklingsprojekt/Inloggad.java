@@ -816,7 +816,7 @@ public class Inloggad extends javax.swing.JFrame {
 
 
     private void btnPubliceraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPubliceraActionPerformed
-
+        
         try {
             if (Validering.textIsEmpty(txtSattRubrik)) {
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i rubrik");
@@ -831,6 +831,7 @@ public class Inloggad extends javax.swing.JFrame {
                     sparaFil(fil, filNamn);
                 }
                 SQL.laggaTillBloggInlagg(db, txtSattRubrik.getText(), txtBrodtext.getText(), filePath, anvandarID, cmbInlaggsTyp.getSelectedItem().toString());
+                filNamn = "";
                 tomFalt();
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
             }
@@ -937,7 +938,7 @@ public class Inloggad extends javax.swing.JFrame {
         getTodaysDate();
 
         try {
-            ArrayList<ArrayList<String>> mote = SQL2.getPublicMeetings(db, dagensDatum);
+            ArrayList<ArrayList<String>> mote = SQL.getPublicMeetings(db, dagensDatum);
 
             for (ArrayList<String> moten : mote) {
                 String namn = moten.get(0);
@@ -976,8 +977,7 @@ public class Inloggad extends javax.swing.JFrame {
         txtVisaResultat.setText(null);
         getTodaysDate();
 
-        try {
-            ArrayList<ArrayList<String>> mote = SQL2.getPrivateMeetings(db, dagensDatum);
+            ArrayList<ArrayList<String>> mote = SQL.getPrivateMeetings(db, dagensDatum, anvandarID);
 
             for (ArrayList<String> moten : mote) {
                 String namn = moten.get(0);
@@ -992,11 +992,7 @@ public class Inloggad extends javax.swing.JFrame {
                 txtVisaResultat.append(beskrivning + "\n\n");
                 txtVisaResultat.append(datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n\n");
             }
-        } catch (NoSuchAlgorithmException e) {
-            System.out.print(e);
-        } catch (SQLException e) {
-
-        }
+          
     }//GEN-LAST:event_btnMinaMotenActionPerformed
 
     private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
@@ -1014,7 +1010,7 @@ public class Inloggad extends javax.swing.JFrame {
         aktivtDatum = format1.format(date);
 
         try {
-            ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
+            ArrayList<ArrayList<String>> mote = SQL.sqlKalender(db, aktivtDatum, anvandarID);
 
             for (ArrayList<String> moten : mote) {
                 String namn = moten.get(0);

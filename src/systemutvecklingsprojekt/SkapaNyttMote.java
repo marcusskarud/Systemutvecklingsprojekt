@@ -403,10 +403,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                 }
 
                      JOptionPane.showMessageDialog(null, "Inbjudningar till mötet: '" + txtProjektRubrik.getText() + "' är nu skickade.");
-                     txtProjektRubrik.setText("");
-                     txtAreaBeskrivning.setText("");
-                     valdMedlemListModel.clear();
-                     listValdaMedlemmar.setModel(valdMedlemListModel);
+                     dispose();
                     }
     }//GEN-LAST:event_btnSkapaMoteActionPerformed
 

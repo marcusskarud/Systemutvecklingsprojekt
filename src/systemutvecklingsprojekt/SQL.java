@@ -761,5 +761,106 @@ public class SQL {
         
         return byttLosenord;
     }
+    
+    public static ArrayList<ArrayList<String>> sqlKalender(Connection db, String datum, int id) throws NoSuchAlgorithmException, SQLException {
+        ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+        String sql = "SELECT namn, beskrivning, anvandare.fornamn, starttid, sluttid FROM mote INNER JOIN anvandare ON skapare=anvandare.AnvandarID INNER JOIN motesdeltagare ON mote.motesID=motesdeltagare.motesID WHERE datum ='"+datum+"' AND motesdeltagare.AnvandarID="+id;
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> aLista = new ArrayList<String>();
+            aLista.add(resultat.getString("namn"));
+            aLista.add(resultat.getString("beskrivning"));
+            aLista.add(resultat.getString("fornamn"));
+            aLista.add(resultat.getString("starttid"));
+            aLista.add(resultat.getString("sluttid"));
+            aLista.add("----------------------------------------------------------");
+
+            lista.add(aLista);
+        }
+
+        for (ArrayList<String> moten : lista) {
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);
+            String streck = moten.get(5);
+        }
+
+        return lista;
+    }
+
+    public static ArrayList<ArrayList<String>> getPublicMeetings(Connection db, String dagensDatum) throws NoSuchAlgorithmException, SQLException {
+        
+        ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+        String sql = "SELECT namn, beskrivning, anvandare.fornamn, starttid, sluttid, datum FROM mote Join anvandare ON mote.skapare = anvandare.anvandarID WHERE datum >='" + dagensDatum + "' AND mote.namn LIKE 'PUBLIKT MÖTE:%' ORDER BY datum ASC ";
+
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> aLista = new ArrayList<String>();
+            aLista.add(resultat.getString("namn"));
+            aLista.add(resultat.getString("beskrivning"));
+            aLista.add(resultat.getString("fornamn"));
+            aLista.add(resultat.getString("starttid"));
+            aLista.add(resultat.getString("sluttid"));
+            aLista.add(resultat.getString("datum"));
+            aLista.add("-----------------------------------------------------");
+
+            lista.add(aLista);
+        }
+
+        for (ArrayList<String> moten : lista) {
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);
+            String datum = moten.get(5);
+            String streck = moten.get(6);
+
+        }
+        return lista;
+    }
+    
+    public static ArrayList<ArrayList<String>> getPrivateMeetings(Connection db, String dagensDatum, int id) /*throws NoSuchAlgorithmException, SQLException*/ {
+        ArrayList<ArrayList<String>> lista = new ArrayList<ArrayList<String>>();
+        try{
+        
+        String sql = "SELECT namn, beskrivning, anvandare.fornamn, starttid, sluttid, datum FROM mote INNER JOIN anvandare ON mote.skapare=anvandare.AnvandarID INNER JOIN motesdeltagare ON mote.motesID=motesdeltagare.motesID WHERE datum >='" + dagensDatum + "' AND mote.namn NOT LIKE 'PUBLIKT MÖTE:%' AND motesdeltagare.AnvandarID = " + id + " ORDER BY datum ASC ";
+        
+        Statement statement = db.createStatement();
+        ResultSet resultat = statement.executeQuery(sql);
+
+        while (resultat.next()) {
+            ArrayList<String> aLista = new ArrayList<String>();
+            aLista.add(resultat.getString("namn"));
+            aLista.add(resultat.getString("beskrivning"));
+            aLista.add(resultat.getString("fornamn"));
+            aLista.add(resultat.getString("starttid"));
+            aLista.add(resultat.getString("sluttid"));
+            aLista.add(resultat.getString("datum"));
+            aLista.add("-----------------------------------------------------");
+
+            lista.add(aLista);
+        }
+
+        for (ArrayList<String> moten : lista) {
+            String namn = moten.get(0);
+            String beskrivning = moten.get(1);
+            String fornamn = moten.get(2);
+            String starttid = moten.get(3);
+            String sluttid = moten.get(4);
+            String datum = moten.get(5);
+            String streck = moten.get(6);
+
+        }
+        }catch(SQLException e){}
+       
+        return lista;
+    }
 
 }
