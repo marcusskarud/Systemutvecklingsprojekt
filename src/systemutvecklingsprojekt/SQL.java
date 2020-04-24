@@ -684,6 +684,7 @@ public class SQL {
             arr.add(resultat.getString("Datumtid"));
             arr.add(String.valueOf(resultat.getInt("SkapatAv")));
             arr.add(String.valueOf(resultat.getInt("BlogginlaggsID")));
+            arr.add(hamtaDenSomSkrivit(db, String.valueOf(resultat.getInt("SkapatAv"))));
 
             retur.add(arr);
 
