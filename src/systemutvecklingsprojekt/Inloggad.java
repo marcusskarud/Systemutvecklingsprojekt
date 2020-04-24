@@ -138,7 +138,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnUppdateraProjekt = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
+        btnSkapaNyttMote = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtVisaResultat = new javax.swing.JTextArea();
         btnVisaResultat = new javax.swing.JButton();
@@ -584,15 +584,16 @@ public class Inloggad extends javax.swing.JFrame {
 
         tabbedPaneBar.addTab("Projekt", jPanel2);
 
-        jButton8.setText("Möten");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnSkapaNyttMote.setText("Skapa nytt möte");
+        btnSkapaNyttMote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnSkapaNyttMoteActionPerformed(evt);
             }
         });
 
         txtVisaResultat.setEditable(false);
         txtVisaResultat.setColumns(20);
+        txtVisaResultat.setLineWrap(true);
         txtVisaResultat.setRows(5);
         jScrollPane2.setViewportView(txtVisaResultat);
 
@@ -625,7 +626,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSkapaNyttMote, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -643,7 +644,7 @@ public class Inloggad extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
+                .addComponent(btnSkapaNyttMote)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -950,9 +951,9 @@ public class Inloggad extends javax.swing.JFrame {
 
     }
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnSkapaNyttMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaNyttMoteActionPerformed
         new SkapaNyttMote(db, anvandarID).setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnSkapaNyttMoteActionPerformed
 
     private void btnMinaMotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaMotenActionPerformed
         // TODO add your handling code here:
@@ -1005,7 +1006,7 @@ public class Inloggad extends javax.swing.JFrame {
                 String sluttid = moten.get(4);
                 String streck = moten.get(5);
 
-                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+                txtVisaResultat.append(namn + "\n\n" + beskrivning + "\n\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n\n" + streck + "\n");
             }
         } catch (NoSuchAlgorithmException e) {
             System.out.print(e);
@@ -1178,6 +1179,7 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton btnPublicera;
     private javax.swing.JButton btnSkapaKonto;
     private javax.swing.JButton btnSkapaNyProjektgrupp;
+    private javax.swing.JButton btnSkapaNyttMote;
     private javax.swing.JButton btnSorteraLikes;
     private javax.swing.JButton btnUppdateraFormell;
     private javax.swing.JButton btnUppdateraInformell;
@@ -1185,7 +1187,6 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton btnVisaResultat;
     private javax.swing.JComboBox<String> cmbInlaggsTyp;
     private javax.swing.JComboBox<String> cmbProjektLista;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private com.toedter.calendar.JCalendar jCal;
     private javax.swing.JFrame jFrame1;

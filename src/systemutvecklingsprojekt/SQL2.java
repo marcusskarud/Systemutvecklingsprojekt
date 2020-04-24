@@ -159,7 +159,7 @@ public class SQL2 {
             aLista.add(resultat.getString("starttid"));
             aLista.add(resultat.getString("sluttid"));
             aLista.add(resultat.getString("datum"));
-            aLista.add("---------------------------------------------------------------------------");
+            aLista.add("-----------------------------------------------------");
 
             lista.add(aLista);
         }
@@ -193,7 +193,7 @@ public class SQL2 {
             aLista.add(resultat.getString("starttid"));
             aLista.add(resultat.getString("sluttid"));
             aLista.add(resultat.getString("datum"));
-            aLista.add("---------------------------------------------------------------------------");
+            aLista.add("-----------------------------------------------------");
 
             lista.add(aLista);
         }
