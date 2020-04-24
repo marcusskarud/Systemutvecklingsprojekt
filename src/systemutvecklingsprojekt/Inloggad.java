@@ -830,7 +830,9 @@ public class Inloggad extends javax.swing.JFrame {
                 } else {
                     sparaFil(fil, filNamn);
                 }
+                System.out.println("innan");
                 SQL.laggaTillBloggInlagg(db, txtSattRubrik.getText(), txtBrodtext.getText(), filePath, anvandarID, cmbInlaggsTyp.getSelectedItem().toString());
+                System.out.println("efter");
                 filNamn = "";
                 tomFalt();
                 JOptionPane.showMessageDialog(null, "Inlägg publicerat!");
@@ -1167,10 +1169,11 @@ public class Inloggad extends javax.swing.JFrame {
     }
 
     public void sparaFil(File fil, String namn) {
-
-        File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
-        File destination = new File(temp.getAbsolutePath());
-        filePath = temp.toString();
+        File temp = new File("src/systemutvecklingsprojekt/AppData/" + namn);
+        
+        filePath = "src/systemutvecklingsprojekt/AppData/" + namn;
+        
+        File destination = new File(temp.getAbsolutePath());    
         fil.renameTo(destination);
 
     }
@@ -1179,7 +1182,6 @@ public class Inloggad extends javax.swing.JFrame {
         txtEpost.setText("");
         txtFornamn.setText("");
         txtEfternamn.setText("");
-
         txtTelefonnummer.setText("");
         rbtnAdmin.setSelected(false);
         txtBrodtext.setText("");

@@ -234,9 +234,11 @@ public class ProjektInlagg extends javax.swing.JFrame {
     }
 
     public void sparaFil(File fil, String namn) {
-        File temp = new File("src\\systemutvecklingsprojekt\\AppData\\" + namn);
-        File destination = new File(temp.getAbsolutePath());
-        filePath = temp.toString();
+        File temp = new File("src/systemutvecklingsprojekt/AppData/" + namn);
+        
+        filePath = "src/systemutvecklingsprojekt/AppData/" + namn;
+        
+        File destination = new File(temp.getAbsolutePath());    
         fil.renameTo(destination);
     }
 
