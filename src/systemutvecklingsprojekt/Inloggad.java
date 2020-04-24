@@ -591,6 +591,7 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
+        txtVisaResultat.setEditable(false);
         txtVisaResultat.setColumns(20);
         txtVisaResultat.setRows(5);
         jScrollPane2.setViewportView(txtVisaResultat);
