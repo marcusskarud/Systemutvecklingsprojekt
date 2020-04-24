@@ -115,7 +115,6 @@ public class Inloggad extends javax.swing.JFrame {
         txtBrodtext = new javax.swing.JTextArea();
         lblValjBlogg = new javax.swing.JLabel();
         pnlAdminRights = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         txtEpost = new javax.swing.JTextField();
         txtTelefonnummer = new javax.swing.JTextField();
@@ -128,9 +127,6 @@ public class Inloggad extends javax.swing.JFrame {
         txtEfternamn = new javax.swing.JTextField();
         rbtnAdmin = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnNyttProjektInlagg = new javax.swing.JButton();
         cmbProjektLista = new javax.swing.JComboBox<>();
@@ -140,8 +136,8 @@ public class Inloggad extends javax.swing.JFrame {
         scrlProjektGrupper = new javax.swing.JScrollPane();
         pnlProjektInlagg = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        btnUppdateraProjekt = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtVisaResultat = new javax.swing.JTextArea();
@@ -404,8 +400,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         tabbedPaneBar.addTab("Blogg", jPanel1);
 
-        jButton11.setText("Ge adminstatus");
-
         jLabel12.setText("E-post (inlogg)");
 
         jLabel15.setText("Telefonnummer");
@@ -480,43 +474,20 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(58, 58, 58))
         );
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel11.setText("Välj person att ge Adminstatus:");
-
-        jLabel14.setText("Sätt ej \"actionperformed\" på comboboxen!");
-
         javax.swing.GroupLayout pnlAdminRightsLayout = new javax.swing.GroupLayout(pnlAdminRights);
         pnlAdminRights.setLayout(pnlAdminRightsLayout);
         pnlAdminRightsLayout.setHorizontalGroup(
             pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addContainerGap(457, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
         );
         pnlAdminRightsLayout.setVerticalGroup(
             pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                .addGroup(pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel14))
-                    .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(56, 56, 56)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(367, Short.MAX_VALUE))
         );
 
@@ -559,6 +530,13 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/ProjektGrupperMild.png"))); // NOI18N
 
+        btnUppdateraProjekt.setText("Uppdatera");
+        btnUppdateraProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraProjektActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -576,7 +554,8 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(lblValjProjektgrupp)
                     .addComponent(btnNyttProjektInlagg)
                     .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSkapaNyProjektgrupp))
+                    .addComponent(btnSkapaNyProjektgrupp)
+                    .addComponent(btnUppdateraProjekt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -589,21 +568,21 @@ public class Inloggad extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrlProjektGrupper)
+                    .addComponent(scrlProjektGrupper, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblValjProjektgrupp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmbProjektLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNyttProjektInlagg)
+                        .addGap(92, 92, 92)
+                        .addComponent(btnUppdateraProjekt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSkapaNyProjektgrupp)
                         .addGap(14, 14, 14))))
         );
 
         tabbedPaneBar.addTab("Projekt", jPanel2);
-
-        jButton7.setText("Ny händelse");
 
         jButton8.setText("Möten");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -646,12 +625,10 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton7)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCal, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                            .addComponent(jCal, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -665,9 +642,7 @@ public class Inloggad extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
+                .addComponent(jButton8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -702,6 +677,8 @@ public class Inloggad extends javax.swing.JFrame {
 
     private void cmbProjektListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProjektListaActionPerformed
         //scrlProjektGrupper .add();
+        
+        if(!(cmbProjektLista.getItemCount() == 0)){
 
         pnlProjektInlagg.removeAll();
 
@@ -732,6 +709,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         }
         revalidate();
+        }
     }//GEN-LAST:event_cmbProjektListaActionPerformed
 
     private void btnNyttProjektInlaggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNyttProjektInlaggActionPerformed
@@ -968,7 +946,7 @@ public class Inloggad extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         dagensDatum = formatter.format(date);
-      
+
     }
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1014,7 +992,6 @@ public class Inloggad extends javax.swing.JFrame {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         String aktivtDatum = "";
         aktivtDatum = format1.format(date);
-        
 
         try {
             ArrayList<ArrayList<String>> mote = SQL2.sqlKalender(db, aktivtDatum, anvandarID);
@@ -1047,6 +1024,15 @@ public class Inloggad extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
     }//GEN-LAST:event_btnUppdateraFormellActionPerformed
+
+    private void btnUppdateraProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraProjektActionPerformed
+       try {
+            cmbProjektModel.removeAllElements();
+            fyllPåCmbProjektgrupper();
+        } catch (SQLException e) {
+        }
+
+    }//GEN-LAST:event_btnUppdateraProjektActionPerformed
 
     private void fyllPåCmbProjektgrupper() throws SQLException {
 
@@ -1118,7 +1104,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         try {
             fileType = Files.probeContentType(file.toPath());
-            
 
         } catch (IOException e) {
             System.out.println("kan inte hitta filtypen för: " + fileName + " på grund av " + e);
@@ -1195,20 +1180,16 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton btnSorteraLikes;
     private javax.swing.JButton btnUppdateraFormell;
     private javax.swing.JButton btnUppdateraInformell;
+    private javax.swing.JButton btnUppdateraProjekt;
     private javax.swing.JButton btnVisaResultat;
     private javax.swing.JComboBox<String> cmbInlaggsTyp;
     private javax.swing.JComboBox<String> cmbProjektLista;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private com.toedter.calendar.JCalendar jCal;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
