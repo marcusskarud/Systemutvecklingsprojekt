@@ -182,7 +182,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         ScrollPane1.setViewportView(pnlInformellBlogg);
 
-        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\InFormellaBloggenMild.png")); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/InFormellaBloggenMild.png"))); // NOI18N
 
         btnUppdateraInformell.setText("Uppdatera");
         btnUppdateraInformell.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +244,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         ScrollPane3.setViewportView(pnlFormellBlogg);
 
-        jLabel28.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\FormellaBloggenMild.png")); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/FormellaBloggenMild.png"))); // NOI18N
 
         btnUppdateraFormell.setText("Uppdatera");
         btnUppdateraFormell.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +306,7 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
-        jLabel31.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\SkapaNyttInlaggMild.png")); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/SkapaNyttInlaggMild.png"))); // NOI18N
 
         txtBrodtext.setColumns(20);
         txtBrodtext.setLineWrap(true);
@@ -476,7 +476,7 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(58, 58, 58))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\AdministratorBannerTest.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/AdministratorBannerTest.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlAdminRightsLayout = new javax.swing.GroupLayout(pnlAdminRights);
         pnlAdminRights.setLayout(pnlAdminRightsLayout);

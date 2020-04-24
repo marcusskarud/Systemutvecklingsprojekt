@@ -182,7 +182,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel19">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\ifkli\OneDrive\Skrivbord\InFormellaBloggenMild.png"/>
+                          <Image iconType="3" name="/systemutvecklingsprojekt/InFormellaBloggenMild.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -268,7 +268,7 @@
                     <Component class="javax.swing.JLabel" name="jLabel28">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\ifkli\OneDrive\Skrivbord\FormellaBloggenMild.png"/>
+                          <Image iconType="3" name="/systemutvecklingsprojekt/FormellaBloggenMild.png"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -436,7 +436,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel31">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="2" name="C:\Users\ifkli\OneDrive\Skrivbord\SkapaNyttInlaggMild.png"/>
+                              <Image iconType="3" name="/systemutvecklingsprojekt/SkapaNyttInlaggMild.png"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -629,7 +629,7 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\ifkli\OneDrive\Skrivbord\AdministratorBannerTest.png"/>
+                  <Image iconType="3" name="/systemutvecklingsprojekt/AdministratorBannerTest.png"/>
                 </Property>
               </Properties>
             </Component>

@@ -163,7 +163,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\MOTENBANNER.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/MOTENBANNER.png"))); // NOI18N
 
         jLabel4.setText("Välj använddare");
 
