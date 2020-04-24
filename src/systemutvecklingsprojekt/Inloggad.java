@@ -127,6 +127,7 @@ public class Inloggad extends javax.swing.JFrame {
         txtEfternamn = new javax.swing.JTextField();
         rbtnAdmin = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnNyttProjektInlagg = new javax.swing.JButton();
         cmbProjektLista = new javax.swing.JComboBox<>();
@@ -144,6 +145,7 @@ public class Inloggad extends javax.swing.JFrame {
         btnVisaResultat = new javax.swing.JButton();
         jCal = new com.toedter.calendar.JCalendar();
         btnMinaMoten = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton9.setText("jButton9");
 
@@ -180,7 +182,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         ScrollPane1.setViewportView(pnlInformellBlogg);
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerInformellBloggColor.png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\InFormellaBloggenMild.png")); // NOI18N
 
         btnUppdateraInformell.setText("Uppdatera");
         btnUppdateraInformell.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +244,7 @@ public class Inloggad extends javax.swing.JFrame {
 
         ScrollPane3.setViewportView(pnlFormellBlogg);
 
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerFormellBloggColor.png"))); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\FormellaBloggenMild.png")); // NOI18N
 
         btnUppdateraFormell.setText("Uppdatera");
         btnUppdateraFormell.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +306,7 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/SkapaNyttInläggColor.png"))); // NOI18N
+        jLabel31.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\SkapaNyttInlaggMild.png")); // NOI18N
 
         txtBrodtext.setColumns(20);
         txtBrodtext.setLineWrap(true);
@@ -474,21 +476,27 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGap(58, 58, 58))
         );
 
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ifkli\\OneDrive\\Skrivbord\\AdministratorBannerTest.png")); // NOI18N
+
         javax.swing.GroupLayout pnlAdminRightsLayout = new javax.swing.GroupLayout(pnlAdminRights);
         pnlAdminRights.setLayout(pnlAdminRightsLayout);
         pnlAdminRightsLayout.setHorizontalGroup(
             pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAdminRightsLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel5))
             .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                .addContainerGap(457, Short.MAX_VALUE)
+                .addGap(257, 257, 257)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlAdminRightsLayout.setVerticalGroup(
             pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(305, Short.MAX_VALUE))
         );
 
         tabbedPaneBar.addTab("Admin", pnlAdminRights);
@@ -618,6 +626,10 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Mötesinbjudningar");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -625,26 +637,28 @@ public class Inloggad extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCal, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnVisaResultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMinaMoten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnSkapaNyttMote, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCal, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnVisaResultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnMinaMoten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))))
+                        .addComponent(btnSkapaNyttMote)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(btnSkapaNyttMote)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSkapaNyttMote)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -934,7 +948,9 @@ public class Inloggad extends javax.swing.JFrame {
                 String datum = moten.get(5);
                 String streck = moten.get(6);
 
-                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+                txtVisaResultat.append(namn + "\n\n");
+                txtVisaResultat.append(beskrivning + "\n\n");
+                txtVisaResultat.append(datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n\n");
             }
         } catch (NoSuchAlgorithmException e) {
             System.out.print(e);
@@ -971,8 +987,10 @@ public class Inloggad extends javax.swing.JFrame {
                 String sluttid = moten.get(4);
                 String datum = moten.get(5);
                 String streck = moten.get(6);
-
-                txtVisaResultat.append(namn + "\n" + beskrivning + "\n" + datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n");
+                
+                txtVisaResultat.append(namn + "\n\n");
+                txtVisaResultat.append(beskrivning + "\n\n");
+                txtVisaResultat.append(datum + " | " + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n\n");
             }
         } catch (NoSuchAlgorithmException e) {
             System.out.print(e);
@@ -1006,7 +1024,10 @@ public class Inloggad extends javax.swing.JFrame {
                 String sluttid = moten.get(4);
                 String streck = moten.get(5);
 
-                txtVisaResultat.append(namn + "\n\n" + beskrivning + "\n\n" + starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n\n" + streck + "\n");
+                txtVisaResultat.append(namn + "\n\n");
+                txtVisaResultat.append(beskrivning + "\n\n");
+                txtVisaResultat.append(starttid + " - " + sluttid + "\n" + "Skapad av: " + fornamn + "\n" + streck + "\n\n");
+                
             }
         } catch (NoSuchAlgorithmException e) {
             System.out.print(e);
@@ -1200,8 +1221,10 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
