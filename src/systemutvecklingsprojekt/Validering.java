@@ -31,6 +31,15 @@ public class Validering {
         }
     }
     
+    static public boolean textAreaExceedsLimit(JTextArea txt, int limit){
+        if(txt.getText().length() > limit){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     static public boolean textAreaIsEmpty(JTextArea txt){
         if (txt.getText().isEmpty()){
             //JOptionPane.showMessageDialog(null, "Textfältet är tomt!");

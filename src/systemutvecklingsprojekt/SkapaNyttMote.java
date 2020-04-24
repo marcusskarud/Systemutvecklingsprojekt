@@ -7,8 +7,8 @@ package systemutvecklingsprojekt;
 
 
 import java.sql.Array;
-    import java.sql.Connection;
-    import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -113,6 +113,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         txtUpptagnaAnv = new javax.swing.JTextArea();
         lblUpptagnaAnv = new javax.swing.JLabel();
+        lblMaxTecken = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -125,7 +126,13 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         jLabelmotesrubrik.setText("Mötesnamn:");
 
         txtAreaBeskrivning.setColumns(20);
+        txtAreaBeskrivning.setLineWrap(true);
         txtAreaBeskrivning.setRows(5);
+        txtAreaBeskrivning.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAreaBeskrivningKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtAreaBeskrivning);
 
         jLabel3.setText("Beskrivning av mötet:");
@@ -196,6 +203,9 @@ public class SkapaNyttMote extends javax.swing.JFrame {
 
         lblUpptagnaAnv.setText("Ej tillgängliga användare");
 
+        lblMaxTecken.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblMaxTecken.setText("Max 200 tecken (200/200)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,7 +224,9 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jChkPubliktMote))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jChkPubliktMote, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblMaxTecken, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabelmotesrubrik, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtProjektRubrik, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -269,30 +281,19 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTaBortMedl)
-                                .addGap(43, 43, 43)
-                                .addComponent(lblUpptagnaAnv)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(txtProjektRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(jChkPubliktMote)
+                                        .addGap(7, 7, 7)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(179, 179, 179))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtProjektRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(32, 32, 32)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jChkPubliktMote))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnLaggTillMedl)
                                     .addGroup(layout.createSequentialGroup()
@@ -308,7 +309,23 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jSpinnerslutTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSkapaMote)))
+                                .addComponent(btnSkapaMote))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblMaxTecken)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTaBortMedl)
+                                .addGap(43, 43, 43)
+                                .addComponent(lblUpptagnaAnv)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -352,6 +369,9 @@ public class SkapaNyttMote extends javax.swing.JFrame {
             
                 JOptionPane.showMessageDialog(null, "Vänligen fyll i Rubrik, Beskrivning och lägg till medlemmar!");
         }
+        else if(Validering.textAreaExceedsLimit(txtAreaBeskrivning, 200)){
+                JOptionPane.showMessageDialog(null, "Mötesbeskrivning för lång! Max 200 tecken.");        
+        }
         else{
                 ArrayList<String> medlemsEpostLista = new ArrayList<>();
            
@@ -387,16 +407,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
                      txtAreaBeskrivning.setText("");
                      valdMedlemListModel.clear();
                      listValdaMedlemmar.setModel(valdMedlemListModel);
-
-            
-            
-            JOptionPane.showMessageDialog(null, "Mötetsinbjudan till " + txtProjektRubrik.getText() + " är nu skickat.");
-            txtProjektRubrik.setText("");
-            txtAreaBeskrivning.setText("");
-            valdMedlemListModel.clear();
-            listValdaMedlemmar.setModel(valdMedlemListModel);
-
-        }
+                    }
     }//GEN-LAST:event_btnSkapaMoteActionPerformed
 
     private void jCalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalPropertyChange
@@ -421,11 +432,6 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         catch(SQLException e){
         }
     }//GEN-LAST:event_jCalPropertyChange
-
-    private void uppdateraLedigDatumLista(){
-        revalidate();
-    }
-    
     
     private void kollaLedigDatum() throws SQLException{ //Kalla på SQL-klass för att se om användare för valt datum är ledig
         ArrayList<String> medlemsEpostLista = new ArrayList<>();
@@ -480,6 +486,12 @@ public class SkapaNyttMote extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jChkPubliktMoteActionPerformed
+
+    private void txtAreaBeskrivningKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaBeskrivningKeyReleased
+        String texten = txtAreaBeskrivning.getText();
+        int stringLangd = texten.length();
+        lblMaxTecken.setText("Max 200 tecken (" + (200 - stringLangd) + "/200)");
+        revalidate();     }//GEN-LAST:event_txtAreaBeskrivningKeyReleased
 
     public static void formeterarTid (JSpinner spinner){
     
@@ -584,6 +596,7 @@ public class SkapaNyttMote extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinnerStartTid;
     private javax.swing.JSpinner jSpinnerslutTid;
+    private javax.swing.JLabel lblMaxTecken;
     private javax.swing.JLabel lblUpptagnaAnv;
     private javax.swing.JLabel lblValtDatum;
     private javax.swing.JLabel lblValtdatumResultat;
