@@ -93,20 +93,12 @@ public class Inloggad extends javax.swing.JFrame {
         ScrollPane1 = new javax.swing.JScrollPane();
         pnlInformellBlogg = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        btnSok = new javax.swing.JButton();
         btnUppdateraInformell = new javax.swing.JButton();
         btnSorteraLikes = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         ScrollPane3 = new javax.swing.JScrollPane();
         pnlFormellBlogg = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        jButton16 = new javax.swing.JButton();
         btnUppdateraFormell = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -115,19 +107,13 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         btnLaggTillFil = new javax.swing.JButton();
         lblVisaFilnamn = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
         cmbInlaggsTyp = new javax.swing.JComboBox<>();
         btnPublicera = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtBrodtext = new javax.swing.JTextArea();
+        lblValjBlogg = new javax.swing.JLabel();
         pnlAdminRights = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -141,6 +127,7 @@ public class Inloggad extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txtEfternamn = new javax.swing.JTextField();
         rbtnAdmin = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -199,12 +186,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerInformellBloggColor.png"))); // NOI18N
 
-        jLabel20.setText("#");
-
-        jLabel21.setText("Sök inlägg");
-
-        btnSok.setText("Sök");
-
         btnUppdateraInformell.setText("Uppdatera");
         btnUppdateraInformell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,23 +205,11 @@ public class Inloggad extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(41, 41, 41))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSok)
-                                .addGap(12, 12, 12))))
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnUppdateraInformell)
-                        .addComponent(btnSorteraLikes)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnUppdateraInformell)
+                    .addComponent(btnSorteraLikes))
+                .addGap(34, 34, 34)
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -249,24 +218,17 @@ public class Inloggad extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSok)
-                            .addComponent(jLabel20))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                        .addComponent(btnSorteraLikes)
-                        .addGap(63, 63, 63)
+                        .addGap(56, 56, 56)
                         .addComponent(btnUppdateraInformell)
-                        .addGap(225, 225, 225))))
+                        .addGap(26, 26, 26)
+                        .addComponent(btnSorteraLikes)
+                        .addContainerGap(498, Short.MAX_VALUE))))
         );
 
         jTabbedPane2.addTab("Informell", jPanel7);
@@ -286,12 +248,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/BannerFormellBloggColor.png"))); // NOI18N
 
-        jLabel29.setText("#");
-
-        jLabel30.setText("Sök inlägg");
-
-        jButton16.setText("Sök");
-
         btnUppdateraFormell.setText("Uppdatera");
         btnUppdateraFormell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,44 +260,24 @@ public class Inloggad extends javax.swing.JFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel30)
-                        .addGap(41, 41, 41))
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnUppdateraFormell)
-                        .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel29)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton16))))
-                .addGap(12, 12, 12)
+                .addContainerGap()
+                .addComponent(btnUppdateraFormell)
+                .addGap(43, 43, 43)
                 .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 1016, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jLabel28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton16)
-                            .addComponent(jLabel29))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUppdateraFormell)
-                        .addGap(232, 232, 232))))
+                        .addGap(38, 38, 38)
+                        .addComponent(btnUppdateraFormell)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Formell", jPanel10);
@@ -359,22 +295,9 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
-        lblVisaFilnamn.setText("*Visa vald filnamn här*");
+        lblVisaFilnamn.setText("Filnamn");
 
         jLabel26.setText("#");
-
-        jLabel27.setText("Lägg till sökord:");
-
-        jButton10.setText("Lägg till");
-
-        jButton15.setText("Ta bort valt sökord");
-
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "item 6", "item 7", "item 8", "item 9 ", "item 10", "item 11", "item 12", "item 13", "item 14", "item 15" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane4.setViewportView(jList2);
 
         cmbInlaggsTyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Informell blogg", "Formell blogg" }));
 
@@ -385,14 +308,14 @@ public class Inloggad extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("#");
-
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/systemutvecklingsprojekt/SkapaNyttInläggColor.png"))); // NOI18N
 
         txtBrodtext.setColumns(20);
         txtBrodtext.setLineWrap(true);
         txtBrodtext.setRows(5);
         jScrollPane1.setViewportView(txtBrodtext);
+
+        lblValjBlogg.setText("Välj blogg");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -401,36 +324,24 @@ public class Inloggad extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(txtSattRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel18)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                .addGap(503, 503, 503)
-                                .addComponent(btnPublicera))
-                            .addComponent(jScrollPane1))
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnPublicera)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblVisaFilnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnLaggTillFil)
-                                        .addComponent(cmbInlaggsTyp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                                            .addComponent(jLabel27)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(150, 150, 150)
+                                    .addComponent(cmbInlaggsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLaggTillFil)
+                                    .addComponent(lblVisaFilnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(211, 211, 211)
                                 .addComponent(jLabel26))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(jButton15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton10))))
-                    .addComponent(jLabel7)
-                    .addComponent(txtSattRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblValjBlogg, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addComponent(jLabel31)
@@ -444,36 +355,25 @@ public class Inloggad extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSattRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(jLabel26))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton15)
-                                    .addComponent(jButton10))
-                                .addGap(56, 56, 56)
-                                .addComponent(btnLaggTillFil))
-                            .addComponent(jScrollPane1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblVisaFilnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbInlaggsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPublicera))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(lblValjBlogg)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbInlaggsTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel26)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnLaggTillFil)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblVisaFilnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(btnPublicera)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -506,8 +406,6 @@ public class Inloggad extends javax.swing.JFrame {
 
         jButton11.setText("Ge adminstatus");
 
-        jPanel4.setBackground(new java.awt.Color(68, 73, 255));
-
         jLabel12.setText("E-post (inlogg)");
 
         jLabel15.setText("Telefonnummer");
@@ -525,33 +423,41 @@ public class Inloggad extends javax.swing.JFrame {
 
         rbtnAdmin.setText("Administratör");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Skapa konto");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTelefonnummer)
-                    .addComponent(rbtnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addGap(55, 55, 55)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnSkapaKonto)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEfternamn, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(txtFornamn))))
-                .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEpost, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTelefonnummer)
+                            .addComponent(rbtnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnSkapaKonto)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEfternamn)
+                                    .addComponent(txtFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(29, 29, 29))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel16))
@@ -567,11 +473,11 @@ public class Inloggad extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSkapaKonto)
-                    .addComponent(rbtnAdmin))
-                .addGap(30, 30, 30))
+                    .addComponent(rbtnAdmin)
+                    .addComponent(btnSkapaKonto))
+                .addGap(58, 58, 58))
         );
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -586,15 +492,12 @@ public class Inloggad extends javax.swing.JFrame {
             pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAdminRightsLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11)
-                    .addGroup(pnlAdminRightsLayout.createSequentialGroup()
-                        .addGroup(pnlAdminRightsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(66, 66, 66))
                     .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(85, 85, 85))
         );
@@ -609,12 +512,12 @@ public class Inloggad extends javax.swing.JFrame {
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11)
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel14))
                     .addGroup(pnlAdminRightsLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(367, Short.MAX_VALUE))
         );
 
         tabbedPaneBar.addTab("Admin", pnlAdminRights);
@@ -963,7 +866,7 @@ public class Inloggad extends javax.swing.JFrame {
                         lblVisaFilnamn.setText(filNamn);
 
                     } else if (input == 2) {
-                        lblVisaFilnamn.setText("*Visa vald filnamn här*");
+                        lblVisaFilnamn.setText("Filnamn");
 
                         filNamn = "";
 
@@ -983,7 +886,7 @@ public class Inloggad extends javax.swing.JFrame {
                         lblVisaFilnamn.setText(filNamn);
 
                     } else if (input == 2) {
-                        lblVisaFilnamn.setText("*Visa vald filnamn här*");
+                        lblVisaFilnamn.setText("Filnamn");
 
                         filNamn = "";
 
@@ -996,16 +899,6 @@ public class Inloggad extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnLaggTillFilActionPerformed
-
-    private void btnUppdateraFormellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraFormellActionPerformed
-
-        try {
-            uppdateraFormellBlogg();
-            uppdateraInformellBlogg();
-            revalidate();
-        } catch (SQLException e) {
-        }
-    }//GEN-LAST:event_btnUppdateraFormellActionPerformed
 
     private void btnSorteraLikesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteraLikesActionPerformed
 
@@ -1145,6 +1038,16 @@ public class Inloggad extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jCalPropertyChange
 
+    private void btnUppdateraFormellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraFormellActionPerformed
+
+        try {
+            uppdateraFormellBlogg();
+            uppdateraInformellBlogg();
+            revalidate();
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnUppdateraFormellActionPerformed
+
     private void fyllPåCmbProjektgrupper() throws SQLException {
 
         ArrayList<ArrayList> projektArray = SQL.hamtaProjektGruppNamn(db, anvandarID);
@@ -1277,7 +1180,7 @@ public class Inloggad extends javax.swing.JFrame {
         rbtnAdmin.setSelected(false);
         txtBrodtext.setText("");
         txtSattRubrik.setText("");
-        lblVisaFilnamn.setText("*Visa vald filnamn här*");
+        lblVisaFilnamn.setText("Filnamn");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1289,17 +1192,13 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JButton btnPublicera;
     private javax.swing.JButton btnSkapaKonto;
     private javax.swing.JButton btnSkapaNyProjektgrupp;
-    private javax.swing.JButton btnSok;
     private javax.swing.JButton btnSorteraLikes;
     private javax.swing.JButton btnUppdateraFormell;
     private javax.swing.JButton btnUppdateraInformell;
     private javax.swing.JButton btnVisaResultat;
     private javax.swing.JComboBox<String> cmbInlaggsTyp;
     private javax.swing.JComboBox<String> cmbProjektLista;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
@@ -1315,18 +1214,12 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1338,13 +1231,10 @@ public class Inloggad extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblValjBlogg;
     private javax.swing.JLabel lblValjProjektgrupp;
     private javax.swing.JLabel lblVisaFilnamn;
     private javax.swing.JPanel pnlAdminRights;
